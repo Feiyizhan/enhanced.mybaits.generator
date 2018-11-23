@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.abc.plugin</groupId>
   <artifactId>enhanced.mybaits.generator</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>enhanced.mybaits.generator</name>
   <description>增强的Mybaits Generator插件</description>
   <url>http://maven.apache.org</url>
