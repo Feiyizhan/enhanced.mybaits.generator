@@ -18,7 +18,6 @@ import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.api.dom.java.Field;
-import org.mybatis.generator.api.dom.java.InnerClass;
 import org.mybatis.generator.api.dom.java.Interface;
 import org.mybatis.generator.api.dom.java.JavaElement;
 import org.mybatis.generator.api.dom.java.Method;
@@ -38,13 +37,11 @@ import enhanced.mybaits.generator.dom.java.TestsClass;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.enums.ServiceImplExtraMethodEnum;
 import enhanced.mybaits.generator.enums.ServiceMethodEnum;
-import lombok.extern.log4j.Log4j2;
 
 /**
  * My baits 生成器 注释增强处理
  * @author 徐明龙 XuMingLong 
  */
-@Log4j2
 public class EnhanceCommentGenerator extends DefaultCommentGenerator implements IEnhanceCommentGenerator{
     
     
@@ -250,8 +247,6 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         topLevelClass.addJavaDocLine(sb.toString());
         // 增加创建人
         addAuthorJavadocTag(topLevelClass);
-        // 增加创建日期
-        addCreateDateJavadocTag(topLevelClass);
         topLevelClass.addJavaDocLine(" */"); 
         //增加Lombok注释
         addLombokAnnotation(topLevelClass);
@@ -288,27 +283,13 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         if (author != null) {
             sb.append(' ');
             sb.append(author);
-        }
-        javaElement.addJavaDocLine(sb.toString());
-        
-    }
-    
-    /**
-     * 增加创建日期Java Doc标签
-     * @author 徐明龙 XuMingLong 
-     * @param javaElement Java类的节点
-     */
-    protected void addCreateDateJavadocTag(JavaElement javaElement) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(" * "); 
-        String s = getDateString();
-        if (s != null) {
             sb.append(' ');
-            sb.append(s);
+            sb.append(getDateString());
         }
         javaElement.addJavaDocLine(sb.toString());
         
     }
+
     
     /**
      * 获取日期字符串
@@ -339,8 +320,6 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         field.addJavaDocLine(" * "+introspectedColumn.getRemarks()); 
         // 增加创建人
         addAuthorJavadocTag(field);
-        // 增加创建日期
-        addCreateDateJavadocTag(field);
         field.addJavaDocLine(" */"); 
     }
 
@@ -494,8 +473,6 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         method.addJavaDocLine(String.join("", " * ",comment));
         // 增加创建人
         addAuthorJavadocTag(method);
-        // 增加创建日期
-        addCreateDateJavadocTag(method);
         //增加参数
         method.getParameters().forEach((r)->{
             method.addJavaDocLine(String.join("", " * ","@param ",r.getName()));
@@ -518,8 +495,6 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         javaElement.addJavaDocLine(String.join("", " * ",comment,extraComment));
         // 增加创建人
         addAuthorJavadocTag(javaElement);
-        // 增加创建日期
-        addCreateDateJavadocTag(javaElement);
         javaElement.addJavaDocLine(" */"); 
         
     }

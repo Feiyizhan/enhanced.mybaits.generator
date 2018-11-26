@@ -4,26 +4,18 @@
  */
 package enhanced.mybaits.generator;
 
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.mybatis.generator.api.GeneratedJavaFile;
 import org.mybatis.generator.api.ProgressCallback;
-import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.codegen.AbstractJavaClientGenerator;
-import org.mybatis.generator.codegen.AbstractJavaGenerator;
 import org.mybatis.generator.codegen.mybatis3.IntrospectedTableMyBatis3SimpleImpl;
 import org.mybatis.generator.codegen.mybatis3.javamapper.SimpleAnnotatedClientGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.SimpleJavaClientGenerator;
-import org.mybatis.generator.config.PropertyRegistry;
 import org.mybatis.generator.internal.ObjectFactory;
 
 import enhanced.mybaits.generator.codegen.EnhanceSimpleJavaClientGenerator;
 import enhanced.mybaits.generator.codegen.EnhanceSimpleXMLMapperGenerator;
-import enhanced.mybaits.generator.dom.java.TestsClass;
-import lombok.extern.log4j.Log4j2;
 
 /**
  * My baits 生成器 代码生成类
