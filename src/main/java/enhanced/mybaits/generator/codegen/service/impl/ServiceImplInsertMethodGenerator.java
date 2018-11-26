@@ -24,7 +24,6 @@ import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 /**
  * Service 接口实现类新增方法生成器
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-21 
  */
 public class ServiceImplInsertMethodGenerator extends AbstractServiceImplMethodGenerator {
 
@@ -35,7 +34,6 @@ public class ServiceImplInsertMethodGenerator extends AbstractServiceImplMethodG
     /**
      * 增加方法内容
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      * @param method
      */
     @Override
@@ -124,7 +122,6 @@ public class ServiceImplInsertMethodGenerator extends AbstractServiceImplMethodG
     /**
      * 增加额外的方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      * @param method
      * @return
      */
@@ -177,7 +174,6 @@ public class ServiceImplInsertMethodGenerator extends AbstractServiceImplMethodG
     /**
      * 返回Service方法枚举类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23 
      * @return
      */
     @Override
@@ -189,7 +185,6 @@ public class ServiceImplInsertMethodGenerator extends AbstractServiceImplMethodG
     /**
      * 计算方法名称
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-23
      * @return
      */
     @Override

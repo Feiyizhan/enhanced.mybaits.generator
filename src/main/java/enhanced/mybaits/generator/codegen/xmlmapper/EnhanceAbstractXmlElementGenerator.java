@@ -15,7 +15,6 @@ import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
  * 增强的Xml 节点生成器基础类
  * 
  * @author 徐明龙 XuMingLong
- * @createDate 2018-11-16
  */
 public abstract class EnhanceAbstractXmlElementGenerator extends AbstractXmlElementGenerator {
     public EnhanceAbstractXmlElementGenerator() {
@@ -26,7 +25,6 @@ public abstract class EnhanceAbstractXmlElementGenerator extends AbstractXmlElem
      * 获取引入全字段列表节点
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
      * @return
      */
     protected XmlElement getIncludeAllColumnListElement() {
@@ -39,7 +37,6 @@ public abstract class EnhanceAbstractXmlElementGenerator extends AbstractXmlElem
      * 获取首字母小写的短名称
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
      * @param fullName
      * @return
      */
@@ -51,7 +48,6 @@ public abstract class EnhanceAbstractXmlElementGenerator extends AbstractXmlElem
      * 获取基础记录类型的首字母小写的短名称
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
      * @return
      */
     protected String getBaseRecordUncapitalizeShortName() {

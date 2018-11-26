@@ -8,56 +8,48 @@ package enhanced.mybaits.generator.enums;
 /**
  * MyBaits Generatior 增强 sql id枚举类
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-15 
  */
 public enum EnhanceSqlIdEnum {
     
     /**
      * 全字段列表
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-15 
      */
     ALL_COLUMN_LIST("all_column_list","Base_Column_List","全字段列表"),
     
     /**
      * 获取指定主键对应的记录
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-15 
      */
     GET_BY_PRIMARY_KEY("getByPrimaryKey","selectByPrimaryKey","获取指定主键对应的记录"),
     
     /**
      * 获取指定主键对应的记录并锁定
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-15 
      */
     GET_BY_PRIMARY_KEY_AND_LOCKED("getByPrimaryKeyAndLocked","","获取指定主键对应的记录并锁定"),
     
     /**
      * 新增记录
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-15 
      */
     INSERT("insert","insert","新增记录"),
     
     /**
      * 删除指定主键的记录
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-15 
      */
     DELETE_BY_PRIMARY_KEY("deleteByPrimaryKey","deleteByPrimaryKey","删除指定主键的记录"),
     
     /**
      * 更新指定主键的记录
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-15 
      */
     UPDATE_BY_PRIMARY_KEY("updateByPrimaryKey","updateByPrimaryKey","更新指定主键的记录"),
     
     /**
      * 获取所有记录
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-15 
      */
     LIST_ALL("listAll","selectAll","获取所有记录"),
     ;

@@ -36,7 +36,6 @@ import enhanced.mybaits.generator.codegen.service.impl.ServiceImplGenerator;
 /**
  * Mybaits Generator 增加插件
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-09 
  */
 public class EnhancePlugin extends PluginAdapter{
 
@@ -44,14 +43,12 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * 混合的上下文对象
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     private MixedContext mixedContext;
     
     /**
      * 解析好的表
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      */
     private IntrospectedTable table;
 
@@ -59,7 +56,6 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * SQL Mapper文件
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      */
     private Document document;
 
@@ -69,7 +65,6 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * 生成器的执行器
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     private GeneratorExecutor generatorExecutor;
 
@@ -77,7 +72,6 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * Mapper 类生成
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @param interfaze
      * @param topLevelClass
      * @param introspectedTable
@@ -94,7 +88,6 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * 基础类型生成
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @param topLevelClass
      * @param introspectedTable
      * @return
@@ -110,7 +103,6 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * Sql Mapper生成
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @param document
      * @param introspectedTable
      * @return
@@ -126,7 +118,6 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * 补充生成的Java文件
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-16 
      * @param introspectedTable
      * @return
      */
@@ -152,7 +143,6 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      *
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-16 
      * @param introspectedTable
      * @return
      */
@@ -166,7 +156,6 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      *
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-09 
      * @param method
      * @param topLevelClass
      * @param introspectedColumn
@@ -184,7 +173,6 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      *
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-15 
      * @param method
      * @param topLevelClass
      * @param introspectedColumn
@@ -203,7 +191,6 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * 插件初始化
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-09 
      * @param introspectedTable
      */
     @Override
@@ -234,7 +221,6 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * 获取默认的主键生成配置
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-15 
      * @param introspectedTable
      * @return
      */
@@ -273,7 +259,6 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * 参数校验
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-09 
      * @param warnings
      * @return
      */

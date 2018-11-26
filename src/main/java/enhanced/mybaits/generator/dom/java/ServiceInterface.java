@@ -10,7 +10,6 @@ import org.mybatis.generator.api.dom.java.Interface;
 /**
  * Service 接口
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-19 
  */
 public class ServiceInterface extends Interface {
 

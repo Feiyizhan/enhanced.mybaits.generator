@@ -17,7 +17,6 @@ import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 /**
  * Service 接口实现类获取主键对应的记录方法生成器
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-21 
  */
 public class ServiceImplGetByPrimaryKeyMethodGenerator extends AbstractServiceImplMethodGenerator {
 
@@ -28,7 +27,6 @@ public class ServiceImplGetByPrimaryKeyMethodGenerator extends AbstractServiceIm
     /**
      * 增加方法内容
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      * @param method
      */
     @Override
@@ -50,7 +48,6 @@ public class ServiceImplGetByPrimaryKeyMethodGenerator extends AbstractServiceIm
     /**
      * 增加额外的方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      * @param method
      * @return
      */
@@ -63,7 +60,6 @@ public class ServiceImplGetByPrimaryKeyMethodGenerator extends AbstractServiceIm
     /**
      * 返回Service方法枚举类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23 
      * @return
      */
     @Override
@@ -75,7 +71,6 @@ public class ServiceImplGetByPrimaryKeyMethodGenerator extends AbstractServiceIm
     /**
      * 计算方法名称
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-23
      * @return
      */
     @Override

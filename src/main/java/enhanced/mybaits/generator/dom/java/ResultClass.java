@@ -10,7 +10,6 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 /**
  * Result类
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-20 
  */
 public class ResultClass extends TopLevelClass {
     public ResultClass(FullyQualifiedJavaType type) {

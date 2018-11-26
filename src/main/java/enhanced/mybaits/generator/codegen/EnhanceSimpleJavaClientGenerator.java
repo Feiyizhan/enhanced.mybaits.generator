@@ -28,17 +28,14 @@ import enhanced.mybaits.generator.codegen.javamapper.ListAllMethodGenerator;
  * 增强的DAO 接口生成器
  * 
  * @author 徐明龙 XuMingLong
- * @createDate 2018-11-16
  */
 public class EnhanceSimpleJavaClientGenerator extends SimpleJavaClientGenerator {
     
 
     /**
      * 生成DAO 接口
-     * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
-     * @return
+     * @return 返回生成的接口类
      */
     @Override
     public List<CompilationUnit> getCompilationUnits() {
@@ -63,8 +60,7 @@ public class EnhanceSimpleJavaClientGenerator extends SimpleJavaClientGenerator 
     /**
      * 获取Java Client
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
-     * @return
+     * @return 返回接口类
      */
     protected Interface getJavaClient() {
         progressCallback.startTask(getString("Progress.17", introspectedTable.getFullyQualifiedTable().toString()));
@@ -111,8 +107,8 @@ public class EnhanceSimpleJavaClientGenerator extends SimpleJavaClientGenerator 
      * 增加获取指定主键对应的记录方法
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
-     * @param interfaze
+     * 
+     * @param interfaze 接口类
      */
     protected void addGetByPrimaryKeyMethod(Interface interfaze) {
         if (introspectedTable.getRules().generateSelectByPrimaryKey()) {
@@ -125,8 +121,8 @@ public class EnhanceSimpleJavaClientGenerator extends SimpleJavaClientGenerator 
      * 增加获取指定主键对应的记录并锁定方法
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
-     * @param interfaze
+     * 
+     * @param interfaze 接口类
      */
     protected void addGetByPrimaryKeyAndLockedMethod(Interface interfaze) {
         if (introspectedTable.getRules().generateSelectByPrimaryKey()) {
@@ -139,8 +135,7 @@ public class EnhanceSimpleJavaClientGenerator extends SimpleJavaClientGenerator 
      * 增加获取所有记录方法
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
-     * @param interfaze
+     * @param interfaze 指定的接口类
      */
     protected void addListAllMethod(Interface interfaze) {
         AbstractJavaMapperMethodGenerator methodGenerator = new ListAllMethodGenerator();
@@ -153,8 +148,7 @@ public class EnhanceSimpleJavaClientGenerator extends SimpleJavaClientGenerator 
      * 获取对应的Xml生成器
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
-     * @return
+     * @return 返回增强的的简单XML Mapper生成器
      */
     @Override
     public AbstractXmlGenerator getMatchedXMLGenerator() {

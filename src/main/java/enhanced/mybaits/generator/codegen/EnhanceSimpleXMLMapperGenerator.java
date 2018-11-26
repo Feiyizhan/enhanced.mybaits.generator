@@ -23,15 +23,13 @@ import enhanced.mybaits.generator.codegen.xmlmapper.ListAllElementGenerator;
 /**
  * My baits 生成器 - 增强的简单XML Mapper生成器
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-16 
  */
 public class EnhanceSimpleXMLMapperGenerator extends SimpleXMLMapperGenerator {
 
     /**
      * 生成SQL Mapper
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-16 
-     * @return
+     * @return 返回mapper节点
      */
     @Override
     protected XmlElement getSqlMapElement() {
@@ -57,7 +55,6 @@ public class EnhanceSimpleXMLMapperGenerator extends SimpleXMLMapperGenerator {
     /**
      * 增加全字段列表节点
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-16 
      * @param parentElement
      */
     protected void addAllColumenListElement(XmlElement parentElement) {
@@ -68,7 +65,6 @@ public class EnhanceSimpleXMLMapperGenerator extends SimpleXMLMapperGenerator {
     /**
      * 增加删除指定主键的记录节点
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-16 
      * @param parentElement
      */
     protected void addDeleteByPrimaryKeyElement(XmlElement parentElement) {
@@ -81,7 +77,6 @@ public class EnhanceSimpleXMLMapperGenerator extends SimpleXMLMapperGenerator {
     /**
      * 增加更新指定主键的记录节点
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-16 
      * @param parentElement
      */
     protected void addUpdateByPrimaryKeyElement(XmlElement parentElement) {
@@ -94,7 +89,6 @@ public class EnhanceSimpleXMLMapperGenerator extends SimpleXMLMapperGenerator {
     /**
      * 增加新增记录节点
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-16 
      * @param parentElement
      */
     protected void addInsertElement(XmlElement parentElement) {
@@ -108,7 +102,6 @@ public class EnhanceSimpleXMLMapperGenerator extends SimpleXMLMapperGenerator {
     /**
      * 增加获取指定主键对应的记录节点
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-16 
      * @param parentElement
      */
     protected void addGetByPrimaryKeyElement(XmlElement parentElement) {
@@ -121,7 +114,6 @@ public class EnhanceSimpleXMLMapperGenerator extends SimpleXMLMapperGenerator {
     /**
      * 增加获取指定主键对应的记录并锁定节点
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-16 
      * @param parentElement
      */
     protected void addGetByPrimaryKeyAndLockedElement(XmlElement parentElement) {
@@ -134,7 +126,6 @@ public class EnhanceSimpleXMLMapperGenerator extends SimpleXMLMapperGenerator {
     /**
      * 增加获取所有记录节点
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-16 
      * @param parentElement
      */
     protected void addListAllElement(XmlElement parentElement) {

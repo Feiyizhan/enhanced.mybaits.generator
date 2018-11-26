@@ -24,7 +24,6 @@ import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 /**
  * Service 接口实现类删除指定记录方法生成器
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-21 
  */
 public class ServiceImplDeleteByPrimaryKeyMethodGenerator extends AbstractServiceImplMethodGenerator {
 
@@ -35,7 +34,6 @@ public class ServiceImplDeleteByPrimaryKeyMethodGenerator extends AbstractServic
     /**
      * 增加方法内容
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      * @param method
      */
     @Override
@@ -112,7 +110,6 @@ public class ServiceImplDeleteByPrimaryKeyMethodGenerator extends AbstractServic
     /**
      * 增加额外的方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      * @param method
      * @return
      */
@@ -165,7 +162,6 @@ public class ServiceImplDeleteByPrimaryKeyMethodGenerator extends AbstractServic
     /**
      * 返回Service方法枚举类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23 
      * @return
      */
     @Override
@@ -177,7 +173,6 @@ public class ServiceImplDeleteByPrimaryKeyMethodGenerator extends AbstractServic
     /**
      * 计算方法名称
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-23
      * @return
      */
     @Override

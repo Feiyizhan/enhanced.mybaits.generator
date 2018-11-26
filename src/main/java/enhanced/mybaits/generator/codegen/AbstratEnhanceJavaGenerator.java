@@ -15,21 +15,18 @@ import enhanced.mybaits.generator.MixedContext;
 /**
  * 增强的Java生成器抽象类
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-20 
  */
 public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
 
     /**
      * 混合的上下文对象
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     protected MixedContext mixedContext;
     
     /**
      * 生成的目标项目目录
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     protected String targetProject;
 
@@ -41,8 +38,7 @@ public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
     /**
      * 获取生成的目标项目目录
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
-     * @return
+     * @return 生成的目标项目目录
      */
     public String getTargetProject() {
         return targetProject;
@@ -51,8 +47,6 @@ public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
     /**
      * 设置生成的目标项目目录
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
-     * @param targetProject
      */
     public abstract void setTargetProject() ;
     
@@ -60,8 +54,7 @@ public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
     /**
      * 获取测试项目路径
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
-     * @return
+     * @return 测试项目路径
      */
     protected String calculateTestProject() {
         String testProject = this.context
@@ -77,8 +70,7 @@ public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
     /**
      * 获取Java Client项目路径
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
-     * @return
+     * @return Java Client项目路径
      */
     protected String calculateJavaClientProject() {
         return this.context.getJavaClientGeneratorConfiguration().getTargetProject();
@@ -87,8 +79,7 @@ public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
     /**
      * 获取Java Model项目路径
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
-     * @return
+     * @return Java Model项目路径
      */
     protected String calculateModelProject() {
         return this.context.getJavaModelGeneratorConfiguration().getTargetProject();
@@ -97,8 +88,7 @@ public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
     /**
      * 返回日期类型
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23 
-     * @return
+     * @return 返回LocalDateTime的类型对象
      */
     public FullyQualifiedJavaType getNewLocalDateTimeType() {
         return new FullyQualifiedJavaType("java.time.LocalDateTime");
@@ -108,8 +98,7 @@ public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
     /**
      * 获取取当前日期静态方法名
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23 
-     * @return
+     * @return 返回获取当前日期的静态方法名
      */
     protected String getNowUtilsName() {
         return this.context

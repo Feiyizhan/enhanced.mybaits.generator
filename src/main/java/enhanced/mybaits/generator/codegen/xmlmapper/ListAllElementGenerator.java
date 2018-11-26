@@ -16,7 +16,6 @@ import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
  * 获取所有记录节点生成器
  * 
  * @author 徐明龙 XuMingLong
- * @createDate 2018-11-16
  */
 public class ListAllElementGenerator extends EnhanceAbstractXmlElementGenerator {
 
@@ -28,7 +27,6 @@ public class ListAllElementGenerator extends EnhanceAbstractXmlElementGenerator 
      * 生成获取所有记录节点
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
      * @param parentElement
      */
     @Override

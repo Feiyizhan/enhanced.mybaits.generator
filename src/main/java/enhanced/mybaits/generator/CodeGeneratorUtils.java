@@ -7,7 +7,6 @@ package enhanced.mybaits.generator;
 /**
  * 代码生成工具类
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-20 
  */
 public class CodeGeneratorUtils {
 

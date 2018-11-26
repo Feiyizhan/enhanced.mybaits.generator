@@ -23,7 +23,6 @@ import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
  * 增强的新增记录节点生成器
  * 
  * @author 徐明龙 XuMingLong
- * @createDate 2018-11-16
  */
 public class EnhanceInsertElementGenerator extends EnhanceAbstractXmlElementGenerator {
 
@@ -35,7 +34,6 @@ public class EnhanceInsertElementGenerator extends EnhanceAbstractXmlElementGene
      * 生成新增记录节点
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
      * @param parentElement
      */
     @Override

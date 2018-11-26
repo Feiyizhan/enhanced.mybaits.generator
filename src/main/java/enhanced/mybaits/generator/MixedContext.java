@@ -20,7 +20,6 @@ import lombok.ToString;
 /**
  * 增强的上下文对象
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-19 
  */
 @Getter@Setter@EqualsAndHashCode@ToString
 public class MixedContext {
@@ -28,41 +27,35 @@ public class MixedContext {
     /**
      * 生成的Mapper 接口
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      */
     private Interface mapper;
     /**
      * 基础数据类型
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      */
     private TopLevelClass baseRecord;
     
     /**
      * Mapper的测试类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      */
     private TestsClass testsClass;
     
     /**
      * Service 接口类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     private ServiceInterface serviceInterface;
     
     /**
      * Service 实现类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     private ServiceImplClass serviceImplClass;
     
     /**
      * Form类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     private FormClass formClass;
     
@@ -70,7 +63,6 @@ public class MixedContext {
     /**
      * Result类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     private ResultClass resultClass;
     

@@ -20,95 +20,84 @@ import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 /**
  * 增加的注释生成器接口
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-19 
  */
 public interface IEnhanceCommentGenerator {
 
     /**
      * Java Mapper类注释
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
-     * @param interfaze
-     * @param introspectedTable
+     * @param interfaze Mapper接口类
+     * @param introspectedTable 对应的表 
      */
     void addMapperClassComment(Interface interfaze,IntrospectedTable introspectedTable);
     
     /**
      * Java Mapper 测试类注释
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
-     * @param testsClass
-     * @param introspectedTable
+     * @param testsClass 测试类
+     * @param introspectedTable 对应的表 
      */
     void addMapperTestsClassComment(TestsClass testsClass,IntrospectedTable introspectedTable);
     
     /**
      * Java Mapper 测试类方法注释
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
-     * @param method
+     * @param method 方法类
      */
     void addMapperTestsMethodComment(Method method);
 
     /**
      * Service接口类注释
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
-     * @param serviceInterface
-     * @param introspectedTable
+     * @param serviceInterface Service接口类
+     * @param introspectedTable 对应的表 
      */
     void addServiceInterfaceComment(ServiceInterface serviceInterface, IntrospectedTable introspectedTable);
 
     /**
      * Form类注释
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
-     * @param formClass
-     * @param introspectedTable
+     * @param formClass 表单类
+     * @param introspectedTable 对应的表 
      */
     void addFormClassComment(FormClass formClass, IntrospectedTable introspectedTable);
 
     /**
      * Result类注释
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
-     * @param resultClass
-     * @param introspectedTable
+     * @param resultClass 返回结果类
+     * @param introspectedTable 对应的表 
      */
     void addResultClassComment(ResultClass resultClass, IntrospectedTable introspectedTable);
 
     /**
      * Service接口实现类注释
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
-     * @param serviceImplClass
-     * @param introspectedTable
+     * @param serviceImplClass Service的实现类
+     * @param introspectedTable 对应的表 
      */
     void addServiceImplClassComment(ServiceImplClass serviceImplClass, IntrospectedTable introspectedTable);
 
     /**
      * 增加注入的Mapper字段的注释
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
-     * @param field
-     * @param introspectedTable
+     * @param field 注入的字段类
+     * @param introspectedTable 对应的表 
      */
     void addAutowiredMapperFieldComment(Field field, IntrospectedTable introspectedTable);
 
     /**
      * Service 方法的注释
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23 
-     * @param method
-     * @param methodEnum
+     * @param method 方法类
+     * @param methodEnum 方法的枚举
      */
     void addServiceMethodComment(Method method,ServiceMethodEnum methodEnum);
 
     /**
      * Service 扩展的方法的注释
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
-     * @param method
+     * @param method 基于的方法
      */
     void addServiceExtraMethodComment(Method method);
 }

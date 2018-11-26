@@ -10,7 +10,6 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 /**
  * Service 实现类
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-19 
  */
 public class ServiceImplClass extends TopLevelClass{
 

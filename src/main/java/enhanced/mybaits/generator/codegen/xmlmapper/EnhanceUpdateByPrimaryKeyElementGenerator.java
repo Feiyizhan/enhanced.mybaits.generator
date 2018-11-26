@@ -20,7 +20,6 @@ import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
  * 增强的更新指定主键的记录生成器
  * 
  * @author 徐明龙 XuMingLong
- * @createDate 2018-11-16
  */
 public class EnhanceUpdateByPrimaryKeyElementGenerator extends EnhanceAbstractXmlElementGenerator {
 
@@ -32,7 +31,6 @@ public class EnhanceUpdateByPrimaryKeyElementGenerator extends EnhanceAbstractXm
      * 生成更新指定主键的记录节点
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
      * @param parentElement
      */
     @Override

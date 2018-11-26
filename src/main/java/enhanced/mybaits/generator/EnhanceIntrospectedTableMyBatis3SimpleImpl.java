@@ -29,7 +29,6 @@ import lombok.extern.log4j.Log4j2;
  * My baits 生成器 代码生成类
  * 
  * @author 徐明龙 XuMingLong
- * @createDate 2018-11-16
  */
 public class EnhanceIntrospectedTableMyBatis3SimpleImpl extends IntrospectedTableMyBatis3SimpleImpl {
 
@@ -37,7 +36,6 @@ public class EnhanceIntrospectedTableMyBatis3SimpleImpl extends IntrospectedTabl
      * 选择XML Mapper生成器
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
      * @param javaClientGenerator
      * @param warnings
      * @param progressCallback
@@ -62,7 +60,6 @@ public class EnhanceIntrospectedTableMyBatis3SimpleImpl extends IntrospectedTabl
      * 选择Java Client生成器
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
      * @return
      */
     @Override

@@ -16,7 +16,6 @@ import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
  * 增加获取指定主键对应的记录生成器
  * 
  * @author 徐明龙 XuMingLong
- * @createDate 2018-11-16
  */
 public class GetByPrimaryKeyElementGenerator extends EnhanceAbstractXmlElementGenerator {
 
@@ -28,7 +27,6 @@ public class GetByPrimaryKeyElementGenerator extends EnhanceAbstractXmlElementGe
      * 是否需要锁住记录
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
      */
     private boolean isLocked;
 
@@ -41,7 +39,6 @@ public class GetByPrimaryKeyElementGenerator extends EnhanceAbstractXmlElementGe
      * 生成增加获取指定主键对应的记录节点
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
      * @param parentElement
      */
     @Override

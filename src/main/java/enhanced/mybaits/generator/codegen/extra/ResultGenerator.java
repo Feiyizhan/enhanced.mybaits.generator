@@ -26,7 +26,6 @@ import enhanced.mybaits.generator.dom.java.ResultClass;
 /**
  * Result类生成器
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-20 
  */
 public class ResultGenerator extends AbstratEnhanceJavaGenerator {
 
@@ -37,7 +36,6 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
     /**
      *
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     @Override
     public void setTargetProject() {
@@ -47,7 +45,6 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
     /**
      *
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      * @return
      */
     @Override
@@ -62,7 +59,6 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Result类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      * @return
      */
     protected ResultClass getResultClass() {
@@ -112,7 +108,6 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Result类名称
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @return
      */
     protected String calculateResutlClassName() {
@@ -127,7 +122,6 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Result类的Package
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @return
      */
     protected String calculateResultClassPackage() {

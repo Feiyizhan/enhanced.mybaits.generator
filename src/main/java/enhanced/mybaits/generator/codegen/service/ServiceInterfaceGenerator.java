@@ -24,7 +24,6 @@ import enhanced.mybaits.generator.dom.java.ServiceInterface;
 /**
  * Service生成器
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-19 
  */
 public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
 
@@ -35,7 +34,6 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Service
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @return
      */
     @Override
@@ -52,7 +50,6 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Service 接口类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      * @return
      */
     protected ServiceInterface getServiceInterface() {
@@ -84,7 +81,6 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加删除指定记录方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23
      */
     protected void addDeleteByPrimaryKeyMethod() {
         AbstractMethodGenerator methodGenerator = new ServiceInterFaceDeleteByPrimaryKeyMethodGenerator(mixedContext);
@@ -94,7 +90,6 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加更新指定记录方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23
      */
     protected void addUpdateByPrimaryKeyMethod() {
         AbstractMethodGenerator methodGenerator = new ServiceInterFaceUpdateByPrimaryKeyMethodGenerator(mixedContext);
@@ -103,7 +98,6 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加获取主键对应的记录方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23
      */
     protected void addGetByPrimaryKeyMethod() {
         AbstractMethodGenerator methodGenerator = new ServiceInterFaceGetByPrimaryKeyMethodGenerator(mixedContext);
@@ -113,7 +107,6 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加获取主键对应的记录的返回结果对象方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23
      */
     protected void addGetResultByPrimaryKeyMethod() {
         AbstractMethodGenerator methodGenerator = new ServiceInterFaceGetResultByPrimaryKeyMethodGenerator(mixedContext);
@@ -123,7 +116,6 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加新增方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     protected void addInsertMethod() {
         AbstractMethodGenerator methodGenerator = new ServiceInterFaceInsertMethodGenerator(mixedContext);
@@ -134,7 +126,6 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 初始化并执行生成器
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @param methodGenerator
      */
     protected void initializeAndExecuteGenerator(AbstractMethodGenerator methodGenerator) {
@@ -148,7 +139,6 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加默认的引入
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      * @param serviceInterface
      */
     protected void addDefaultImport(ServiceInterface serviceInterface) {
@@ -175,7 +165,6 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Service接口名称
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @return
      */
     protected String calculateServiceInterfaceName() {
@@ -191,7 +180,6 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Service接口的Package
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @return
      */
     protected String calculateServiceInterfacePackage() {
@@ -208,7 +196,6 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 设置Service生成位置
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     @Override
     public void setTargetProject() {

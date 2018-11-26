@@ -19,7 +19,6 @@ import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 /**
  * Service 接口更新指定记录方法生成器
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-20 
  */
 public class ServiceInterFaceUpdateByPrimaryKeyMethodGenerator extends AbstractServiceInterfaceMethodGenerator {
 
@@ -30,7 +29,6 @@ public class ServiceInterFaceUpdateByPrimaryKeyMethodGenerator extends AbstractS
     /**
      * 计算方法名称
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      * @return
      */
     @Override
@@ -42,7 +40,6 @@ public class ServiceInterFaceUpdateByPrimaryKeyMethodGenerator extends AbstractS
     /**
      * 增加方法参数
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      * @param method
      */
     @Override
@@ -74,7 +71,6 @@ public class ServiceInterFaceUpdateByPrimaryKeyMethodGenerator extends AbstractS
     /**
      * 设置返回参数
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      * @param method
      */
     @Override
@@ -90,7 +86,6 @@ public class ServiceInterFaceUpdateByPrimaryKeyMethodGenerator extends AbstractS
     /**
      * 获取Service方法名 
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23 
      * @return
      */
     @Override

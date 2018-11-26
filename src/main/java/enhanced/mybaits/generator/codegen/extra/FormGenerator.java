@@ -28,7 +28,6 @@ import enhanced.mybaits.generator.dom.java.FormClass;
 /**
  * Form 类生成器
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-20 
  */
 public class FormGenerator extends AbstratEnhanceJavaGenerator {
 
@@ -39,7 +38,6 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 设置Form生成位置
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     @Override
     public void setTargetProject() {
@@ -49,7 +47,6 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Form类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      * @return
      */
     @Override
@@ -64,7 +61,6 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Form类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      * @return
      */
     protected FormClass getFormClass() {
@@ -139,7 +135,6 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 返回Form忽略的字段列表
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      * @return
      */
     protected String[] getFormIgnoreFieldList() {
@@ -157,7 +152,6 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Form类名称
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @return
      */
     protected String calculateFormClassName() {
@@ -172,7 +166,6 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Form类的Package
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @return
      */
     protected String calculateFormClassPackage() {

@@ -26,7 +26,6 @@ import enhanced.mybaits.generator.dom.java.ServiceImplClass;
 /**
  * Service 接口实现类生成器
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-20 
  */
 public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
 
@@ -38,7 +37,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 设置Service接口实现类生成位置
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     @Override
     public void setTargetProject() {
@@ -48,7 +46,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Service接口实现类代码
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      * @return
      */
     @Override
@@ -63,7 +60,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Service接口实现类代码
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      * @return
      */
     protected ServiceImplClass getServiceImplClass() {
@@ -118,7 +114,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加删除主键对应的记录的方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     protected void addDeleteByPrimaryKeyMethod() {
         AbstractMethodGenerator methodGenerator = new ServiceImplDeleteByPrimaryKeyMethodGenerator(mixedContext);
@@ -128,7 +123,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加更新主键对应的记录的方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     protected void addUpdateByPrimaryKeyMethod() {
         AbstractMethodGenerator methodGenerator = new ServiceImplUpdateByPrimaryKeyMethodGenerator(mixedContext);
@@ -138,7 +132,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加获取主键对应的记录的方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     protected void addGetByPrimaryKeyMethod() {
         AbstractMethodGenerator methodGenerator = new ServiceImplGetByPrimaryKeyMethodGenerator(mixedContext);
@@ -148,7 +141,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加获取主键对应的记录的返回结果对象方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     protected void addGetResultByPrimaryKeyMethod() {
         AbstractMethodGenerator methodGenerator = new ServiceImplGetResultByPrimaryKeyMethodGenerator(mixedContext);
@@ -158,7 +150,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加新增方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     protected void addInsertMethod() {
         AbstractMethodGenerator methodGenerator = new ServiceImplInsertMethodGenerator(mixedContext);
@@ -169,7 +160,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 初始化并执行生成器
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @param methodGenerator
      */
     protected void initializeAndExecuteGenerator(AbstractMethodGenerator methodGenerator) {
@@ -184,7 +174,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加默认的引入
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      * @param serviceImplClass
      */
     protected void addDefaultImport(ServiceImplClass serviceImplClass) {
@@ -218,7 +207,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加对应的接口的引入
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      * @param serviceImplClass
      */
     protected void addInterfaceImport(ServiceImplClass serviceImplClass) {
@@ -229,7 +217,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加Spring Service注解
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      * @param serviceImplClass
      */
     protected void addSpringService(ServiceImplClass serviceImplClass) {
@@ -242,7 +229,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Service接口实现类名称
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @return
      */
     protected String calculateServiceImplClassName() {
@@ -257,7 +243,6 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Service接口实现类的Package
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @return
      */
     protected String calculateServiceImplClassPackage() {

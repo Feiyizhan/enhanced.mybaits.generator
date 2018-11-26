@@ -18,7 +18,6 @@ import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 /**
  * 获取所有记录方法生成器
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-16 
  */
 public class ListAllMethodGenerator extends AbstractEnhanceJavaMapperMethodGenerator {
 
@@ -30,7 +29,6 @@ public class ListAllMethodGenerator extends AbstractEnhanceJavaMapperMethodGener
     /**
      * 生成获取所有记录方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-16 
      * @param interfaze
      */
     @Override

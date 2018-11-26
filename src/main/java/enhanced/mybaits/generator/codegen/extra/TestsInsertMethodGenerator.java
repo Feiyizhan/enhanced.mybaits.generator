@@ -19,7 +19,6 @@ import enhanced.mybaits.generator.codegen.AbstractMapperTestsMethodGenerator;
 /**
  * 测试类的新增方法测试生成器
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-19 
  */
 public class TestsInsertMethodGenerator extends AbstractMapperTestsMethodGenerator{
 
@@ -31,7 +30,6 @@ public class TestsInsertMethodGenerator extends AbstractMapperTestsMethodGenerat
     /**
      * 增加测试方法的内容
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @param method
      */
     @Override
@@ -82,7 +80,6 @@ public class TestsInsertMethodGenerator extends AbstractMapperTestsMethodGenerat
     /**
      * 设置被测试方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      */
     @Override
     protected void setTestedMethod() {

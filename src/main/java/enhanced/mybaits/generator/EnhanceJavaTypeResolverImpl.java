@@ -13,14 +13,12 @@ import org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl;
 /**
  * My baits 生成器 Java类型解析增强处理
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-14 
  */
 public class EnhanceJavaTypeResolverImpl extends JavaTypeResolverDefaultImpl {
 
     /**
      * 调用默认的Java类型解析器
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-14 
      */
     public EnhanceJavaTypeResolverImpl() {
         super();

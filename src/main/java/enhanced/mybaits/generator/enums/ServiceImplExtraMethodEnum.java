@@ -7,28 +7,24 @@ package enhanced.mybaits.generator.enums;
 /**
  * Service 接口实现类扩展方法名称枚举类
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-21 
  */
 public enum ServiceImplExtraMethodEnum {
 
     /**
      * 新增表单校验
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     VERIFY_FORM_FOR_INSERT("verifyFormForInsert","新增表单校验"),
     
     /**
      * 修改表单校验
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     VERIFY_FORM_FOR_UPDATE("verifyFormForUpdate","修改表单校验"),
     
     /**
      * 删除表单校验
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     VERIFY_FORM_FOR_DELETE("verifyFormForDelete","删除表单校验"),
     

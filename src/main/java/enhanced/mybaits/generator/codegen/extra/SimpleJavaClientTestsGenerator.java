@@ -26,7 +26,6 @@ import enhanced.mybaits.generator.dom.java.TestsClass;
 /**
  * 简单的Java Client 测试类生成器
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-20 
  */
 public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
 
@@ -37,7 +36,6 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
     /**
      * 生成测试类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      * @return
      */
     @Override
@@ -53,8 +51,6 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
     /**
      * 获取Java Client 测试类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
-     * @param interfaze
      * @return
      */
     protected TestsClass getJavaClientTests() {
@@ -124,7 +120,6 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
     /**
      * 增加测试Insert方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      */
     protected void addInsertTestMethod() {
         AbstractMethodGenerator methodGenerator = new TestsInsertMethodGenerator(mixedContext);
@@ -134,7 +129,6 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
     /**
      * 初始化并执行生成器
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @param methodGenerator
      */
     protected void initializeAndExecuteGenerator(AbstractMethodGenerator methodGenerator) {
@@ -149,7 +143,6 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
     /**
      * 计算Java Client 测试类名称
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @return
      */
     protected String calculateJavaClientTestsClassName() {
@@ -164,7 +157,6 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
     /**
      * 计算Java Client测试类的Package
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @return
      */
     protected String calculateJavaClientTestsPackage() {
@@ -182,7 +174,6 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
     /**
      * 计算Spring Boot Test启动类
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
      * @return
      */
     protected String calculateSpringBootTestClass() {
@@ -199,7 +190,6 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
     /**
      * 设置生成的目标项目目录
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     @Override
     public void setTargetProject() {

@@ -16,7 +16,6 @@ import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
  * 增强的删除指定主键的记录生成器
  * 
  * @author 徐明龙 XuMingLong
- * @createDate 2018-11-16
  */
 public class EnhanceDeleteByPrimaryKeyElementGenerator extends EnhanceAbstractXmlElementGenerator {
     public EnhanceDeleteByPrimaryKeyElementGenerator() {
@@ -27,7 +26,6 @@ public class EnhanceDeleteByPrimaryKeyElementGenerator extends EnhanceAbstractXm
      * 生成删除指定主键的记录节点
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
      * @param parentElement
      */
     @Override

@@ -20,7 +20,6 @@ import enhanced.mybaits.generator.enums.AudiFieldEnum;
 /**
  * Service 接口实现类方法生成器基类
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-21 
  */
 public abstract class AbstractServiceImplMethodGenerator extends AbstractServiceInterfaceMethodGenerator {
 
@@ -32,19 +31,16 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
     /**
      * 获取表对应的实体类变量名称
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     protected String baseRecordVarName ;
     /**
      * Mapper字段名称
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     protected String mapperFieldName;
     /**
      * 对应的接口方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     protected Method interfaceMethod;
     
@@ -59,8 +55,7 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
     /**
      * 获取表对应的实体类变量名称
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
-     * @return
+     * @return 返回基础实体变量名
      */
     protected String getBaseRecordVarName() {
         return StringUtils.uncapitalize(this.mixedContext.getBaseRecord().getType().getShortNameWithoutTypeArguments());
@@ -69,8 +64,7 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
     /**
      * 获取表对应的实体类的类型
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
-     * @return
+     * @return 返回基础实体类型
      */
     protected FullyQualifiedJavaType getBaseRecordType() {
         return this.mixedContext.getBaseRecord().getType();
@@ -79,7 +73,6 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
     /**
      * 增加方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     @Override
     public void addMethod() {
@@ -109,8 +102,7 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
     /**
      * 增加额外的方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
-     * @param method
+     * @param method 待处理的方法
      * @return
      */
     protected abstract List<Method> addExtraMethod(Method method);
@@ -118,15 +110,13 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
     /**
      * 增加方法内容
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
-     * @param method
+     * @param method 待处理的方法
      */
     protected abstract void addMethodBody(Method method) ;
     
     /**
      * 设置对应的接口方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     protected void setInterfaceMethod() {
         String methodName = calculateMethodName();
@@ -143,8 +133,7 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
     /**
      * 设置方法返回类型
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-23
-     * @param method
+     * @param method 待处理的方法
      */
     @Override
     protected void setMethodReturnType(Method method) {
@@ -154,8 +143,7 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
     /**
      * 增加方法参数
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-23
-     * @param method
+     * @param method 待处理的方法
      */
     @Override
     protected void addMethodParameter(Method method) {
@@ -165,9 +153,8 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
     /**
      * 获取New 类型代码
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
-     * @param type
-     * @param varName
+     * @param type 类型
+     * @param varName 变量名称
      * @return
      */
     protected String getNewTypeCode(FullyQualifiedJavaType type,String varName) {
@@ -198,8 +185,7 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
     /**
      * 增加表对应的实体的所有审计信息代码
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
-     * @param method
+     * @param method 待处理的方法
      */
     protected void addBaseRecordAllAudiInfoCode(Method method) {
         List<Field> fieldList = this.mixedContext.getBaseRecord().getFields();
@@ -233,10 +219,9 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
     /**
      * 增加表对应的实体的审计字段信息代码
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
-     * @param mothod
-     * @param field
-     * @param varName
+     * @param mothod 待处理的方法
+     * @param field  审计字段名称
+     * @param varName 审计字段值
      */
     protected void addBaseRecordAudiFieldCode(Method mothod,Field field,String varName) {
         mothod.addBodyLine(
@@ -255,8 +240,7 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
     /**
      * 增加表对应的实体的更新审计信息代码
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
-     * @param method
+     * @param method 待处理的方法
      */
     protected void addBaseRecordUpdateAudiInfoCode(Method method) {
         List<Field> fieldList = this.mixedContext.getBaseRecord().getFields();
@@ -288,8 +272,7 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
     /**
      * 获取Mapper字段名称
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23 
-     * @return
+     * @return 待注入的Mapper字段名称
      */
     protected String getMapperFieldName() {
         return StringUtils.uncapitalize(this.mixedContext.getMapper().getType().getShortName());

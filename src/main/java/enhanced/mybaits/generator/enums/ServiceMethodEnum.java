@@ -7,42 +7,36 @@ package enhanced.mybaits.generator.enums;
 /**
  * Service 方法名称枚举类
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-21 
  */
 public enum ServiceMethodEnum {
 
     /**
      * 新增记录
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     INSERT("insert","新增记录"),
     
     /**
      * 更新指定记录
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     UPDATE_BY_PRIMARY_KEY("updateBy${PrimaryKey}","更新指定记录"),
     
     /**
      * 删除指定记录
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     DELETE_BY_PRIMARY_KEY("deleteBy${PrimaryKey}","删除指定记录"),
     
     /**
      * 获取主键对应的记录
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     GET_BY_PRIMARY_KEY("getBy${PrimaryKey}","获取主键对应的记录"),
     
     /**
      * 获取主键对应的记录的返回结果对象
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     GET_RESULT_BY_PRIMARY_KEY("getResultBy${PrimaryKey}","获取主键对应的记录的返回结果对象"),
     
@@ -50,7 +44,6 @@ public enum ServiceMethodEnum {
     /**
      * 分页搜索并获取返回结果对象列表
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     LIST_RESULT_FOR_PAGE("listResultForPage","分页搜索并获取返回结果对象列表"),
     ;
@@ -87,7 +80,6 @@ public enum ServiceMethodEnum {
     /**
      * 获取替换了主键值的方法名
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23 
      * @param primaryKeyValue
      * @return
      */

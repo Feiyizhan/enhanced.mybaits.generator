@@ -14,20 +14,17 @@ import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 /**
  * Service 接口方法生成器基类
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-20 
  */
 public abstract class AbstractServiceInterfaceMethodGenerator extends AbstractMethodGenerator {
     /**
      * form 参数名称
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     protected static final String formParameterName = "form";
     
     /**
      * 用户参数名
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
      */
     protected static final String userParameterName = "user";
 
@@ -38,7 +35,6 @@ public abstract class AbstractServiceInterfaceMethodGenerator extends AbstractMe
     /**
      * 增加方法
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
      */
     @Override
     public void addMethod() {
@@ -63,8 +59,7 @@ public abstract class AbstractServiceInterfaceMethodGenerator extends AbstractMe
     /**
      * 获取FormValidError List对象的类型
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
-     * @return
+     * @return 返回List的表单校验结果类型对象
      */
     protected FullyQualifiedJavaType getListFormValidErrorType() {
         FullyQualifiedJavaType type = FullyQualifiedJavaType.getNewListInstance();
@@ -76,32 +71,28 @@ public abstract class AbstractServiceInterfaceMethodGenerator extends AbstractMe
     /**
      * 设置返回参数
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
-     * @param method
+     * @param method 待处理的方法
      */
     protected abstract void setMethodReturnType(Method method);
 
     /**
      * 计算方法名称
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-21 
-     * @return
+     * @return 返回计算后的方法名称
      */
     protected abstract String calculateMethodName() ;
     
     /**
      * 获取Service方法名
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-23 
-     * @return
+     * @return 返回方法对应的枚举
      */
     protected abstract ServiceMethodEnum getServiceMethod() ;
     
     /**
      * 增加方法内容
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-19 
-     * @param method
+     * @param method 待处理的方法
      */
     protected abstract void addMethodParameter(Method method) ;
 

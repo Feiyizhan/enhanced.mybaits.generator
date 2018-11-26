@@ -12,7 +12,6 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.elements.AbstractJavaMa
  * 增强的Java Mapper方法生成器基础类
  * 
  * @author 徐明龙 XuMingLong
- * @createDate 2018-11-16
  */
 public abstract class AbstractEnhanceJavaMapperMethodGenerator extends AbstractJavaMapperMethodGenerator {
 

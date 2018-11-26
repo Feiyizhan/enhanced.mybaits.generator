@@ -22,7 +22,6 @@ import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
  * 获取指定主键对应的记录方法生成器
  * 
  * @author 徐明龙 XuMingLong
- * @createDate 2018-11-16
  */
 public class GetByPrimaryKeyMethodGenerator extends AbstractEnhanceJavaMapperMethodGenerator {
     
@@ -31,7 +30,6 @@ public class GetByPrimaryKeyMethodGenerator extends AbstractEnhanceJavaMapperMet
      * 是否锁定记录
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
      */
     private boolean isLocked;
 
@@ -44,7 +42,6 @@ public class GetByPrimaryKeyMethodGenerator extends AbstractEnhanceJavaMapperMet
      * 生成获取指定主键对应的记录方法
      * 
      * @author 徐明龙 XuMingLong
-     * @createDate 2018-11-16
      * @param interfaze
      */
     @Override

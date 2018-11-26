@@ -18,7 +18,6 @@ import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
 /**
  * 生成器执行者
  * @author 徐明龙 XuMingLong 
- * @createDate 2018-11-20 
  */
 public class GeneratorExecutor {
     private List<AbstratEnhanceJavaGenerator> javaGeneratorList;
@@ -49,9 +48,8 @@ public class GeneratorExecutor {
 
     /**
      * 增加生成器
-     * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
-     * @param javaGenerator
+     * @author 徐明龙 XuMingLong 2018-11-26 
+     * @param javaGenerator Java代码生成器
      */
     public void addJavaGenerator(AbstratEnhanceJavaGenerator javaGenerator ) {
         javaGeneratorList.add(javaGenerator);
@@ -59,9 +57,8 @@ public class GeneratorExecutor {
     
     /**
      * 生成所有文件
-     * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
-     * @return
+     * @author 徐明龙 XuMingLong 2018-11-26 
+     * @return  返回生成的Java代码文件列表
      */
     public List<GeneratedJavaFile> generateAllFiles(){
         List<GeneratedJavaFile> answer = new ArrayList<GeneratedJavaFile>();
@@ -82,8 +79,7 @@ public class GeneratorExecutor {
     /**
      * 初始化构建器
      * @author 徐明龙 XuMingLong 
-     * @createDate 2018-11-20 
-     * @param abstractGenerator
+     * @param abstractGenerator 待初始的构建器
      */
     protected void initializeAbstractGenerator(AbstratEnhanceJavaGenerator abstractGenerator) {
         abstractGenerator.setContext(context);
