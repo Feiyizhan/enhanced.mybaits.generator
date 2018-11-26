@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>enhanced.mybaits.generator</groupId>
+  <groupId>io.github.Feiyizhan</groupId>
   <artifactId>enhanced.mybaits.generator</artifactId>
   <version>1.0.0</version>
   <name>enhanced.mybaits.generator</name>
@@ -68,4 +68,10 @@
       <email>xmlde@vip.qq.com</email>
     </developer>
   </developers>
+  
+  <scm>
+      <connection>scm:git:https://github.com/Feiyizhan/enhanced.mybaits.generator.git</connection>
+      <developerConnection>scm:https://github.com/Feiyizhan/enhanced.mybaits.generator.git</developerConnection>
+      <url>https://github.com/Feiyizhan/enhanced.mybaits.generator.git</url>
+  </scm>
 </project>
