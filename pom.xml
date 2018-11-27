@@ -4,14 +4,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.Feiyizhan</groupId>
   <artifactId>enhanced.mybaits.generator</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <name>enhanced.mybaits.generator</name>
   <description>增强的Mybaits Generator插件</description>
   <url>https://github.com/Feiyizhan/enhanced.mybaits.generator</url>
   <properties>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.source>1.9</maven.compiler.source>
     <maven.compiler.target>1.9</maven.compiler.target>
   </properties>

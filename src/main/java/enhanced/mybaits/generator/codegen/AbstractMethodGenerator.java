@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.codegen.AbstractGenerator;
+import org.mybatis.generator.internal.util.JavaBeansUtil;
 
 import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.MixedContext;
@@ -53,6 +54,19 @@ public abstract class AbstractMethodGenerator extends AbstractGenerator {
         return StringUtils.join(nameList, joinStr);
             
     }
+    
+    /**
+     * 返回自增字段的Java属性名
+     * @author 徐明龙 XuMingLong 2018-11-27 
+     * @return 返回自增字段的Java属性名
+     */
+    protected String getAutoIncrementKeyName() {
+        if(this.introspectedTable.getGeneratedKey()!=null) {
+            return JavaBeansUtil.getValidPropertyName(this.introspectedTable.getGeneratedKey().getColumn());
+        }
+        return null;
+    }
+    
     /**
      * 获取关键字的名称列表
      * @author 徐明龙 XuMingLong 

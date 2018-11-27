@@ -236,9 +236,13 @@ public class EnhancePlugin extends PluginAdapter{
         if (keyColumns.size() == 1) {
             //得到这个唯一的主键列
             keyColumn = keyColumns.get(0);
+            if(!keyColumn.isAutoIncrement()) {
+                return null;
+            }
             //得到这个列映射成Java模型之后的属性对应的Java类型；
             FullyQualifiedJavaType javaType = keyColumn
                     .getFullyQualifiedJavaType();
+            
             //usegeneratedkeys要求主键只能是递增的，所以我们把这个主键属性的类型分别和Integer，Long，Short做对比；
             if (javaType.equals(PrimitiveTypeWrapper.getIntegerInstance())
                     || javaType.equals(PrimitiveTypeWrapper

@@ -94,6 +94,7 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
             //增加Swagger注解
             newField.addAnnotation(String.join("", "@ApiModelProperty(value=\"",remark,"\")"));
             resultClass.addField(newField);
+            resultClass.addImportedType(newField.getType());
             hasField = true;
         }
         //增加引入
@@ -101,7 +102,6 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
             resultClass.addImportedType("io.swagger.annotations.ApiModelProperty");
         }
         resultClass.getAnnotations().addAll(baseRecord.getAnnotations());
-        resultClass.getImportedTypes().addAll(baseRecord.getImportedTypes());
         return resultClass;
     }
 

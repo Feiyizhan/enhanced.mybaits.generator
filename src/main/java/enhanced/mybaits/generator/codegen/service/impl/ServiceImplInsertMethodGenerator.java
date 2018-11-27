@@ -8,6 +8,7 @@ package enhanced.mybaits.generator.codegen.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.JavaVisibility;
@@ -100,14 +101,20 @@ public class ServiceImplInsertMethodGenerator extends AbstractServiceImplMethodG
         sb.append(baseRecordVarName);
         sb.append(");");
         method.addBodyLine(sb.toString());
-        //增加获取新增自增id处理
-        sb.setLength(0);
-        sb.append(returnVarName);
-        sb.append(".setResult(");
-        sb.append(baseRecordVarName);
-        sb.append(".getId()");
-        sb.append(");");
-        method.addBodyLine(sb.toString());
+        
+        String autoIncrementKeyName = getAutoIncrementKeyName();
+        if(autoIncrementKeyName!=null) {
+            //增加获取新增自增id处理 
+            sb.setLength(0);
+            sb.append(returnVarName);
+            sb.append(".setResult(");
+            sb.append(baseRecordVarName);
+            sb.append(".get");
+            sb.append(StringUtils.capitalize(autoIncrementKeyName));
+            sb.append("()");
+            sb.append(");");
+            method.addBodyLine(sb.toString());
+        }
         
         method.addBodyLine("}");
         //增加返回结果

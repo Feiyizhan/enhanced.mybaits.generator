@@ -120,6 +120,7 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
             //增加Swagger注解
             newField.addAnnotation(String.join("", "@ApiModelProperty(value=\"",remark,"\")"));
             formClass.addField(newField);
+            formClass.addImportedType(newField.getType());
             hasField = true;
  
         }
@@ -128,7 +129,6 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
             formClass.addImportedType("io.swagger.annotations.ApiModelProperty");
         }
         formClass.getAnnotations().addAll(baseRecord.getAnnotations());
-        formClass.getImportedTypes().addAll(baseRecord.getImportedTypes());
         return formClass;
     }
     
