@@ -7,6 +7,7 @@ package enhanced.mybaits.generator.codegen;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
+import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.codegen.AbstractJavaGenerator;
 
 import enhanced.mybaits.generator.EnhanceConstant;
@@ -104,6 +105,24 @@ public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
         return this.context
             .getJavaClientGeneratorConfiguration()
             .getProperty(EnhanceConstant.NOW_UTILS_KEY);
+    }
+    
+    /**
+     * 增加Lombok注解
+     * @author 徐明龙 XuMingLong 
+     * @param topLevelClass 实体类
+     */
+    protected void addLombokAnnotation(TopLevelClass topLevelClass) {
+        topLevelClass.addImportedType("lombok.EqualsAndHashCode"); 
+        topLevelClass.addImportedType("lombok.Getter"); 
+        topLevelClass.addImportedType("lombok.Setter"); 
+        topLevelClass.addImportedType("lombok.ToString"); 
+        
+        topLevelClass.addAnnotation("@Getter");
+        topLevelClass.addAnnotation("@Setter");
+        topLevelClass.addAnnotation("@EqualsAndHashCode");
+        topLevelClass.addAnnotation("@ToString");
+        
     }
     
 }

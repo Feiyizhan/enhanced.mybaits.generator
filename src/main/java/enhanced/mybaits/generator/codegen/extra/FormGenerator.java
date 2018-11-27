@@ -128,7 +128,8 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
         if(hasField) {
             formClass.addImportedType("io.swagger.annotations.ApiModelProperty");
         }
-        formClass.getAnnotations().addAll(baseRecord.getAnnotations());
+        //增加Lombok注解
+        addLombokAnnotation(formClass);
         return formClass;
     }
     

@@ -81,7 +81,7 @@ public class EnhancePlugin extends PluginAdapter{
     public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass,
         IntrospectedTable introspectedTable) {
         this.mixedContext.setMapper(interfaze);
-        return super.clientGenerated(interfaze, topLevelClass, introspectedTable);
+        return true;
     }
 
 
@@ -95,9 +95,28 @@ public class EnhancePlugin extends PluginAdapter{
     @Override
     public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         this.mixedContext.setBaseRecord(topLevelClass);
-        return super.modelBaseRecordClassGenerated(topLevelClass, introspectedTable);
+        //增加Lombok注释
+        addLombokAnnotation(topLevelClass);
+        return true;
     }
 
+    /**
+     * 增加Lombok注解
+     * @author 徐明龙 XuMingLong 
+     * @param topLevelClass 实体类
+     */
+    protected void addLombokAnnotation(TopLevelClass topLevelClass) {
+        topLevelClass.addImportedType("lombok.EqualsAndHashCode"); 
+        topLevelClass.addImportedType("lombok.Getter"); 
+        topLevelClass.addImportedType("lombok.Setter"); 
+        topLevelClass.addImportedType("lombok.ToString"); 
+        
+        topLevelClass.addAnnotation("@Getter");
+        topLevelClass.addAnnotation("@Setter");
+        topLevelClass.addAnnotation("@EqualsAndHashCode");
+        topLevelClass.addAnnotation("@ToString");
+        
+    }
     
 
     /**

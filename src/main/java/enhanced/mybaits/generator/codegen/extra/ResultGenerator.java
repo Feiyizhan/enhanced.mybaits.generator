@@ -101,7 +101,8 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
         if(hasField) {
             resultClass.addImportedType("io.swagger.annotations.ApiModelProperty");
         }
-        resultClass.getAnnotations().addAll(baseRecord.getAnnotations());
+        //增加Lombok注解
+        addLombokAnnotation(resultClass);
         return resultClass;
     }
 
