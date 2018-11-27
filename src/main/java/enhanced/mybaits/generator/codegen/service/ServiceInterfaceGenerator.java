@@ -34,7 +34,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Service
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Service接口类
      */
     @Override
     public List<CompilationUnit> getCompilationUnits() {
@@ -50,7 +50,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Service 接口类
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Service接口类
      */
     protected ServiceInterface getServiceInterface() {
         progressCallback.startTask(String.format("准备生成表%s的Service接口", introspectedTable.getFullyQualifiedTable().toString()));
@@ -126,7 +126,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 初始化并执行生成器
      * @author 徐明龙 XuMingLong 
-     * @param methodGenerator
+     * @param methodGenerator 方法生成器
      */
     protected void initializeAndExecuteGenerator(AbstractMethodGenerator methodGenerator) {
         methodGenerator.setContext(context);
@@ -139,7 +139,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加默认的引入
      * @author 徐明龙 XuMingLong 
-     * @param serviceInterface
+     * @param serviceInterface Service接口类
      */
     protected void addDefaultImport(ServiceInterface serviceInterface) {
         serviceInterface.getMethods().forEach((r)->{
@@ -165,7 +165,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Service接口名称
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return 计算Service接口名称
      */
     protected String calculateServiceInterfaceName() {
         StringBuilder sb = new StringBuilder();
@@ -180,7 +180,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Service接口的Package
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return 计算Service接口的Package
      */
     protected String calculateServiceInterfacePackage() {
         String value = this.context

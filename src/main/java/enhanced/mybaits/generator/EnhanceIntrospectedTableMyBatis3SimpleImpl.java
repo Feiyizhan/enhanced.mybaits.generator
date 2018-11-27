@@ -28,9 +28,9 @@ public class EnhanceIntrospectedTableMyBatis3SimpleImpl extends IntrospectedTabl
      * 选择XML Mapper生成器
      * 
      * @author 徐明龙 XuMingLong
-     * @param javaClientGenerator
-     * @param warnings
-     * @param progressCallback
+     * @param javaClientGenerator 对应的JavaClient生成器
+     * @param warnings 额外的参数
+     * @param progressCallback 处理进展通知回调类
      */
     @Override
     protected void calculateXmlMapperGenerator(AbstractJavaClientGenerator javaClientGenerator, List<String> warnings,
@@ -52,7 +52,7 @@ public class EnhanceIntrospectedTableMyBatis3SimpleImpl extends IntrospectedTabl
      * 选择Java Client生成器
      * 
      * @author 徐明龙 XuMingLong
-     * @return
+     * @return Java Client生成器
      */
     @Override
     protected AbstractJavaClientGenerator createJavaClientGenerator() {

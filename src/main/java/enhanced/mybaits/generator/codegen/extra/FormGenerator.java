@@ -47,7 +47,7 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Form类
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Form类
      */
     @Override
     public List<CompilationUnit> getCompilationUnits() {
@@ -61,7 +61,7 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Form类
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Form类
      */
     protected FormClass getFormClass() {
         progressCallback.startTask(String.format("准备生成表%s的Form类", introspectedTable.getFullyQualifiedTable().toString()));
@@ -136,7 +136,7 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 返回Form忽略的字段列表
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Form忽略的字段列表
      */
     protected String[] getFormIgnoreFieldList() {
         String value = this.context
@@ -153,7 +153,7 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Form类名称
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Form类名称
      */
     protected String calculateFormClassName() {
         StringBuilder sb = new StringBuilder();
@@ -167,7 +167,7 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Form类的Package
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Form类的Package
      */
     protected String calculateFormClassPackage() {
         String value = this.context

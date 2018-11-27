@@ -29,7 +29,7 @@ public class ServiceInterFaceGetByPrimaryKeyMethodGenerator extends AbstractServ
     /**
      * 计算方法名称
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return 返回计算后的方法名称
      */
     @Override
     protected String calculateMethodName() {
@@ -40,7 +40,7 @@ public class ServiceInterFaceGetByPrimaryKeyMethodGenerator extends AbstractServ
     /**
      * 增加方法参数
      * @author 徐明龙 XuMingLong 
-     * @param method
+     * @param method 待处理的方法
      */
     @Override
     protected void addMethodParameter(Method method) {
@@ -59,7 +59,7 @@ public class ServiceInterFaceGetByPrimaryKeyMethodGenerator extends AbstractServ
     /**
      * 设置返回参数
      * @author 徐明龙 XuMingLong 
-     * @param method
+     * @param method 待处理的方法
      */
     @Override
     protected void setMethodReturnType(Method method) {
@@ -70,9 +70,9 @@ public class ServiceInterFaceGetByPrimaryKeyMethodGenerator extends AbstractServ
     }
 
     /**
-     * 获取Service方法名 
+     * 获取Service方法对应的枚举
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return 返回方法对应的枚举
      */
     @Override
     protected ServiceMethodEnum getServiceMethod() {

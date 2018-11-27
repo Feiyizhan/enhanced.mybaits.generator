@@ -80,8 +80,8 @@ public enum ServiceMethodEnum {
     /**
      * 获取替换了主键值的方法名
      * @author 徐明龙 XuMingLong 
-     * @param primaryKeyValue
-     * @return
+     * @param primaryKeyValue 主键值
+     * @return 替换了主键值的方法名
      */
     public String getReplacePrimaryKeyValue(String primaryKeyValue) {
         return this.value.replace("${PrimaryKey}", primaryKeyValue);

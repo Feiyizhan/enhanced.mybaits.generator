@@ -39,7 +39,7 @@ public class GetByPrimaryKeyElementGenerator extends EnhanceAbstractXmlElementGe
      * 生成增加获取指定主键对应的记录节点
      * 
      * @author 徐明龙 XuMingLong
-     * @param parentElement
+     * @param parentElement 父节点
      */
     @Override
     public void addElements(XmlElement parentElement) {

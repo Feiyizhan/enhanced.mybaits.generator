@@ -4,8 +4,6 @@
  */
 package enhanced.mybaits.generator.codegen.extra;
 
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +34,7 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
     /**
      * 生成测试类
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Java Client 测试类
      */
     @Override
     public List<CompilationUnit> getCompilationUnits() {
@@ -51,7 +49,7 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
     /**
      * 获取Java Client 测试类
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Java Client 测试类
      */
     protected TestsClass getJavaClientTests() {
         progressCallback.startTask(String.format("准备生成表%s的Mapper测试代码", introspectedTable.getFullyQualifiedTable().toString()));
@@ -129,7 +127,7 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
     /**
      * 初始化并执行生成器
      * @author 徐明龙 XuMingLong 
-     * @param methodGenerator
+     * @param methodGenerator 方法生成器
      */
     protected void initializeAndExecuteGenerator(AbstractMethodGenerator methodGenerator) {
         methodGenerator.setContext(context);
@@ -143,7 +141,7 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
     /**
      * 计算Java Client 测试类名称
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Java Client 测试类名称
      */
     protected String calculateJavaClientTestsClassName() {
         StringBuilder sb = new StringBuilder();
@@ -157,34 +155,25 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
     /**
      * 计算Java Client测试类的Package
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Java Client测试类的Package
      */
     protected String calculateJavaClientTestsPackage() {
-        String testClientTargetPackage = this.context
+        return this.context
             .getJavaClientGeneratorConfiguration()
             .getProperty(EnhanceConstant.EXTRA_TEST_CLIENT_TARGET_PACKAGE_KEY);
-        if(!stringHasValue(testClientTargetPackage)) {
-            return null;
-        }else {
-            return testClientTargetPackage;
-        }
+        
     }
   
     
     /**
      * 计算Spring Boot Test启动类
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Spring Boot Test启动类
      */
     protected String calculateSpringBootTestClass() {
-        String testSpringBootMainClass = this.context
+        return this.context
             .getJavaClientGeneratorConfiguration()
             .getProperty(EnhanceConstant.EXTRA_TEST_SPRING_BOOT_MAIN_CLASS_KEY);
-        if(!stringHasValue(testSpringBootMainClass)) {
-            return null;
-        }else {
-            return testSpringBootMainClass;
-        }
     }
 
     /**

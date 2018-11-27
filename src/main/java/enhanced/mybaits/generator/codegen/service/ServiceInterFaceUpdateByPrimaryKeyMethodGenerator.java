@@ -29,7 +29,7 @@ public class ServiceInterFaceUpdateByPrimaryKeyMethodGenerator extends AbstractS
     /**
      * 计算方法名称
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return 返回计算的方法名称
      */
     @Override
     protected String calculateMethodName() {
@@ -40,7 +40,7 @@ public class ServiceInterFaceUpdateByPrimaryKeyMethodGenerator extends AbstractS
     /**
      * 增加方法参数
      * @author 徐明龙 XuMingLong 
-     * @param method
+     * @param method 基于的方法
      */
     @Override
     protected void addMethodParameter(Method method) {
@@ -71,7 +71,7 @@ public class ServiceInterFaceUpdateByPrimaryKeyMethodGenerator extends AbstractS
     /**
      * 设置返回参数
      * @author 徐明龙 XuMingLong 
-     * @param method
+     * @param method 基于的方法
      */
     @Override
     protected void setMethodReturnType(Method method) {
@@ -84,9 +84,9 @@ public class ServiceInterFaceUpdateByPrimaryKeyMethodGenerator extends AbstractS
     }
 
     /**
-     * 获取Service方法名 
+     * 获取Service方法名枚举类
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return 返回方法对应的枚举
      */
     @Override
     protected ServiceMethodEnum getServiceMethod() {

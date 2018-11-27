@@ -42,7 +42,7 @@ public abstract class AbstractMethodGenerator extends AbstractGenerator {
      * @author 徐明龙 XuMingLong 
      * @param joinStr 连接的字符串
      * @param convertToCapitalize 是否转换为首字母大写的驼峰命名
-     * @return
+     * @return 拼接的关键字列表Java字段名称
      */
     protected String getJoinedKeyColumnListJavaPropertyName(String joinStr,boolean convertToCapitalize) {
         List<String> nameList = getKeyColumnJavaPropertyNameList() ;

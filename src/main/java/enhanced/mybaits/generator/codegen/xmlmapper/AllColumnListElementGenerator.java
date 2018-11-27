@@ -29,7 +29,7 @@ public class AllColumnListElementGenerator extends EnhanceAbstractXmlElementGene
      * 生成全部字段节点
      * 
      * @author 徐明龙 XuMingLong
-     * @param parentElement
+     * @param parentElement 父节点
      */
     @Override
     public void addElements(XmlElement parentElement) {

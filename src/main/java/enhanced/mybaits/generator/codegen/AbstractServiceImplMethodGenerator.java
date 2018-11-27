@@ -103,7 +103,7 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
      * 增加额外的方法
      * @author 徐明龙 XuMingLong 
      * @param method 待处理的方法
-     * @return
+     * @return 额外的方法
      */
     protected abstract List<Method> addExtraMethod(Method method);
     
@@ -155,7 +155,7 @@ public abstract class AbstractServiceImplMethodGenerator extends AbstractService
      * @author 徐明龙 XuMingLong 
      * @param type 类型
      * @param varName 变量名称
-     * @return
+     * @return New 类型的代码
      */
     protected String getNewTypeCode(FullyQualifiedJavaType type,String varName) {
         //判断是否有泛型

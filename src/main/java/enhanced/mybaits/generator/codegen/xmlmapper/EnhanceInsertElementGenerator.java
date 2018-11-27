@@ -34,7 +34,7 @@ public class EnhanceInsertElementGenerator extends EnhanceAbstractXmlElementGene
      * 生成新增记录节点
      * 
      * @author 徐明龙 XuMingLong
-     * @param parentElement
+     * @param parentElement 父节点
      */
     @Override
     public void addElements(XmlElement parentElement) {

@@ -83,14 +83,14 @@ public abstract class AbstractServiceInterfaceMethodGenerator extends AbstractMe
     protected abstract String calculateMethodName() ;
     
     /**
-     * 获取Service方法名
+     * 获取Service方法对应的枚举
      * @author 徐明龙 XuMingLong 
      * @return 返回方法对应的枚举
      */
     protected abstract ServiceMethodEnum getServiceMethod() ;
     
     /**
-     * 增加方法内容
+     * 增加方法参数
      * @author 徐明龙 XuMingLong 
      * @param method 待处理的方法
      */

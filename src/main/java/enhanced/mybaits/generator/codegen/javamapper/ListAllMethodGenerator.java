@@ -29,7 +29,7 @@ public class ListAllMethodGenerator extends AbstractEnhanceJavaMapperMethodGener
     /**
      * 生成获取所有记录方法
      * @author 徐明龙 XuMingLong 
-     * @param interfaze
+     * @param interfaze 接口类
      */
     @Override
     public void addInterfaceElements(Interface interfaze) {

@@ -24,9 +24,9 @@ public class ServiceInterFaceInsertMethodGenerator extends AbstractServiceInterf
     }
 
     /**
-     * 增加方法参数
+     * 设置返回参数
      * @author 徐明龙 XuMingLong 
-     * @param method
+     * @param method 待处理的方法
      */
     @Override
     protected void addMethodParameter(Method method) {
@@ -47,7 +47,7 @@ public class ServiceInterFaceInsertMethodGenerator extends AbstractServiceInterf
     /**
      * 设置返回参数
      * @author 徐明龙 XuMingLong 
-     * @param method
+     * @param method 待处理的方法
      */
     @Override
     protected void setMethodReturnType(Method method) {
@@ -59,9 +59,9 @@ public class ServiceInterFaceInsertMethodGenerator extends AbstractServiceInterf
     }
 
     /**
-     * 获取Service方法名
+     * 获取Service方法对应的枚举
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return 返回方法对应的枚举
      */
     @Override
     protected ServiceMethodEnum getServiceMethod() {
@@ -71,7 +71,7 @@ public class ServiceInterFaceInsertMethodGenerator extends AbstractServiceInterf
     /**
      * 计算方法名称
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return 计算方法名称
      */
     @Override
     protected String calculateMethodName() {

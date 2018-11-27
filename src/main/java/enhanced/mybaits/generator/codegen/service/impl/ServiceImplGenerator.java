@@ -46,7 +46,7 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Service接口实现类代码
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Service的实现类
      */
     @Override
     public List<CompilationUnit> getCompilationUnits() {
@@ -60,7 +60,7 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Service接口实现类代码
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Service的实现类
      */
     protected ServiceImplClass getServiceImplClass() {
         progressCallback.startTask(String.format("准备生成表%s的Service接口实现类", introspectedTable.getFullyQualifiedTable().toString()));
@@ -160,7 +160,7 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 初始化并执行生成器
      * @author 徐明龙 XuMingLong 
-     * @param methodGenerator
+     * @param methodGenerator 方法生成器
      */
     protected void initializeAndExecuteGenerator(AbstractMethodGenerator methodGenerator) {
         methodGenerator.setContext(context);
@@ -174,7 +174,7 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加默认的引入
      * @author 徐明龙 XuMingLong 
-     * @param serviceImplClass
+     * @param serviceImplClass Service的实现类
      */
     protected void addDefaultImport(ServiceImplClass serviceImplClass) {
         serviceImplClass.getMethods().forEach((r)->{
@@ -207,7 +207,7 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加对应的接口的引入
      * @author 徐明龙 XuMingLong 
-     * @param serviceImplClass
+     * @param serviceImplClass Service的实现类
      */
     protected void addInterfaceImport(ServiceImplClass serviceImplClass) {
         serviceImplClass.addImportedTypes(this.mixedContext.getServiceInterface().getImportedTypes());
@@ -217,7 +217,7 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加Spring Service注解
      * @author 徐明龙 XuMingLong 
-     * @param serviceImplClass
+     * @param serviceImplClass Service的实现类
      */
     protected void addSpringService(ServiceImplClass serviceImplClass) {
         //增加Service注解
@@ -229,7 +229,7 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Service接口实现类名称
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return 计算Service接口实现类名称
      */
     protected String calculateServiceImplClassName() {
         StringBuilder sb = new StringBuilder();
@@ -243,7 +243,7 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Service接口实现类的Package
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return 计算Service接口实现类的Package
      */
     protected String calculateServiceImplClassPackage() {
         String testClientTargetPackage = this.context

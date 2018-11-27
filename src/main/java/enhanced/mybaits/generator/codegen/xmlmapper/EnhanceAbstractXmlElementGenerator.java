@@ -25,7 +25,7 @@ public abstract class EnhanceAbstractXmlElementGenerator extends AbstractXmlElem
      * 获取引入全字段列表节点
      * 
      * @author 徐明龙 XuMingLong
-     * @return
+     * @return 返回引入全字段列表节点
      */
     protected XmlElement getIncludeAllColumnListElement() {
         XmlElement answer = new XmlElement("include");
@@ -37,8 +37,8 @@ public abstract class EnhanceAbstractXmlElementGenerator extends AbstractXmlElem
      * 获取首字母小写的短名称
      * 
      * @author 徐明龙 XuMingLong
-     * @param fullName
-     * @return
+     * @param fullName 全字段名称可以包含包名
+     * @return 获取首字母小写的短名称
      */
     protected String getUncapitalizeShortName(String fullName) {
         return StringUtils.uncapitalize(StringUtils.substringAfterLast(fullName, "."));
@@ -48,7 +48,7 @@ public abstract class EnhanceAbstractXmlElementGenerator extends AbstractXmlElem
      * 获取基础记录类型的首字母小写的短名称
      * 
      * @author 徐明龙 XuMingLong
-     * @return
+     * @return  基础记录类型的首字母小写的短名称
      */
     protected String getBaseRecordUncapitalizeShortName() {
         return getUncapitalizeShortName(this.introspectedTable.getBaseRecordType());

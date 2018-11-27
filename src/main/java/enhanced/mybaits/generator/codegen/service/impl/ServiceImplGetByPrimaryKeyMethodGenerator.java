@@ -27,7 +27,7 @@ public class ServiceImplGetByPrimaryKeyMethodGenerator extends AbstractServiceIm
     /**
      * 增加方法内容
      * @author 徐明龙 XuMingLong 
-     * @param method
+     * @param method 基于的方法
      */
     @Override
     protected void addMethodBody(Method method) {
@@ -48,8 +48,8 @@ public class ServiceImplGetByPrimaryKeyMethodGenerator extends AbstractServiceIm
     /**
      * 增加额外的方法
      * @author 徐明龙 XuMingLong 
-     * @param method
-     * @return
+     * @param method 基于的方法
+     * @return 返回额外增加的方法
      */
     @Override
     protected List<Method> addExtraMethod(Method method) {
@@ -60,7 +60,7 @@ public class ServiceImplGetByPrimaryKeyMethodGenerator extends AbstractServiceIm
     /**
      * 返回Service方法枚举类
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return 返回Service方法枚举类
      */
     @Override
     protected ServiceMethodEnum getServiceMethod() {
@@ -71,7 +71,7 @@ public class ServiceImplGetByPrimaryKeyMethodGenerator extends AbstractServiceIm
     /**
      * 计算方法名称
      * @author 徐明龙 XuMingLong
-     * @return
+     * @return 计算方法名称
      */
     @Override
     protected String calculateMethodName() {

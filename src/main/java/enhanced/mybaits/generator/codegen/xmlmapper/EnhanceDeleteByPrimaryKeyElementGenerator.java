@@ -26,7 +26,7 @@ public class EnhanceDeleteByPrimaryKeyElementGenerator extends EnhanceAbstractXm
      * 生成删除指定主键的记录节点
      * 
      * @author 徐明龙 XuMingLong
-     * @param parentElement
+     * @param parentElement 父节点
      */
     @Override
     public void addElements(XmlElement parentElement) {

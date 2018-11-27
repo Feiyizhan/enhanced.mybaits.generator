@@ -34,7 +34,7 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
     }
 
     /**
-     *
+     * 设置生成的目标项目目录
      * @author 徐明龙 XuMingLong 
      */
     @Override
@@ -43,9 +43,9 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
     }
 
     /**
-     *
+     * 获取Result类
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Result类
      */
     @Override
     public List<CompilationUnit> getCompilationUnits() {
@@ -59,7 +59,7 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 生成Result类
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Result类
      */
     protected ResultClass getResultClass() {
         progressCallback.startTask(String.format("准备生成表%s的Result类", introspectedTable.getFullyQualifiedTable().toString()));
@@ -109,7 +109,7 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Result类名称
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Result类名称
      */
     protected String calculateResutlClassName() {
         StringBuilder sb = new StringBuilder();
@@ -123,7 +123,7 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 计算Result类的Package
      * @author 徐明龙 XuMingLong 
-     * @return
+     * @return Result类的Package
      */
     protected String calculateResultClassPackage() {
         String value = this.context

@@ -30,7 +30,7 @@ public class TestsInsertMethodGenerator extends AbstractMapperTestsMethodGenerat
     /**
      * 增加测试方法的内容
      * @author 徐明龙 XuMingLong 
-     * @param method
+     * @param method 方法名称
      */
     @Override
     protected void addMethodBody(Method method) {

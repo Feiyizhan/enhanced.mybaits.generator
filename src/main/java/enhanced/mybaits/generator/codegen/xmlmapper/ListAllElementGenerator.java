@@ -27,7 +27,7 @@ public class ListAllElementGenerator extends EnhanceAbstractXmlElementGenerator 
      * 生成获取所有记录节点
      * 
      * @author 徐明龙 XuMingLong
-     * @param parentElement
+     * @param parentElement 父节点
      */
     @Override
     public void addElements(XmlElement parentElement) {

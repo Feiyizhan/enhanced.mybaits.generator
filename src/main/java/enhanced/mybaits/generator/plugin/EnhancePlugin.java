@@ -70,12 +70,12 @@ public class EnhancePlugin extends PluginAdapter{
 
 
     /**
-     * Mapper 类生成
+     * Mapper 类代码已生成
      * @author 徐明龙 XuMingLong 
-     * @param interfaze
-     * @param topLevelClass
-     * @param introspectedTable
-     * @return
+     * @param interfaze Mapper接口类
+     * @param topLevelClass 基础类
+     * @param introspectedTable 解析好的表
+     * @return 是否保留该代码
      */
     @Override
     public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass,
@@ -86,11 +86,11 @@ public class EnhancePlugin extends PluginAdapter{
 
 
     /**
-     * 基础类型生成
+     * 基础类型代码已生成
      * @author 徐明龙 XuMingLong 
-     * @param topLevelClass
-     * @param introspectedTable
-     * @return
+     * @param topLevelClass 基础类
+     * @param introspectedTable 解析好的表
+     * @return 是否保留该代码
      */
     @Override
     public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
@@ -122,9 +122,9 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * Sql Mapper生成
      * @author 徐明龙 XuMingLong 
-     * @param document
-     * @param introspectedTable
-     * @return
+     * @param document XML文档
+     * @param introspectedTable  解析好的表
+     * @return Sql Mapper生成
      */
     @Override
     public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
@@ -137,8 +137,8 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * 补充生成的Java文件
      * @author 徐明龙 XuMingLong 
-     * @param introspectedTable
-     * @return
+     * @param introspectedTable 解析好的表
+     * @return 补充生成的Java文件
      */
     @Override
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
@@ -160,27 +160,26 @@ public class EnhancePlugin extends PluginAdapter{
 
 
     /**
-     *
+     * XML文件代码已生成
      * @author 徐明龙 XuMingLong 
-     * @param introspectedTable
-     * @return
+     * @param introspectedTable 解析好的表
+     * @return 补充生成的XML文件
      */
     @Override
     public List<GeneratedXmlFile> contextGenerateAdditionalXmlFiles(IntrospectedTable introspectedTable) {
-        // TODO Auto-generated method stub
         return super.contextGenerateAdditionalXmlFiles(introspectedTable);
     }
 
 
     /**
-     *
+     * 基础类Set方法代码已生成
      * @author 徐明龙 XuMingLong 
-     * @param method
-     * @param topLevelClass
-     * @param introspectedColumn
-     * @param introspectedTable
-     * @param modelClassType
-     * @return
+     * @param method 方法名称
+     * @param topLevelClass 基础类
+     * @param introspectedColumn 字段名
+     * @param introspectedTable 解析好的表
+     * @param modelClassType 基础类类型
+     * @return 是否保留该方法
      */
     @Override
     public boolean modelSetterMethodGenerated(Method method, TopLevelClass topLevelClass,
@@ -190,14 +189,14 @@ public class EnhancePlugin extends PluginAdapter{
 
     
     /**
-     *
+     * 基础类Get方法代码已生成
      * @author 徐明龙 XuMingLong 
-     * @param method
-     * @param topLevelClass
-     * @param introspectedColumn
-     * @param introspectedTable
-     * @param modelClassType
-     * @return
+     * @param method 方法名称
+     * @param topLevelClass 基础类
+     * @param introspectedColumn 字段名
+     * @param introspectedTable 解析好的表
+     * @param modelClassType 基础类类型
+     * @return 是否保留该方法
      */
     @Override
     public boolean modelGetterMethodGenerated(Method method, TopLevelClass topLevelClass,
@@ -210,7 +209,7 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * 插件初始化
      * @author 徐明龙 XuMingLong 
-     * @param introspectedTable
+     * @param introspectedTable 解析好的表
      */
     @Override
     public void initialized(IntrospectedTable introspectedTable) {
@@ -240,8 +239,8 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * 获取默认的主键生成配置
      * @author 徐明龙 XuMingLong 
-     * @param introspectedTable
-     * @return
+     * @param introspectedTable 解析好的表
+     * @return 默认的主键生成配置
      */
     private GeneratedKey getDefaultGeneratedKey(IntrospectedTable introspectedTable) {
         
@@ -282,8 +281,8 @@ public class EnhancePlugin extends PluginAdapter{
     /**
      * 参数校验
      * @author 徐明龙 XuMingLong 
-     * @param warnings
-     * @return
+     * @param warnings 额外的参数
+     * @return 校验结果
      */
     @Override
     public boolean validate(List<String> warnings) {
