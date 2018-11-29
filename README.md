@@ -85,9 +85,9 @@ Service类的所有方法的简单实现。
  - `resultTargetPackage` 生成的Result类的包名;
  - `serviceTargetPackage` 生成的Service类的包名;
  - `serviceImplTargetPackage` 生成的Service实现类的包名;
- - `userClassName` 生成的代码在填充审计信息时需要用到的用户信息类名，该类必须提供`Id`,`Name`的`Get`方法。
- - `standardCheckAndHandleDtoClassName` 生成的Service接口的新增方法返回的参数对象类名，该类必须包括一个`FormValidError`字段和一个泛型的`Result`字段代码参考：
- - `formValidErrorClassName`  生成的Service接口增删改方法返回的校验结果信息，该类的代码参考:
+ - `userClassName` 生成的代码在填充审计信息时需要用到的用户信息类名，该类必须提供`getId`,`getName`的方法。
+ - `standardCheckAndHandleDtoClassName` 生成的Service接口的新增方法返回的参数对象类名，该类必须包括一个`FormValidError`字段和一个泛型的`Result`字段代码参考：[StandardCheckAndHandleDTO.java](https://github.com/Feiyizhan/enhanced.mybaits.generator/blob/master/src/main/java/enhanced/mybaits/generator/example/StandardCheckAndHandleDTO.java)
+ - `formValidErrorClassName`  生成的Service接口增删改方法返回的校验结果信息，该类的代码参考:[FormValidError.java](https://github.com/Feiyizhan/enhanced.mybaits.generator/blob/master/src/main/java/enhanced/mybaits/generator/example/FormValidError.java)
  - `testTargetProject` 测试类存放的项目目录
  - `testSpringBootMainClass`Junit测试类`@SpringBootTest`注解的`classes`属性需要指定的测试启动类，设置为项目对应的Spring Boot启动类即可.
 
