@@ -39,11 +39,11 @@
 Mapper接口会根据配置的表的描述生成相应的接口描述
 
 - 方法名替换
-`selectByPrimaryKey` -> `getByPrimaryKey`  获取指定主键对应的记录
-`selectAll` -> `listAll`  获取所有记录
+  - `selectByPrimaryKey` -> `getByPrimaryKey`  获取指定主键对应的记录
+  - `selectAll` -> `listAll`  获取所有记录
 
 - 新增的方法
-`getByPrimaryKeyAndLocked`  获取指定主键对应的记录并锁定
+  - `getByPrimaryKeyAndLocked`  获取指定主键对应的记录并锁定
 
 调整了方法生成顺序，并每个方法增加了对应的注释。
 
@@ -51,9 +51,9 @@ Mapper接口会根据配置的表的描述生成相应的接口描述
 增加了版权声明的注释，Mapper下的每个节点都增加了相应的注释，对应的Java对象使用短类名格式，对于全字段的操作通过Include标签做代码复用。
 
 sqlId 替换：
-`Base_Column_List` -> `all_column_list` 全字段列表
-`selectByPrimaryKey` -> `getByPrimaryKey`  获取指定主键对应的记录
-`selectAll` -> `listAll`  获取所有记录
+- `Base_Column_List` -> `all_column_list` 全字段列表
+- `selectByPrimaryKey` -> `getByPrimaryKey`  获取指定主键对应的记录
+- `selectAll` -> `listAll`  获取所有记录
 
 ### Service
 默认生成增删改查方法
