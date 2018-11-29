@@ -23,6 +23,8 @@
 </dependency>
 ```
 
+使用Mybaits Generator启动方法启动
+参考：[http://www.mybatis.org/generator/running/running.html](http://www.mybatis.org/generator/running/running.html)
 
 
 ## 1.0.X版本
@@ -73,7 +75,7 @@ Service类的所有方法的简单实现。
 ### 相关的配置变动
 
 配置例子参考：
-
+[generatorConfig.xml](https://github.com/Feiyizhan/enhanced.mybaits.generator/blob/master/src/main/resources/generatorConfig.xml)
 
 #### Context 配置
 修改`Context`节点的`targetRuntime`属性为`enhanced.mybaits.generator.EnhanceIntrospectedTableMyBatis3SimpleImpl`。
