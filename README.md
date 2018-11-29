@@ -3,6 +3,28 @@
 
 该代码生成器主要用于生成一套项目组内部标准的代码模版，基于生成的代码做后续开发，便于统一项目中的代码样式，提升开发效率，提高代码质量。
 
+项目github URL：
+[https://github.com/Feiyizhan/enhanced.mybaits.generator](https://github.com/Feiyizhan/enhanced.mybaits.generator)
+
+项目已经提交到Maven中央仓库，可以在各Maven库中搜到到该插件的发布的最新包。
+[https://search.maven.org/artifact/io.github.Feiyizhan/enhanced.mybaits.generator/1.0.2/jar](https://search.maven.org/artifact/io.github.Feiyizhan/enhanced.mybaits.generator/1.0.2/jar)
+
+
+
+## 使用
+
+增加以下的`dependency`：
+
+```xml
+<dependency>
+  <groupId>io.github.Feiyizhan</groupId>
+  <artifactId>enhanced.mybaits.generator</artifactId>
+  <version>${version}</version>
+</dependency>
+```
+
+
+
 ## 1.0.X版本
 
 ### 实体类、表单类、返回类
@@ -49,6 +71,13 @@ sqlId 替换：
 Service类的所有方法的简单实现。
 
 ### 相关的配置变动
+
+配置例子参考：
+
+
+#### Context 配置
+修改`Context`节点的`targetRuntime`属性为`enhanced.mybaits.generator.EnhanceIntrospectedTableMyBatis3SimpleImpl`。
+
 
 #### 插件配置
 增加了新的插件,新增的代码文件通过重写插件的`contextGenerateAdditionalJavaFiles` 的方法实现，配置如下：
@@ -125,5 +154,14 @@ Service类的所有方法的简单实现。
                         <property name="testSpringBootMainClass" value="com.xxx.Application"/>
 
 </javaClientGenerator>
+```
+
+#### table的配置
+由于Mybaits Generator获取表的描述信息处理代码获取不到Mysql表的描述信息，因此增加了一个`table`节点的配置`table_comment`用于补充表的描述,如果Mybaits Generator默认能获取到表的描述，将会优先使用Mybaits Generator获取到的表的描述。配置如下:
+
+```xml
+<table tableName="test_table" delimitAllColumns="true">
+     <property name="table_comment" value="测试表的描述"/>
+</table>
 ```
 
