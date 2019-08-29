@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.Feiyizhan</groupId>
   <artifactId>enhanced.mybaits.generator</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <name>enhanced.mybaits.generator</name>
   <description>增强的Mybaits Generator插件</description>
   <url>https://github.com/Feiyizhan/enhanced.mybaits.generator</url>
@@ -22,7 +22,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.16.20</version>
+      <version>1.18.8</version>
     </dependency>
 
     <dependency>
@@ -41,7 +41,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-collections4</artifactId>
-      <version>4.1</version>
+      <version>4.2</version>
     </dependency>
 
     <dependency>
@@ -61,6 +61,18 @@
       <artifactId>jul-to-slf4j</artifactId>
       <version>1.7.25</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.45</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -108,6 +120,11 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <version>3.0.1</version>
+            <configuration>
+              <additionalOptions>
+                <additionalOption>-Xdoclint:none</additionalOption>
+              </additionalOptions>
+            </configuration>
             <executions>
               <execution>
                 <phase>package</phase>

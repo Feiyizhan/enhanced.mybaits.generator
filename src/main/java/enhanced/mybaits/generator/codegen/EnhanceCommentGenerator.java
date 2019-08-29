@@ -4,39 +4,32 @@
  */
 package enhanced.mybaits.generator.codegen;
 
-import static org.mybatis.generator.internal.util.StringUtility.isTrue;
-
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
-import java.util.Properties;
-
+import enhanced.mybaits.generator.EnhanceConstant;
+import enhanced.mybaits.generator.dom.java.*;
+import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
+import enhanced.mybaits.generator.enums.ServiceImplExtraMethodEnum;
+import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
-import org.mybatis.generator.api.dom.java.CompilationUnit;
-import org.mybatis.generator.api.dom.java.Field;
-import org.mybatis.generator.api.dom.java.Interface;
-import org.mybatis.generator.api.dom.java.JavaElement;
-import org.mybatis.generator.api.dom.java.Method;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
+import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.config.PropertyRegistry;
 import org.mybatis.generator.internal.DefaultCommentGenerator;
 import org.mybatis.generator.internal.util.StringUtility;
 
-import enhanced.mybaits.generator.EnhanceConstant;
-import enhanced.mybaits.generator.dom.java.FormClass;
-import enhanced.mybaits.generator.dom.java.ResultClass;
-import enhanced.mybaits.generator.dom.java.ServiceImplClass;
-import enhanced.mybaits.generator.dom.java.ServiceInterface;
-import enhanced.mybaits.generator.dom.java.TestsClass;
-import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
-import enhanced.mybaits.generator.enums.ServiceImplExtraMethodEnum;
-import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 
 /**
  * My baits 生成器 注释增强处理
@@ -57,6 +50,12 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
     private DateTimeFormatter dateFormat;
     
     private String author;
+
+    /**
+     * 文件的注释
+     * @author 徐明龙 XuMingLong 2019-08-29
+     */
+    private List<String> fileCommentList;
     
     public EnhanceCommentGenerator() {
         super();
@@ -97,6 +96,15 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         }
         author = StringUtils.trimToEmpty(properties
             .getProperty(EnhanceConstant.COMMENT_GENERATOR_AUTHOR_KEY));
+        String fileComment = StringUtils.defaultString(properties.getProperty(EnhanceConstant.COMMENT_GENERATOR_FILE_COMMENT_KEY),"");
+        fileCommentList = new ArrayList<>();
+        if(StringUtils.isNotBlank(fileComment)){
+            String year = String.valueOf(LocalDate.now().getYear());
+            String[] fileComments = StringUtils.splitByWholeSeparator(fileComment,"\\n");
+            for(String str:fileComments){
+                fileCommentList.add(StringUtils.replace(str,"${year}",year));
+            }
+        }
     }
     
     /**
@@ -107,6 +115,9 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
      */
     @Override
     public void addMapperClassComment(Interface interfaze,IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
         addClassComment(interfaze,introspectedTable,"数据维护接口");
     }
     
@@ -120,6 +131,9 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
      */
     @Override
     public void addMapperTestsClassComment(TestsClass testsClass, IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
         addClassComment(testsClass,introspectedTable,"数据维护接口测试类");
     }
 
@@ -131,9 +145,15 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
      */
     @Override
     public void addJavaFileComment(CompilationUnit compilationUnit) {
+        if (suppressAllComments) {
+            return;
+        }
         compilationUnit.addFileCommentLine("/**");
-        compilationUnit.addFileCommentLine(" * 版权归上海亚商投资顾问有限公司所有，未经本公司协议授权，禁止任何使用、篡改等行为。");
-        compilationUnit.addFileCommentLine(" * Copyright©"+LocalDate.now().getYear()+"【ABC Financial Service】All Rights Reserved. No part may be used or tampered in any form or means without the prior written consent.");
+        if(CollectionUtils.isNotEmpty(fileCommentList)){
+            for(String str:fileCommentList){
+                compilationUnit.addFileCommentLine(" * "+str);
+            }
+        }
         compilationUnit.addFileCommentLine("*/");
     }
 
@@ -200,10 +220,13 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         if (suppressAllComments) {
             return;
         }
-        rootElement.addElement(new TextElement("<!--")); 
-        rootElement.addElement(new TextElement("  版权归上海亚商投资顾问有限公司所有，未经本公司协议授权，禁止任何使用、篡改等行为。 ")); 
-        rootElement.addElement(new TextElement("  Copyright©"+LocalDate.now().getYear()+"【ABC Financial Service】All Rights Reserved. No part may be used or tampered in any form or means without the prior written consent. ")); 
-        rootElement.addElement(new TextElement("-->")); 
+        rootElement.addElement(new TextElement("<!--"));
+        if(CollectionUtils.isNotEmpty(fileCommentList)){
+            for(String str:fileCommentList){
+                rootElement.addElement(new TextElement("  "+str));
+            }
+        }
+        rootElement.addElement(new TextElement("-->"));
         
     }
 
@@ -297,6 +320,9 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable,
         IntrospectedColumn introspectedColumn) {
+        if (suppressAllComments) {
+            return;
+        }
         field.addJavaDocLine("/**"); 
         field.addJavaDocLine(" * "+introspectedColumn.getRemarks()); 
         // 增加创建人
@@ -335,6 +361,9 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
      */
     @Override
     public void addMapperTestsMethodComment(Method method) {
+        if (suppressAllComments) {
+            return;
+        }
         EnhanceSqlIdEnum sqlId = getSqlId(method.getName());
         String comment = "";
         if(sqlId!=null) {
@@ -357,6 +386,9 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
      */
     @Override
     public void addServiceInterfaceComment(ServiceInterface serviceInterface, IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
         addClassComment(serviceInterface,introspectedTable,"Service接口");
     }
 
@@ -369,6 +401,9 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
      */
     @Override
     public void addFormClassComment(FormClass formClass, IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
         addClassComment(formClass,introspectedTable,"表单");
     }
 
@@ -381,6 +416,9 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
      */
     @Override
     public void addResultClassComment(ResultClass resultClass, IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
         addClassComment(resultClass,introspectedTable,"返回结果");
     }
 
@@ -393,6 +431,9 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
      */
     @Override
     public void addServiceImplClassComment(ServiceImplClass serviceImplClass, IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
         addClassComment(serviceImplClass,introspectedTable,"Service接口的实现类");
     }
     
@@ -406,6 +447,9 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
      */
     @Override
     public void addAutowiredMapperFieldComment(Field field, IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
         addClassComment(field,introspectedTable,"数据维护接口");
     }
     
@@ -417,6 +461,9 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
      */
     @Override
     public void addServiceMethodComment(Method method,ServiceMethodEnum methodEnum) {
+        if (suppressAllComments) {
+            return;
+        }
         String description = "";
         if(methodEnum!=null) {
             description = methodEnum.getDescription();
@@ -433,6 +480,9 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
      */
     @Override
     public void addServiceExtraMethodComment(Method method) {
+        if (suppressAllComments) {
+            return;
+        }
         ServiceImplExtraMethodEnum methodEnum = ServiceImplExtraMethodEnum.resolve(method.getName());
         String description = "";
         if(methodEnum!=null) {

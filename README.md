@@ -27,7 +27,7 @@
 参考：[http://www.mybatis.org/generator/running/running.html](http://www.mybatis.org/generator/running/running.html)
 
 
-## 1.0.X版本
+## 1.0.2版本
 
 ### 实体类、表单类、返回类
 - 使用Lombok处理`GET`、`SET`、`ToSting`、`HashCode`、`Equals`
@@ -167,3 +167,18 @@ Service类的所有方法的简单实现。
 </table>
 ```
 
+## 1.0.3 版本
+### 实体类、表单类、返回类
+- 使用Lombok `@Data` 注解代替原`@Getter`、`@Setter`、`@ToString`、`@EqualsAndHashCode`注解
+- 表单类、返回类 增加Swagger2的`@ApiModel`的注解。
+
+### 相关配置的变动
+新增版权信息的配置的支持
+```xml
+<!--Java 文件和 XML文件的文件的注释，其中\n为换行符，${year}将替换为当前的4位数的年-->
+<property name="fileComment" value="版权归上海亚商投资顾问有限公司所有，未经本公司协议授权，禁止任何使用、篡改等行为。\nCopyright© ${year}【ABC Financial Service】All Rights Reserved. No part may be used or tampered in any form or means without the prior written consent. "/>
+```
+
+### 其他变动
+- 优化了项目的依赖包
+- 所有的注释生成都可以通过`suppressAllComments` 配置来关闭

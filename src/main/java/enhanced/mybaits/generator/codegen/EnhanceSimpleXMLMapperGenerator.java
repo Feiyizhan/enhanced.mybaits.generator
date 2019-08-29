@@ -4,21 +4,14 @@
  */
 package enhanced.mybaits.generator.codegen;
 
-import static org.mybatis.generator.internal.util.messages.Messages.getString;
-
-
+import enhanced.mybaits.generator.codegen.xmlmapper.*;
 import org.mybatis.generator.api.FullyQualifiedTable;
 import org.mybatis.generator.api.dom.xml.Attribute;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.SimpleXMLMapperGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.AbstractXmlElementGenerator;
 
-import enhanced.mybaits.generator.codegen.xmlmapper.AllColumnListElementGenerator;
-import enhanced.mybaits.generator.codegen.xmlmapper.EnhanceDeleteByPrimaryKeyElementGenerator;
-import enhanced.mybaits.generator.codegen.xmlmapper.EnhanceInsertElementGenerator;
-import enhanced.mybaits.generator.codegen.xmlmapper.EnhanceUpdateByPrimaryKeyElementGenerator;
-import enhanced.mybaits.generator.codegen.xmlmapper.GetByPrimaryKeyElementGenerator;
-import enhanced.mybaits.generator.codegen.xmlmapper.ListAllElementGenerator;
+import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
 /**
  * My baits 生成器 - 增强的简单XML Mapper生成器
@@ -67,7 +60,7 @@ public class EnhanceSimpleXMLMapperGenerator extends SimpleXMLMapperGenerator {
      * @author 徐明龙 XuMingLong 
      * @param parentElement 待处理的节点
      */
-    protected void addDeleteByPrimaryKeyElement(XmlElement parentElement) {
+    @Override protected void addDeleteByPrimaryKeyElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateDeleteByPrimaryKey()) {
             AbstractXmlElementGenerator elementGenerator = new EnhanceDeleteByPrimaryKeyElementGenerator();
             initializeAndExecuteGenerator(elementGenerator, parentElement);
@@ -79,7 +72,7 @@ public class EnhanceSimpleXMLMapperGenerator extends SimpleXMLMapperGenerator {
      * @author 徐明龙 XuMingLong 
      * @param parentElement 待处理的节点
      */
-    protected void addUpdateByPrimaryKeyElement(XmlElement parentElement) {
+    @Override protected void addUpdateByPrimaryKeyElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateUpdateByPrimaryKeyWithoutBLOBs()) {
             AbstractXmlElementGenerator elementGenerator = new EnhanceUpdateByPrimaryKeyElementGenerator();
             initializeAndExecuteGenerator(elementGenerator, parentElement);
@@ -91,7 +84,7 @@ public class EnhanceSimpleXMLMapperGenerator extends SimpleXMLMapperGenerator {
      * @author 徐明龙 XuMingLong 
      * @param parentElement 待处理的节点
      */
-    protected void addInsertElement(XmlElement parentElement) {
+    @Override protected void addInsertElement(XmlElement parentElement) {
         if (introspectedTable.getRules().generateInsert()) {
             AbstractXmlElementGenerator elementGenerator = new EnhanceInsertElementGenerator();
             initializeAndExecuteGenerator(elementGenerator, parentElement);

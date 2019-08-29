@@ -4,14 +4,14 @@
  */
 package enhanced.mybaits.generator.codegen;
 
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
-
+import enhanced.mybaits.generator.EnhanceConstant;
+import enhanced.mybaits.generator.MixedContext;
+import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.codegen.AbstractJavaGenerator;
 
-import enhanced.mybaits.generator.EnhanceConstant;
-import enhanced.mybaits.generator.MixedContext;
+import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 /**
  * 增强的Java生成器抽象类
@@ -106,23 +106,33 @@ public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
             .getJavaClientGeneratorConfiguration()
             .getProperty(EnhanceConstant.NOW_UTILS_KEY);
     }
-    
+
     /**
      * 增加Lombok注解
-     * @author 徐明龙 XuMingLong 
-     * @param topLevelClass 实体类
+     * @author 徐明龙 XuMingLong 2019-08-29
+     * @param topLevelClass
+     * @return void
      */
     protected void addLombokAnnotation(TopLevelClass topLevelClass) {
-        topLevelClass.addImportedType("lombok.EqualsAndHashCode"); 
-        topLevelClass.addImportedType("lombok.Getter"); 
-        topLevelClass.addImportedType("lombok.Setter"); 
-        topLevelClass.addImportedType("lombok.ToString"); 
-        
-        topLevelClass.addAnnotation("@Getter");
-        topLevelClass.addAnnotation("@Setter");
-        topLevelClass.addAnnotation("@EqualsAndHashCode");
-        topLevelClass.addAnnotation("@ToString");
-        
+        topLevelClass.addImportedType("lombok.*");
+        topLevelClass.addAnnotation("@Data");
+    }
+
+
+    /**
+     * 增加Swagger2注解
+     * @author 徐明龙 XuMingLong 2019-08-29
+     * @param topLevelClass
+     * @param extraComment
+     * @return void
+     */
+    protected void addSwagger2Annotation(TopLevelClass topLevelClass,String extraComment) {
+        topLevelClass.addImportedType("io.swagger.annotations.ApiModel");
+        String tableComment = introspectedTable.getTableConfiguration().getProperties()
+            .getProperty(EnhanceConstant.COMMENT_GENERATOR_TABLE_COMMENT_KEY);
+        String remarks = introspectedTable.getRemarks();
+        String comment = StringUtils.isNotBlank(remarks)?remarks:tableComment;
+        topLevelClass.addAnnotation(String.join("","@ApiModel(\"",comment,extraComment,"\")"));
     }
     
 }

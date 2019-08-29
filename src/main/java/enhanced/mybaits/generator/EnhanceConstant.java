@@ -18,11 +18,17 @@ public interface EnhanceConstant {
      * 注释生成-作者
      * @author 徐明龙 XuMingLong 
      */
-    public static final String COMMENT_GENERATOR_AUTHOR_KEY = "author"; 
-    
+    public static final String COMMENT_GENERATOR_AUTHOR_KEY = "author";
+
+    /**
+     * 注释生成-文件的注释内容
+     * @author 徐明龙 XuMingLong 2019-08-29
+     */
+    public static final String COMMENT_GENERATOR_FILE_COMMENT_KEY = "fileComment";
+
     /**
      * 注释生成-表的描述
-     * @author 徐明龙 XuMingLong 
+     * @author 徐明龙 XuMingLong
      */
     public static final String COMMENT_GENERATOR_TABLE_COMMENT_KEY ="table_comment";
     

@@ -8,7 +8,7 @@
 
         <!-- 可以用于加载配置项或者配置文件，在整个配置文件中就可以使用${propertyKey}的方式来引用配置项 resource：配置资源加载地址，使用resource，MBG从classpath开始找，比如com/myproject/generatorConfig.properties
                 url：配置资源加载地质，使用URL的方式，比如file:///C:/myfolder/generatorConfig.properties. 注意，两个属性只能选址一个; 另外，如果使用了mybatis-generator-maven-plugin，那么在pom.xml中定义的properties都可以直接在generatorConfig.xml中使用 -->
-        <properties resource="application.properties" />
+        <!--<properties resource="application.properties" />-->
         <!-- 在MBG工作的时候，需要额外加载的依赖包 location属性指明加载jar/zip包的全路径 <classPathEntry location="D:\repository\mysql\mysql-connector-java\5.1.45\mysql-connector-java-5.1.45.jar"
                 /> -->
 
@@ -40,6 +40,8 @@
                         <property name="addRemarkComments" value="true" />
                         <property name="dateFormat" value="yyyy-MM-dd" />
                         <property name="author" value="徐明龙 XuMingLong" />
+                        <!--Java 文件和 XML文件的文件的注释，其中\n为换行符，${year}将替换为当前的4位数的年-->
+                        <property name="fileComment" value="版权归上海亚商投资顾问有限公司所有，未经本公司协议授权，禁止任何使用、篡改等行为。\nCopyright© ${year}【ABC Financial Service】All Rights Reserved. No part may be used or tampered in any form or means without the prior written consent. "/>
                 </commentGenerator>
 
                 <!-- 必须要有的，使用这个配置链接数据库 -->

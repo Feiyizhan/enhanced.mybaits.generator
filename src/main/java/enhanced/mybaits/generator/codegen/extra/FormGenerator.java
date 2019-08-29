@@ -4,25 +4,20 @@
  */
 package enhanced.mybaits.generator.codegen.extra;
 
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.mybatis.generator.api.CommentGenerator;
-import org.mybatis.generator.api.IntrospectedColumn;
-import org.mybatis.generator.api.dom.java.CompilationUnit;
-import org.mybatis.generator.api.dom.java.Field;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.JavaVisibility;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
-
 import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
 import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
 import enhanced.mybaits.generator.dom.java.FormClass;
+import org.apache.commons.lang3.StringUtils;
+import org.mybatis.generator.api.CommentGenerator;
+import org.mybatis.generator.api.IntrospectedColumn;
+import org.mybatis.generator.api.dom.java.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 
 /**
@@ -130,6 +125,8 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
         }
         //增加Lombok注解
         addLombokAnnotation(formClass);
+        //增加Swagger2注解
+        addSwagger2Annotation(formClass,"表单");
         return formClass;
     }
     

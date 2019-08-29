@@ -5,24 +5,6 @@
 package enhanced.mybaits.generator.plugin;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.collections4.CollectionUtils;
-import org.mybatis.generator.api.GeneratedJavaFile;
-import org.mybatis.generator.api.GeneratedXmlFile;
-import org.mybatis.generator.api.IntrospectedColumn;
-import org.mybatis.generator.api.IntrospectedTable;
-import org.mybatis.generator.api.PluginAdapter;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.Interface;
-import org.mybatis.generator.api.dom.java.Method;
-import org.mybatis.generator.api.dom.java.PrimitiveTypeWrapper;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
-import org.mybatis.generator.api.dom.xml.Document;
-import org.mybatis.generator.config.GeneratedKey;
-import org.mybatis.generator.config.TableConfiguration;
-
 import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.EnhanceIntrospectedTableMyBatis3SimpleImpl;
 import enhanced.mybaits.generator.GeneratorExecutor;
@@ -32,6 +14,15 @@ import enhanced.mybaits.generator.codegen.extra.ResultGenerator;
 import enhanced.mybaits.generator.codegen.extra.SimpleJavaClientTestsGenerator;
 import enhanced.mybaits.generator.codegen.service.ServiceInterfaceGenerator;
 import enhanced.mybaits.generator.codegen.service.impl.ServiceImplGenerator;
+import org.apache.commons.collections4.CollectionUtils;
+import org.mybatis.generator.api.*;
+import org.mybatis.generator.api.dom.java.*;
+import org.mybatis.generator.api.dom.xml.Document;
+import org.mybatis.generator.config.GeneratedKey;
+import org.mybatis.generator.config.TableConfiguration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Mybaits Generator 增加插件
@@ -106,16 +97,8 @@ public class EnhancePlugin extends PluginAdapter{
      * @param topLevelClass 实体类
      */
     protected void addLombokAnnotation(TopLevelClass topLevelClass) {
-        topLevelClass.addImportedType("lombok.EqualsAndHashCode"); 
-        topLevelClass.addImportedType("lombok.Getter"); 
-        topLevelClass.addImportedType("lombok.Setter"); 
-        topLevelClass.addImportedType("lombok.ToString"); 
-        
-        topLevelClass.addAnnotation("@Getter");
-        topLevelClass.addAnnotation("@Setter");
-        topLevelClass.addAnnotation("@EqualsAndHashCode");
-        topLevelClass.addAnnotation("@ToString");
-        
+        topLevelClass.addImportedType("lombok.*");
+        topLevelClass.addAnnotation("@Data");
     }
     
 
