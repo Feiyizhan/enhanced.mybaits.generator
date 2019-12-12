@@ -1,18 +1,13 @@
-/**
- * 版权归上海亚商投资顾问有限公司所有，未经本公司协议授权，禁止任何使用、篡改等行为。
- * Copyright©2018【ABC Financial Service】All Rights Reserved. No part may be used or tampered in any form or means without the prior written consent.
- */
 package enhanced.mybaits.generator.codegen.service.impl;
 
-
-import java.util.List;
-
-import org.mybatis.generator.api.dom.java.Method;
 
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstractServiceImplMethodGenerator;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import org.mybatis.generator.api.dom.java.Method;
+
+import java.util.List;
 
 /**
  * Service 接口实现类获取主键对应的记录方法生成器
