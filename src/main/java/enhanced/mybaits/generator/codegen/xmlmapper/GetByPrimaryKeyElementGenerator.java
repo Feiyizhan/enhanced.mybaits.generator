@@ -46,7 +46,7 @@ public class GetByPrimaryKeyElementGenerator extends EnhanceAbstractXmlElementGe
         } else {
             answer.addAttribute(new Attribute("id", EnhanceSqlIdEnum.GET_BY_PRIMARY_KEY.getValue()));
         }
-        answer.addAttribute(new Attribute("resultType", getBaseRecordUncapitalizeShortName()));
+        answer.addAttribute(new Attribute("resultType", getBaseRecordName()));
 
         String parameterType;
         // PK fields are in the base class. If more than on PK
@@ -54,8 +54,8 @@ public class GetByPrimaryKeyElementGenerator extends EnhanceAbstractXmlElementGe
         if (introspectedTable.getPrimaryKeyColumns().size() > 1) {
             parameterType = "map";
         } else {
-            parameterType = getUncapitalizeShortName(
-                introspectedTable.getPrimaryKeyColumns().get(0).getFullyQualifiedJavaType().toString());
+            parameterType =
+                introspectedTable.getPrimaryKeyColumns().get(0).getFullyQualifiedJavaType().toString();
         }
 
         answer.addAttribute(new Attribute("parameterType", parameterType));

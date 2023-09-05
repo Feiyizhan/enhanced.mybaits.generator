@@ -36,8 +36,8 @@ public class EnhanceDeleteByPrimaryKeyElementGenerator extends EnhanceAbstractXm
         if (introspectedTable.getPrimaryKeyColumns().size() > 1) {
             parameterClass = "map";
         } else {
-            parameterClass = getUncapitalizeShortName(
-                introspectedTable.getPrimaryKeyColumns().get(0).getFullyQualifiedJavaType().toString());
+            parameterClass =
+                introspectedTable.getPrimaryKeyColumns().get(0).getFullyQualifiedJavaType().toString();
         }
         answer.addAttribute(new Attribute("parameterType", parameterClass));
 

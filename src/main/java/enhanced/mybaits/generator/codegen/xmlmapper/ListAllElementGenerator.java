@@ -32,7 +32,7 @@ public class ListAllElementGenerator extends EnhanceAbstractXmlElementGenerator 
 
         answer.addAttribute(new Attribute("id", EnhanceSqlIdEnum.LIST_ALL.getValue()));
 
-        answer.addAttribute(new Attribute("resultType", getBaseRecordUncapitalizeShortName()));
+        answer.addAttribute(new Attribute("resultType", getBaseRecordName()));
 
         context.getCommentGenerator().addComment(answer);
 
@@ -52,7 +52,6 @@ public class ListAllElementGenerator extends EnhanceAbstractXmlElementGenerator 
             answer.addElement(new TextElement(sb.toString()));
         }
 
-        // TODO
         if (context.getPlugins().sqlMapSelectAllElementGenerated(answer, introspectedTable)) {
             parentElement.addElement(answer);
         }

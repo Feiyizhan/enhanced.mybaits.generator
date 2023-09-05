@@ -1,15 +1,14 @@
 
 package enhanced.mybaits.generator.codegen;
 
-import java.util.List;
-
+import enhanced.mybaits.generator.MixedContext;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.Method;
 
-import enhanced.mybaits.generator.MixedContext;
+import java.util.List;
 
 /**
  * 增Java Mapper 测试类方法生成器基类
@@ -77,6 +76,7 @@ public abstract class AbstractMapperTestsMethodGenerator extends AbstractMethodG
      * 增加测试类对应的测试方法
      * @author 徐明龙 XuMingLong 
      */
+    @Override
     public void addMethod() {
         //设置被测试的方法
         setTestedMethod();

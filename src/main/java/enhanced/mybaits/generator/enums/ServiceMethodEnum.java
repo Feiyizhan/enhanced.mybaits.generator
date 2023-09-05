@@ -11,7 +11,7 @@ public enum ServiceMethodEnum {
      * 新增记录
      * @author 徐明龙 XuMingLong 
      */
-    INSERT("insert","新增记录"),
+    INSERT("addOnce","新增记录"),
     
     /**
      * 更新指定记录

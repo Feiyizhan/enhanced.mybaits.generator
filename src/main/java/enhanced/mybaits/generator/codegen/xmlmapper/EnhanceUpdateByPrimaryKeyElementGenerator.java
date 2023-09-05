@@ -1,8 +1,7 @@
 
 package enhanced.mybaits.generator.codegen.xmlmapper;
 
-import java.util.Iterator;
-
+import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.OutputUtilities;
 import org.mybatis.generator.api.dom.xml.Attribute;
@@ -11,7 +10,7 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.ListUtilities;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 
-import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
+import java.util.Iterator;
 
 /**
  * 增强的更新指定主键的记录生成器
@@ -35,7 +34,7 @@ public class EnhanceUpdateByPrimaryKeyElementGenerator extends EnhanceAbstractXm
         XmlElement answer = new XmlElement("update");
 
         answer.addAttribute(new Attribute("id", EnhanceSqlIdEnum.UPDATE_BY_PRIMARY_KEY.getValue()));
-        answer.addAttribute(new Attribute("parameterType", getBaseRecordUncapitalizeShortName()));
+        answer.addAttribute(new Attribute("parameterType", getBaseRecordName()));
 
         context.getCommentGenerator().addComment(answer);
 

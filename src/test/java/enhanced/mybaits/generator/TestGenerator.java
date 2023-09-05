@@ -1,7 +1,6 @@
 
 package enhanced.mybaits.generator;
 
-import org.apache.logging.log4j.core.util.FileUtils;
 import org.junit.Test;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
@@ -37,7 +36,7 @@ public class TestGenerator {
             return file;
         }
 
-        URL url = FileUtils.class.getClassLoader().getResource(fileName);
+        URL url = TestGenerator.class.getClassLoader().getResource(fileName);
         if(url!=null){
             try {
                 fileName = URLDecoder.decode(url.getFile(),"UTF-8");

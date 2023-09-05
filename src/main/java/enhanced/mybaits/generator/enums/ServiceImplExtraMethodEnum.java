@@ -11,7 +11,7 @@ public enum ServiceImplExtraMethodEnum {
      * 新增表单校验
      * @author 徐明龙 XuMingLong 
      */
-    VERIFY_FORM_FOR_INSERT("verifyFormForInsert","新增表单校验"),
+    VERIFY_FORM_FOR_INSERT("verifyFormForAddOnce","新增表单校验"),
     
     /**
      * 修改表单校验

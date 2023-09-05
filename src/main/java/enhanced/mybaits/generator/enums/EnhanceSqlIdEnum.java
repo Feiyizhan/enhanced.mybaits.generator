@@ -24,13 +24,13 @@ public enum EnhanceSqlIdEnum {
      * 获取指定主键对应的记录并锁定
      * @author 徐明龙 XuMingLong 
      */
-    GET_BY_PRIMARY_KEY_AND_LOCKED("getByPrimaryKeyAndLocked","","获取指定主键对应的记录并锁定"),
+    GET_BY_PRIMARY_KEY_AND_LOCKED("getAndLockByPrimaryKey","","获取指定主键对应的记录并锁定"),
     
     /**
      * 新增记录
      * @author 徐明龙 XuMingLong 
      */
-    INSERT("insert","insert","新增记录"),
+    INSERT("addRecord","insert","新增记录"),
     
     /**
      * 删除指定主键的记录

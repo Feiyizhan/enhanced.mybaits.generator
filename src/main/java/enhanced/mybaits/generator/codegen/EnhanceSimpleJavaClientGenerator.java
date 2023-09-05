@@ -1,15 +1,6 @@
-/**
- * 版权归上海亚商投资顾问有限公司所有，未经本公司协议授权，禁止任何使用、篡改等行为。 
- * Copyright©2018【ABC Financial Service】All Rights Reserved. No part may be used or tampered in any form or means without the prior written consent.
- */
 package enhanced.mybaits.generator.codegen;
 
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
-import static org.mybatis.generator.internal.util.messages.Messages.getString;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import enhanced.mybaits.generator.codegen.javamapper.GetByPrimaryKeyMethodGenerator;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
@@ -18,10 +9,14 @@ import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.codegen.AbstractXmlGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.SimpleJavaClientGenerator;
 import org.mybatis.generator.codegen.mybatis3.javamapper.elements.AbstractJavaMapperMethodGenerator;
+import org.mybatis.generator.codegen.mybatis3.javamapper.elements.SelectAllMethodGenerator;
 import org.mybatis.generator.config.PropertyRegistry;
 
-import enhanced.mybaits.generator.codegen.javamapper.GetByPrimaryKeyMethodGenerator;
-import enhanced.mybaits.generator.codegen.javamapper.ListAllMethodGenerator;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
+import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
 
 /**
@@ -138,7 +133,7 @@ public class EnhanceSimpleJavaClientGenerator extends SimpleJavaClientGenerator 
      * @param interfaze 指定的接口类
      */
     protected void addListAllMethod(Interface interfaze) {
-        AbstractJavaMapperMethodGenerator methodGenerator = new ListAllMethodGenerator();
+        AbstractJavaMapperMethodGenerator methodGenerator = new SelectAllMethodGenerator();
         initializeAndExecuteGenerator(methodGenerator, interfaze);
     }
     

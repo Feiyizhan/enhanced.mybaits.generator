@@ -1,9 +1,7 @@
 
 package enhanced.mybaits.generator.codegen.xmlmapper;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.OutputUtilities;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
@@ -14,7 +12,8 @@ import org.mybatis.generator.codegen.mybatis3.ListUtilities;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
 import org.mybatis.generator.config.GeneratedKey;
 
-import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 增强的新增记录节点生成器
@@ -40,7 +39,7 @@ public class EnhanceInsertElementGenerator extends EnhanceAbstractXmlElementGene
 
         FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
         answer.addAttribute(
-            new Attribute("parameterType", getUncapitalizeShortName(parameterType.getFullyQualifiedName())));
+            new Attribute("parameterType", parameterType.getFullyQualifiedName()));
 
         context.getCommentGenerator().addComment(answer);
         GeneratedKey gk = introspectedTable.getGeneratedKey();

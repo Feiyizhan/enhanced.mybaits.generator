@@ -11,12 +11,14 @@ import enhanced.mybaits.generator.codegen.extra.ResultGenerator;
 import enhanced.mybaits.generator.codegen.extra.SimpleJavaClientTestsGenerator;
 import enhanced.mybaits.generator.codegen.service.ServiceInterfaceGenerator;
 import enhanced.mybaits.generator.codegen.service.impl.ServiceImplGenerator;
+import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import org.apache.commons.collections4.CollectionUtils;
 import org.mybatis.generator.api.*;
 import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.Document;
 import org.mybatis.generator.config.GeneratedKey;
 import org.mybatis.generator.config.TableConfiguration;
+import org.mybatis.generator.internal.util.StringUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,9 +124,11 @@ public class EnhancePlugin extends PluginAdapter{
      */
     @Override
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
-        List<GeneratedJavaFile> answer = new ArrayList<GeneratedJavaFile>();
-        //生成Mapper测试类
-        generatorExecutor.addJavaGenerator(new SimpleJavaClientTestsGenerator(mixedContext));
+        List<GeneratedJavaFile> answer = new ArrayList<>();
+        if(canGenerateSimpleJavaClientTestClass()){
+            //生成Mapper测试类
+            generatorExecutor.addJavaGenerator(new SimpleJavaClientTestsGenerator(mixedContext));
+        }
         //生成Form类
         generatorExecutor.addJavaGenerator(new FormGenerator(mixedContext));
         //生成Result类
@@ -135,6 +139,19 @@ public class EnhancePlugin extends PluginAdapter{
         generatorExecutor.addJavaGenerator(new ServiceImplGenerator(mixedContext));
         answer.addAll(generatorExecutor.generateAllFiles());
         return answer;
+    }
+
+
+    /**
+     * 检查是否生成Map测试代码
+     * @author 徐明龙 XuMingLong 2022-04-17
+     * @return boolean
+     */
+    private boolean canGenerateSimpleJavaClientTestClass() {
+        return StringUtility.stringHasValue(
+            this.context
+                .getJavaClientGeneratorConfiguration()
+                .getProperty(EnhanceConstant.EXTRA_TEST_TARGET_PROJECT_KEY));
     }
 
 
@@ -273,4 +290,35 @@ public class EnhancePlugin extends PluginAdapter{
         return false;
     }
 
+
+    /**
+     * Mapper生成Insert方法后的处理
+     * @author 徐明龙 XuMingLong 2023-09-05
+     * @param method
+     * @param interfaze
+     * @param introspectedTable
+     * @return boolean
+     */
+    @Override
+    public boolean clientInsertMethodGenerated(Method method, Interface interfaze,
+        IntrospectedTable introspectedTable) {
+        method.setName(EnhanceSqlIdEnum.resolveByOldValue(method.getName()).getValue());
+        return true;
+    }
+
+
+    /**
+     * Mapper生成selectAll方法后的处理
+     * @author 徐明龙 XuMingLong 2023-09-05
+     * @param method
+     * @param interfaze
+     * @param introspectedTable
+     * @return boolean
+     */
+    @Override
+    public boolean clientSelectAllMethodGenerated(Method method,
+        Interface interfaze, IntrospectedTable introspectedTable) {
+        method.setName(EnhanceSqlIdEnum.resolveByOldValue(method.getName()).getValue());
+        return true;
+    }
 }
