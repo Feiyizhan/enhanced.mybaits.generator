@@ -41,7 +41,7 @@
                         <property name="dateFormat" value="yyyy-MM-dd" />
                         <property name="author" value="徐明龙 XuMingLong" />
                         <!--Java 文件和 XML文件的文件的注释，其中\n为换行符，${year}将替换为当前的4位数的年-->
-                        <property name="fileComment" value="版权归上海亚商投资顾问有限公司所有，未经本公司协议授权，禁止任何使用、篡改等行为。\nCopyright© ${year}【ABC Financial Service】All Rights Reserved. No part may be used or tampered in any form or means without the prior written consent. "/>
+                        <property name="fileComment" value="版权归XXXX公司所有，未经本公司协议授权，禁止任何使用、篡改等行为。\nCopyright© ${year}【ABC Financial Service】All Rights Reserved. No part may be used or tampered in any form or means without the prior written consent. "/>
                 </commentGenerator>
 
                 <!-- 必须要有的，使用这个配置链接数据库 -->
@@ -108,8 +108,8 @@
                         <property name="formValidErrorClassName" value="com.xxx.pojo.FormValidError"/>
                         <!-- 静态的生成当前日期公共方法 -->
                         <property name="nowUtils" value="com.xxx.utils.CommonsUtils.now"/>
-                        <!-- 测试类存放目的项目目录 -->
-                        <property name="testTargetProject" value="src/test/java"/>
+                        <!-- 测试类存放目的项目目录,不配置表示不生成测试代码 -->
+                        <!--                        <property name="testTargetProject" value="src/test/java"/>-->
                         <!-- 测试类需要的Spring Boot启动类 -->
                         <property name="testSpringBootMainClass" value="com.xxx.Application"/>
 
