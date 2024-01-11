@@ -5,7 +5,7 @@ import org.mybatis.generator.api.dom.java.Interface;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 
 import enhanced.mybaits.generator.dom.java.FormClass;
-import enhanced.mybaits.generator.dom.java.ResultClass;
+import enhanced.mybaits.generator.dom.java.ResClass;
 import enhanced.mybaits.generator.dom.java.ServiceImplClass;
 import enhanced.mybaits.generator.dom.java.ServiceInterface;
 import enhanced.mybaits.generator.dom.java.TestsClass;
@@ -61,7 +61,7 @@ public class MixedContext {
      * Result类
      * @author 徐明龙 XuMingLong 
      */
-    private ResultClass resultClass;
+    private ResClass resultClass;
     
     
 

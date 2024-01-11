@@ -7,7 +7,7 @@ import enhanced.mybaits.generator.EnhanceIntrospectedTableMyBatis3SimpleImpl;
 import enhanced.mybaits.generator.GeneratorExecutor;
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.extra.FormGenerator;
-import enhanced.mybaits.generator.codegen.extra.ResultGenerator;
+import enhanced.mybaits.generator.codegen.extra.ResGenerator;
 import enhanced.mybaits.generator.codegen.extra.SimpleJavaClientTestsGenerator;
 import enhanced.mybaits.generator.codegen.service.ServiceInterfaceGenerator;
 import enhanced.mybaits.generator.codegen.service.impl.ServiceImplGenerator;
@@ -132,7 +132,7 @@ public class EnhancePlugin extends PluginAdapter{
         //生成Form类
         generatorExecutor.addJavaGenerator(new FormGenerator(mixedContext));
         //生成Result类
-        generatorExecutor.addJavaGenerator(new ResultGenerator(mixedContext));
+        generatorExecutor.addJavaGenerator(new ResGenerator(mixedContext));
         //生成Service接口类
         generatorExecutor.addJavaGenerator(new ServiceInterfaceGenerator(mixedContext));
         //生成Service接口实现类

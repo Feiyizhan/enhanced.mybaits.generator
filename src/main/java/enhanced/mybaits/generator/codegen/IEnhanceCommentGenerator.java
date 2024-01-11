@@ -5,10 +5,9 @@ import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.api.dom.java.Interface;
 import org.mybatis.generator.api.dom.java.Method;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
 
 import enhanced.mybaits.generator.dom.java.FormClass;
-import enhanced.mybaits.generator.dom.java.ResultClass;
+import enhanced.mybaits.generator.dom.java.ResClass;
 import enhanced.mybaits.generator.dom.java.ServiceImplClass;
 import enhanced.mybaits.generator.dom.java.ServiceInterface;
 import enhanced.mybaits.generator.dom.java.TestsClass;
@@ -65,7 +64,7 @@ public interface IEnhanceCommentGenerator {
      * @param resultClass 返回结果类
      * @param introspectedTable 对应的表 
      */
-    void addResultClassComment(ResultClass resultClass, IntrospectedTable introspectedTable);
+    void addResultClassComment(ResClass resultClass, IntrospectedTable introspectedTable);
 
     /**
      * Service接口实现类注释

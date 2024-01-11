@@ -5,7 +5,7 @@ import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
 import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
-import enhanced.mybaits.generator.dom.java.ResultClass;
+import enhanced.mybaits.generator.dom.java.ResClass;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.*;
@@ -16,12 +16,12 @@ import java.util.List;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 /**
- * Result类生成器
+ * Res类生成器
  * @author 徐明龙 XuMingLong 
  */
-public class ResultGenerator extends AbstratEnhanceJavaGenerator {
+public class ResGenerator extends AbstratEnhanceJavaGenerator {
 
-    public ResultGenerator(MixedContext mixedContext) {
+    public ResGenerator(MixedContext mixedContext) {
         super(mixedContext);
     }
 
@@ -43,7 +43,7 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
     public List<CompilationUnit> getCompilationUnits() {
         List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
         //生成Service 接口类
-        ResultClass resultClass = getResultClass();
+        ResClass resultClass = getResultClass();
         answer.add(resultClass);
         return answer;
     }
@@ -53,15 +53,15 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong 
      * @return Result类
      */
-    protected ResultClass getResultClass() {
-        progressCallback.startTask(String.format("准备生成表%s的Result类", introspectedTable.getFullyQualifiedTable().toString()));
+    protected ResClass getResultClass() {
+        progressCallback.startTask(String.format("准备生成表%s的Res类", introspectedTable.getFullyQualifiedTable().toString()));
         CommentGenerator commentGenerator = context.getCommentGenerator();
         IEnhanceCommentGenerator enhanceCommentGenerator = null ;
         if(commentGenerator instanceof IEnhanceCommentGenerator) {
             enhanceCommentGenerator = (IEnhanceCommentGenerator) commentGenerator;
         }
         FullyQualifiedJavaType type = new FullyQualifiedJavaType(calculateResutlClassName());
-        ResultClass resultClass = new ResultClass(type);
+        ResClass resultClass = new ResClass(type);
         resultClass.setVisibility(JavaVisibility.PUBLIC);
         mixedContext.setResultClass(resultClass);
         //增加注释

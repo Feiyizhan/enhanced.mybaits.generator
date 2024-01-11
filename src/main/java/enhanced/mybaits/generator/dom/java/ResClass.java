@@ -5,15 +5,15 @@ import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 
 /**
- * Result类
+ * Res类
  * @author 徐明龙 XuMingLong 
  */
-public class ResultClass extends TopLevelClass {
-    public ResultClass(FullyQualifiedJavaType type) {
+public class ResClass extends TopLevelClass {
+    public ResClass(FullyQualifiedJavaType type) {
         super(type);
     }
 
-    public ResultClass(String typeName) {
+    public ResClass(String typeName) {
         super(typeName);
     }
 }

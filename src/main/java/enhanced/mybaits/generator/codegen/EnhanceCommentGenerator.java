@@ -412,7 +412,7 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
      * @param introspectedTable 对应的表 
      */
     @Override
-    public void addResultClassComment(ResultClass resultClass, IntrospectedTable introspectedTable) {
+    public void addResultClassComment(ResClass resultClass, IntrospectedTable introspectedTable) {
         if (suppressAllComments) {
             return;
         }
