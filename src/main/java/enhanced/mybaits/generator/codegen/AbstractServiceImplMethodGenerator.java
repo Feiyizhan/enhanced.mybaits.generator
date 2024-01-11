@@ -2,17 +2,15 @@
 package enhanced.mybaits.generator.codegen;
 
 
-import java.util.List;
-
+import enhanced.mybaits.generator.MixedContext;
+import enhanced.mybaits.generator.enums.AudiFieldEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.Method;
 
-
-import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.enums.AudiFieldEnum;
+import java.util.List;
 
 /**
  * Service 接口实现类方法生成器基类
@@ -20,7 +18,7 @@ import enhanced.mybaits.generator.enums.AudiFieldEnum;
  */
 public abstract class AbstractServiceImplMethodGenerator extends AbstractServiceInterfaceMethodGenerator {
 
-    protected static final String returnVarName = "result";
+    protected static final String returnVarName = "res";
     protected static final String errorVarName = "errors";
     protected static final String nowVarName = "now";
 

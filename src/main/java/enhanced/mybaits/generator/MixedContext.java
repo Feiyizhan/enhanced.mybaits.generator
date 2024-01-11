@@ -58,10 +58,10 @@ public class MixedContext {
     
     
     /**
-     * Result类
+     * Res类
      * @author 徐明龙 XuMingLong 
      */
-    private ResClass resultClass;
+    private ResClass resClass;
     
     
 

@@ -60,10 +60,10 @@ public class ResGenerator extends AbstratEnhanceJavaGenerator {
         if(commentGenerator instanceof IEnhanceCommentGenerator) {
             enhanceCommentGenerator = (IEnhanceCommentGenerator) commentGenerator;
         }
-        FullyQualifiedJavaType type = new FullyQualifiedJavaType(calculateResutlClassName());
+        FullyQualifiedJavaType type = new FullyQualifiedJavaType(calculateResClassName());
         ResClass resultClass = new ResClass(type);
         resultClass.setVisibility(JavaVisibility.PUBLIC);
-        mixedContext.setResultClass(resultClass);
+        mixedContext.setResClass(resultClass);
         //增加注释
         commentGenerator.addJavaFileComment(resultClass);
         if(enhanceCommentGenerator!=null) {
@@ -101,28 +101,28 @@ public class ResGenerator extends AbstratEnhanceJavaGenerator {
     }
 
     /**
-     * 计算Result类名称
+     * 计算Res类名称
      * @author 徐明龙 XuMingLong 
      * @return Result类名称
      */
-    protected String calculateResutlClassName() {
+    protected String calculateResClassName() {
         StringBuilder sb = new StringBuilder();
-        sb.append(calculateResultClassPackage());
+        sb.append(calculateResClassPackage());
         sb.append('.');
         sb.append(this.mixedContext.getBaseRecord().getType().getShortName());
-        sb.append("Result"); 
+        sb.append("Res");
         return sb.toString();
     }
     
     /**
-     * 计算Result类的Package
+     * 计算Res类的Package
      * @author 徐明龙 XuMingLong 
      * @return Result类的Package
      */
-    protected String calculateResultClassPackage() {
+    protected String calculateResClassPackage() {
         String value = this.context
             .getJavaClientGeneratorConfiguration()
-            .getProperty(EnhanceConstant.EXTRA_RESULT_TARGET_PACKAGE_KEY);
+            .getProperty(EnhanceConstant.EXTRA_RES_TARGET_PACKAGE_KEY);
         if(!stringHasValue(value)) {
             return null;
         }else {

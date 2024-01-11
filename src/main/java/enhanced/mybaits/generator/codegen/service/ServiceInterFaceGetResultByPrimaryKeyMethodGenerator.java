@@ -60,7 +60,7 @@ public class ServiceInterFaceGetResultByPrimaryKeyMethodGenerator extends Abstra
      */
     @Override
     protected void setMethodReturnType(Method method) {
-        FullyQualifiedJavaType returnType = this.mixedContext.getResultClass().getType();
+        FullyQualifiedJavaType returnType = this.mixedContext.getResClass().getType();
         method.setReturnType(returnType);
         this.mixedContext.getServiceInterface().addImportedType(returnType);
         
