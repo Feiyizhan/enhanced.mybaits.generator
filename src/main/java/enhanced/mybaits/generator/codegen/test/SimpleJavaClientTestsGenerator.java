@@ -1,5 +1,5 @@
 
-package enhanced.mybaits.generator.codegen.extra;
+package enhanced.mybaits.generator.codegen.test;
 
 import java.util.ArrayList;
 import java.util.List;

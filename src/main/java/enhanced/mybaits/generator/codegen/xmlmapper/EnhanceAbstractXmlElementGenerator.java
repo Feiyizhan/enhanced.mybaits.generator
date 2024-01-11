@@ -47,7 +47,7 @@ public abstract class EnhanceAbstractXmlElementGenerator extends AbstractXmlElem
      * @author 徐明龙 XuMingLong
      * @return  基础记录类型的首字母小写的短名称
      */
-    protected String getBaseRecordUncapitalizeShortName() {
+    protected String getBaseRecordUnCapitalizeShortName() {
         return getUncapitalizeShortName(this.introspectedTable.getBaseRecordType());
     }
 

@@ -1,5 +1,5 @@
 
-package enhanced.mybaits.generator.codegen.extra;
+package enhanced.mybaits.generator.codegen.model;
 
 import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.MixedContext;

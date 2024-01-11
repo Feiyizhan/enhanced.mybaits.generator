@@ -1,11 +1,11 @@
 
-package enhanced.mybaits.generator.codegen.extra;
+package enhanced.mybaits.generator.codegen.model;
 
 import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
 import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
-import enhanced.mybaits.generator.dom.java.DTOClass;
+import enhanced.mybaits.generator.dom.java.DOClass;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.*;
 
@@ -15,17 +15,17 @@ import java.util.List;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 /**
- * DTO 类生成器
+ * DO 类生成器
  * @author 徐明龙 XuMingLong 
  */
-public class DTOGenerator extends AbstratEnhanceJavaGenerator {
+public class DOGenerator extends AbstratEnhanceJavaGenerator {
 
-    public DTOGenerator(MixedContext mixedContext) {
+    public DOGenerator(MixedContext mixedContext) {
         super(mixedContext);
     }
 
     /**
-     * 设置DTO生成位置
+     * 设置DO生成位置
      * @author 徐明龙 XuMingLong 
      */
     @Override
@@ -34,78 +34,78 @@ public class DTOGenerator extends AbstratEnhanceJavaGenerator {
     }
 
     /**
-     * 生成DTO类
+     * 生成DO类
      * @author 徐明龙 XuMingLong 
-     * @return DTO类
+     * @return DO类
      */
     @Override
     public List<CompilationUnit> getCompilationUnits() {
         List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
-        //生成DTO
-        DTOClass dTOClass = getDTOClass();
-        answer.add(dTOClass);
+        //生成DO
+        DOClass dOClass = getDOClass();
+        answer.add(dOClass);
         return answer;
     }
 
     /**
-     * 生成DTO类
+     * 生成DO类
      * @author 徐明龙 XuMingLong 
-     * @return DTO类
+     * @return DO类
      */
-    protected DTOClass getDTOClass() {
-        progressCallback.startTask(String.format("准备生成表%s的DTO类", introspectedTable.getFullyQualifiedTable().toString()));
+    protected DOClass getDOClass() {
+        progressCallback.startTask(String.format("准备生成表%s的DO类", introspectedTable.getFullyQualifiedTable().toString()));
         CommentGenerator commentGenerator = context.getCommentGenerator();
         IEnhanceCommentGenerator enhanceCommentGenerator = null ;
         if(commentGenerator instanceof IEnhanceCommentGenerator) {
             enhanceCommentGenerator = (IEnhanceCommentGenerator) commentGenerator;
         }
-        FullyQualifiedJavaType type = new FullyQualifiedJavaType(calculateDTOClassName());
-        DTOClass dTOClass = new DTOClass(type);
-        dTOClass.setVisibility(JavaVisibility.PUBLIC);
-        mixedContext.setDTOClass(dTOClass);
+        FullyQualifiedJavaType type = new FullyQualifiedJavaType(calculateDOClassName());
+        DOClass dOClass = new DOClass(type);
+        dOClass.setVisibility(JavaVisibility.PUBLIC);
+        mixedContext.setDOClass(dOClass);
         //增加注释
-        commentGenerator.addJavaFileComment(dTOClass);
+        commentGenerator.addJavaFileComment(dOClass);
         if(enhanceCommentGenerator!=null) {
-            enhanceCommentGenerator.addDTOClassComment(dTOClass, introspectedTable);
+            enhanceCommentGenerator.addDOClassComment(dOClass, introspectedTable);
         }
         //增加字段
         TopLevelClass baseRecord = this.mixedContext.getBaseRecord();
         List<Field> fieldList = baseRecord.getFields();
         for(Field r: fieldList) {
             Field newField = new Field(r);
-            dTOClass.addField(newField);
-            dTOClass.addImportedType(newField.getType());
+            dOClass.addField(newField);
+            dOClass.addImportedType(newField.getType());
         }
         //增加Lombok注解
-        addLombokAnnotation(dTOClass);
-        return dTOClass;
+        addLombokAnnotation(dOClass);
+        return dOClass;
     }
     
 
 
     /**
-     * 计算DTO类名称
+     * 计算DO类名称
      * @author 徐明龙 XuMingLong 
-     * @return DTO类名称
+     * @return DO类名称
      */
-    protected String calculateDTOClassName() {
+    protected String calculateDOClassName() {
         StringBuilder sb = new StringBuilder();
-        sb.append(calculateDTOClassPackage());
+        sb.append(calculateDOClassPackage());
         sb.append('.');
         sb.append(this.mixedContext.getBaseRecord().getType().getShortName());
-        sb.append("DTO");
+        sb.append("DO");
         return sb.toString();
     }
     
     /**
-     * 计算DTO类的Package
+     * 计算DO类的Package
      * @author 徐明龙 XuMingLong 
-     * @return DTO类的Package
+     * @return DO类的Package
      */
-    protected String calculateDTOClassPackage() {
+    protected String calculateDOClassPackage() {
         String value = this.context
             .getJavaClientGeneratorConfiguration()
-            .getProperty(EnhanceConstant.EXTRA_DTO_TARGET_PACKAGE_KEY);
+            .getProperty(EnhanceConstant.EXTRA_DO_TARGET_PACKAGE_KEY);
         if(!stringHasValue(value)) {
             return null;
         }else {

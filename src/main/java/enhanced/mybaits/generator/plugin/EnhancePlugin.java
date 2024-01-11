@@ -5,7 +5,11 @@ import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.EnhanceIntrospectedTableMyBatis3SimpleImpl;
 import enhanced.mybaits.generator.GeneratorExecutor;
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.extra.*;
+import enhanced.mybaits.generator.codegen.test.*;
+import enhanced.mybaits.generator.codegen.model.DOGenerator;
+import enhanced.mybaits.generator.codegen.model.DTOGenerator;
+import enhanced.mybaits.generator.codegen.model.FormGenerator;
+import enhanced.mybaits.generator.codegen.model.ResGenerator;
 import enhanced.mybaits.generator.codegen.service.ServiceInterfaceGenerator;
 import enhanced.mybaits.generator.codegen.service.impl.ServiceImplGenerator;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
@@ -137,14 +141,18 @@ public class EnhancePlugin extends PluginAdapter{
         //生成DTO类型
         generatorExecutor.addJavaGenerator(new DTOGenerator(mixedContext));
 
-        //生成Service接口类
-        generatorExecutor.addJavaGenerator(new ServiceInterfaceGenerator(mixedContext));
-        //生成Service接口实现类
-        generatorExecutor.addJavaGenerator(new ServiceImplGenerator(mixedContext));
-        //生成Repository接口类
-        generatorExecutor.addJavaGenerator(new RepositoryInterfaceGenerator(mixedContext));
-        //生成Repository接口实现类
-        generatorExecutor.addJavaGenerator(new RepositoryImplGenerator(mixedContext));
+        if(canGenerateServiceClass()){
+            //生成Service接口类
+            generatorExecutor.addJavaGenerator(new ServiceInterfaceGenerator(mixedContext));
+            //生成Service接口实现类
+            generatorExecutor.addJavaGenerator(new ServiceImplGenerator(mixedContext));
+        }
+        if(canGenerateRepositoryClass()){
+            //生成Repository接口类
+            generatorExecutor.addJavaGenerator(new RepositoryInterfaceGenerator(mixedContext));
+            //生成Repository接口实现类
+            generatorExecutor.addJavaGenerator(new RepositoryImplGenerator(mixedContext));
+        }
         answer.addAll(generatorExecutor.generateAllFiles());
         return answer;
     }
@@ -160,6 +168,31 @@ public class EnhancePlugin extends PluginAdapter{
             this.context
                 .getJavaClientGeneratorConfiguration()
                 .getProperty(EnhanceConstant.EXTRA_TEST_TARGET_PROJECT_KEY));
+    }
+
+
+    /**
+     * 检查是否生成Service代码
+     * @author 徐明龙 XuMingLong 2022-04-17
+     * @return boolean
+     */
+    private boolean canGenerateServiceClass() {
+        return StringUtility.stringHasValue(
+            this.context
+                .getJavaClientGeneratorConfiguration()
+                .getProperty(EnhanceConstant.EXTRA_SERVICE_TARGET_PACKAGE_KEY));
+    }
+
+    /**
+     * 检查是否生成Repository代码
+     * @author 徐明龙 XuMingLong 2022-04-17
+     * @return boolean
+     */
+    private boolean canGenerateRepositoryClass() {
+        return StringUtility.stringHasValue(
+            this.context
+                .getJavaClientGeneratorConfiguration()
+                .getProperty(EnhanceConstant.EXTRA_REPOSITORY_TARGET_PACKAGE_KEY));
     }
 
 
