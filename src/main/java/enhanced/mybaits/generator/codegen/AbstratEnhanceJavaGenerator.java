@@ -131,5 +131,31 @@ public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
         String comment = StringUtils.isNotBlank(remarks)?remarks:tableComment;
         topLevelClass.addAnnotation(String.join("","@ApiModel(\"",comment,extraComment,"\")"));
     }
-    
+
+
+    /**
+     * 增加Spring Service注解
+     * @author 徐明龙 XuMingLong
+     * @param topLevelClass
+     */
+    protected void addSpringServiceAnnotation(TopLevelClass topLevelClass) {
+        //增加Service注解
+        topLevelClass.addAnnotation("@Service");
+        //增加对应的引入
+        topLevelClass.addImportedType("org.springframework.stereotype.Service");
+    }
+
+    /**
+     * 增加Spring Repository注解
+     * @author 徐明龙 XuMingLong
+     * @param topLevelClass
+     */
+    protected void addSpringRepositoryAnnotation(TopLevelClass topLevelClass) {
+        //增加Service注解
+        topLevelClass.addAnnotation("@Repository");
+        //增加对应的引入
+        topLevelClass.addImportedType("org.springframework.stereotype.Repository");
+    }
+
+
 }

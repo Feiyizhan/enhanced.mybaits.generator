@@ -1,17 +1,13 @@
 
 package enhanced.mybaits.generator.codegen;
 
+import enhanced.mybaits.generator.dom.java.*;
+import enhanced.mybaits.generator.enums.RepositoryMethodEnum;
+import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.api.dom.java.Interface;
 import org.mybatis.generator.api.dom.java.Method;
-
-import enhanced.mybaits.generator.dom.java.FormClass;
-import enhanced.mybaits.generator.dom.java.ResClass;
-import enhanced.mybaits.generator.dom.java.ServiceImplClass;
-import enhanced.mybaits.generator.dom.java.ServiceInterface;
-import enhanced.mybaits.generator.dom.java.TestsClass;
-import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 
 /**
  * 增加的注释生成器接口
@@ -51,12 +47,37 @@ public interface IEnhanceCommentGenerator {
     void addServiceInterfaceComment(ServiceInterface serviceInterface, IntrospectedTable introspectedTable);
 
     /**
+     * Repository接口类注释
+     * @author 徐明龙 XuMingLong
+     * @param repositoryInterface Repository接口类
+     * @param introspectedTable 对应的表
+     */
+    void addRepositoryInterfaceComment(RepositoryInterface repositoryInterface, IntrospectedTable introspectedTable);
+
+
+    /**
      * Form类注释
      * @author 徐明龙 XuMingLong 
      * @param formClass 表单类
      * @param introspectedTable 对应的表 
      */
     void addFormClassComment(FormClass formClass, IntrospectedTable introspectedTable);
+
+    /**
+     * DO类注释
+     * @author 徐明龙 XuMingLong
+     * @param dOClass 数据对象类
+     * @param introspectedTable 对应的表
+     */
+    void addDOClassComment(DOClass dOClass, IntrospectedTable introspectedTable);
+
+    /**
+     * DTO类注释
+     * @author 徐明龙 XuMingLong
+     * @param dTOClass DTO类
+     * @param introspectedTable 对应的表
+     */
+    void addDTOClassComment(DTOClass dTOClass, IntrospectedTable introspectedTable);
 
     /**
      * Result类注释
@@ -75,6 +96,14 @@ public interface IEnhanceCommentGenerator {
     void addServiceImplClassComment(ServiceImplClass serviceImplClass, IntrospectedTable introspectedTable);
 
     /**
+     * Repository接口实现类注释
+     * @author 徐明龙 XuMingLong
+     * @param repositoryImplClass Repository的实现类
+     * @param introspectedTable 对应的表
+     */
+    void addRepositoryImplClassComment(RepositoryImplClass repositoryImplClass, IntrospectedTable introspectedTable);
+
+    /**
      * 增加注入的Mapper字段的注释
      * @author 徐明龙 XuMingLong 
      * @param field 注入的字段类
@@ -91,9 +120,19 @@ public interface IEnhanceCommentGenerator {
     void addServiceMethodComment(Method method,ServiceMethodEnum methodEnum);
 
     /**
+     * Repository 方法的注释
+     * @author 徐明龙 XuMingLong
+     * @param method 方法类
+     * @param repositoryMethod 方法的枚举
+     */
+    void addRepositoryMethodComment(Method method, RepositoryMethodEnum repositoryMethod);
+
+    /**
      * Service 扩展的方法的注释
      * @author 徐明龙 XuMingLong 
      * @param method 基于的方法
      */
     void addServiceExtraMethodComment(Method method);
+
+
 }

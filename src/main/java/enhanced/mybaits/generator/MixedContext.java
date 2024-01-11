@@ -1,18 +1,13 @@
 
 package enhanced.mybaits.generator;
 
-import org.mybatis.generator.api.dom.java.Interface;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
-
-import enhanced.mybaits.generator.dom.java.FormClass;
-import enhanced.mybaits.generator.dom.java.ResClass;
-import enhanced.mybaits.generator.dom.java.ServiceImplClass;
-import enhanced.mybaits.generator.dom.java.ServiceInterface;
-import enhanced.mybaits.generator.dom.java.TestsClass;
+import enhanced.mybaits.generator.dom.java.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.mybatis.generator.api.dom.java.Interface;
+import org.mybatis.generator.api.dom.java.TopLevelClass;
 
 /**
  * 增强的上下文对象
@@ -43,12 +38,24 @@ public class MixedContext {
      * @author 徐明龙 XuMingLong 
      */
     private ServiceInterface serviceInterface;
-    
+
     /**
      * Service 实现类
      * @author 徐明龙 XuMingLong 
      */
     private ServiceImplClass serviceImplClass;
+
+    /**
+     * Repository 接口类
+     * @author 徐明龙 XuMingLong
+     */
+    private RepositoryInterface repositoryInterface;
+
+    /**
+     * Repository 接口实现类
+     * @author 徐明龙 XuMingLong
+     */
+    private RepositoryImplClass repositoryImplClass;
     
     /**
      * Form类
@@ -62,7 +69,19 @@ public class MixedContext {
      * @author 徐明龙 XuMingLong 
      */
     private ResClass resClass;
-    
+
+
+    /**
+     * DO类
+     * @author 徐明龙 XuMingLong
+     */
+    private DOClass dOClass;
+
+    /**
+     * DTO类
+     * @author 徐明龙 XuMingLong
+     */
+    private DTOClass dTOClass;
     
 
 }

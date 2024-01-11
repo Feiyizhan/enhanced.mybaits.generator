@@ -1,17 +1,17 @@
 
 package enhanced.mybaits.generator.codegen;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import enhanced.mybaits.generator.EnhanceConstant;
+import enhanced.mybaits.generator.MixedContext;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.IntrospectedColumn;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
+import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.codegen.AbstractGenerator;
 import org.mybatis.generator.internal.util.JavaBeansUtil;
 
-import enhanced.mybaits.generator.EnhanceConstant;
-import enhanced.mybaits.generator.MixedContext;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 方法生成器基类
@@ -87,6 +87,26 @@ public abstract class AbstractMethodGenerator extends AbstractGenerator {
             .getJavaClientGeneratorConfiguration()
             .getProperty(EnhanceConstant.USER_CLASS_NAME_KEY);
     }
+
+    /**
+     * 获取日期类名
+     * @author 徐明龙 XuMingLong
+     * @return 返回时间类名
+     */
+    protected String getNowClassName() {
+        return LocalDateTime.class.getName();
+    }
+
+    /**
+     * 获取ID类名
+     * @author 徐明龙 XuMingLong
+     * @return 返回时间类名
+     */
+    protected String getIdClassName() {
+        return this.context
+            .getJavaClientGeneratorConfiguration()
+            .getProperty(EnhanceConstant.ID_CLASS_NAME_KEY);
+    }
     
     /**
      * 获取标准的校验和处理结果对象
@@ -111,11 +131,23 @@ public abstract class AbstractMethodGenerator extends AbstractGenerator {
     }
 
     /**
-     * 返回日期类型
-     * @author 徐明龙 XuMingLong 
-     * @return 返回新的LocalDateTime类型对象
+     * 生成字段复制的代码字段信息代码
+     * @author 徐明龙 XuMingLong
+     * @param leftField 左边的字段
+     * @param rightField 右边的字段
+     * @param leftVarName 左边的变量名
+     * @param rightVarName 右边的变量名
      */
-    public FullyQualifiedJavaType getNewLocalDateTimeType() {
-        return new FullyQualifiedJavaType("java.time.LocalDateTime");
+    protected String generateCopyFieldCode(Field leftField,Field rightField,String leftVarName,String rightVarName) {
+        return StringUtils.join(
+            leftVarName,
+            ".set",
+            StringUtils.capitalize(leftField.getName()),
+            "(",
+            rightVarName,
+            ".get",
+            StringUtils.capitalize(rightField.getName()),
+            "());"
+        );
     }
 }

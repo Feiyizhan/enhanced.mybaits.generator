@@ -1,17 +1,16 @@
 
 package enhanced.mybaits.generator.plugin;
 
-
 import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.EnhanceIntrospectedTableMyBatis3SimpleImpl;
 import enhanced.mybaits.generator.GeneratorExecutor;
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.extra.FormGenerator;
-import enhanced.mybaits.generator.codegen.extra.ResGenerator;
-import enhanced.mybaits.generator.codegen.extra.SimpleJavaClientTestsGenerator;
+import enhanced.mybaits.generator.codegen.extra.*;
 import enhanced.mybaits.generator.codegen.service.ServiceInterfaceGenerator;
 import enhanced.mybaits.generator.codegen.service.impl.ServiceImplGenerator;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
+import enhanced.mybaits.generator.repository.RepositoryInterfaceGenerator;
+import enhanced.mybaits.generator.repository.impl.RepositoryImplGenerator;
 import org.apache.commons.collections4.CollectionUtils;
 import org.mybatis.generator.api.*;
 import org.mybatis.generator.api.dom.java.*;
@@ -133,10 +132,19 @@ public class EnhancePlugin extends PluginAdapter{
         generatorExecutor.addJavaGenerator(new FormGenerator(mixedContext));
         //生成Result类
         generatorExecutor.addJavaGenerator(new ResGenerator(mixedContext));
+        //生成DO类型
+        generatorExecutor.addJavaGenerator(new DOGenerator(mixedContext));
+        //生成DTO类型
+        generatorExecutor.addJavaGenerator(new DTOGenerator(mixedContext));
+
         //生成Service接口类
         generatorExecutor.addJavaGenerator(new ServiceInterfaceGenerator(mixedContext));
         //生成Service接口实现类
         generatorExecutor.addJavaGenerator(new ServiceImplGenerator(mixedContext));
+        //生成Repository接口类
+        generatorExecutor.addJavaGenerator(new RepositoryInterfaceGenerator(mixedContext));
+        //生成Repository接口实现类
+        generatorExecutor.addJavaGenerator(new RepositoryImplGenerator(mixedContext));
         answer.addAll(generatorExecutor.generateAllFiles());
         return answer;
     }

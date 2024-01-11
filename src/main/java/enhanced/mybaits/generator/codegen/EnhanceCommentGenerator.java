@@ -4,6 +4,7 @@ package enhanced.mybaits.generator.codegen;
 import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.dom.java.*;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
+import enhanced.mybaits.generator.enums.RepositoryMethodEnum;
 import enhanced.mybaits.generator.enums.ServiceImplExtraMethodEnum;
 import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 import org.apache.commons.collections4.CollectionUtils;
@@ -389,6 +390,19 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         addClassComment(serviceInterface,introspectedTable,"Service接口");
     }
 
+    /**
+     * Repository接口类注释
+     * @author 徐明龙 XuMingLong
+     * @param repositoryInterface Repository接口类
+     * @param introspectedTable   对应的表
+     */
+    @Override public void addRepositoryInterfaceComment(RepositoryInterface repositoryInterface,
+        IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
+        addClassComment(repositoryInterface,introspectedTable,"Repository接口");
+    }
 
     /**
      * Form类注释
@@ -404,6 +418,31 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         addClassComment(formClass,introspectedTable,"表单");
     }
 
+    /**
+     * DO类注释
+     * @author 徐明龙 XuMingLong
+     * @param dOClass           数据对象类
+     * @param introspectedTable 对应的表
+     */
+    @Override public void addDOClassComment(DOClass dOClass, IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
+        addClassComment(dOClass,introspectedTable,"数据对象");
+    }
+
+    /**
+     * DTO类注释
+     * @author 徐明龙 XuMingLong
+     * @param dTOClass          DTO类
+     * @param introspectedTable 对应的表
+     */
+    @Override public void addDTOClassComment(DTOClass dTOClass, IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
+        addClassComment(dTOClass,introspectedTable,"DTO对象");
+    }
 
     /**
      * Result类注释
@@ -433,8 +472,20 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         }
         addClassComment(serviceImplClass,introspectedTable,"Service接口的实现类");
     }
-    
 
+    /**
+     * Repository接口实现类注释
+     * @author 徐明龙 XuMingLong
+     * @param repositoryImplClass Repository的实现类
+     * @param introspectedTable   对应的表
+     */
+    @Override public void addRepositoryImplClassComment(RepositoryImplClass repositoryImplClass,
+        IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
+        addClassComment(repositoryImplClass,introspectedTable,"Repository接口的实现类");
+    }
 
     /**
      * 增加注入的Mapper字段的注释
@@ -467,9 +518,24 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         }
         addMethodComment(method,description);
     }
-    
 
-    
+    /**
+     * Repository 方法的注释
+     * @author 徐明龙 XuMingLong
+     * @param method           方法类
+     * @param repositoryMethod 方法的枚举
+     */
+    @Override public void addRepositoryMethodComment(Method method, RepositoryMethodEnum repositoryMethod) {
+        if (suppressAllComments) {
+            return;
+        }
+        String description = "";
+        if(repositoryMethod!=null) {
+            description = repositoryMethod.getDescription();
+        }
+        addMethodComment(method,description);
+    }
+
     /**
      * Service 扩展的方法的注释
      * @author 徐明龙 XuMingLong 

@@ -1,79 +1,79 @@
 
-package enhanced.mybaits.generator.codegen.service;
-
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.mybatis.generator.api.CommentGenerator;
-import org.mybatis.generator.api.dom.java.CompilationUnit;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.JavaVisibility;
+package enhanced.mybaits.generator.repository;
 
 import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstractMethodGenerator;
 import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
 import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
-import enhanced.mybaits.generator.dom.java.ServiceInterface;
+import enhanced.mybaits.generator.codegen.service.*;
+import enhanced.mybaits.generator.dom.java.RepositoryInterface;
+import org.mybatis.generator.api.CommentGenerator;
+import org.mybatis.generator.api.dom.java.CompilationUnit;
+import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
+import org.mybatis.generator.api.dom.java.JavaVisibility;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 /**
- * Service生成器
+ * Repository 接口生成器
  * @author 徐明龙 XuMingLong 
  */
-public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
+public class RepositoryInterfaceGenerator extends AbstratEnhanceJavaGenerator {
 
-    public ServiceInterfaceGenerator(MixedContext mixedContext) {
+    public RepositoryInterfaceGenerator(MixedContext mixedContext) {
         super(mixedContext);
     }
 
     /**
-     * 生成Service
+     * 生成Repository
      * @author 徐明龙 XuMingLong 
-     * @return Service接口类
+     * @return Repository接口类
      */
     @Override
     public List<CompilationUnit> getCompilationUnits() {
         List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
-        //生成Service 接口类
-        ServiceInterface serviceInterface = getServiceInterface();
-        answer.add(serviceInterface);
+        //生成Repository 接口类
+        RepositoryInterface repositoryInterface = getRepositoryInterface();
+        answer.add(repositoryInterface);
         return answer;
     }
     
     
 
     /**
-     * 生成Service 接口类
+     * 生成Repository 接口类
      * @author 徐明龙 XuMingLong 
-     * @return Service接口类
+     * @return Repository接口类
      */
-    protected ServiceInterface getServiceInterface() {
-        progressCallback.startTask(String.format("准备生成表%s的Service接口", introspectedTable.getFullyQualifiedTable().toString()));
+    protected RepositoryInterface getRepositoryInterface() {
+        progressCallback.startTask(String.format("准备生成表%s的Repository接口", introspectedTable.getFullyQualifiedTable().toString()));
         CommentGenerator commentGenerator = context.getCommentGenerator();
         IEnhanceCommentGenerator enhanceCommentGenerator = null ;
         if(commentGenerator instanceof IEnhanceCommentGenerator) {
             enhanceCommentGenerator = (IEnhanceCommentGenerator) commentGenerator;
         }
-        FullyQualifiedJavaType type = new FullyQualifiedJavaType(calculateServiceInterfaceName());
-        ServiceInterface serviceInterface = new ServiceInterface(type);
-        serviceInterface.setVisibility(JavaVisibility.PUBLIC);
-        mixedContext.setServiceInterface(serviceInterface);
+        FullyQualifiedJavaType type = new FullyQualifiedJavaType(calculateRepositoryInterfaceName());
+        RepositoryInterface repositoryInterface = new RepositoryInterface(type);
+        repositoryInterface.setVisibility(JavaVisibility.PUBLIC);
+        mixedContext.setRepositoryInterface(repositoryInterface);
         //增加注释
-        commentGenerator.addJavaFileComment(serviceInterface);
+        commentGenerator.addJavaFileComment(repositoryInterface);
         if(enhanceCommentGenerator!=null) {
-            enhanceCommentGenerator.addServiceInterfaceComment(serviceInterface, introspectedTable);
+            enhanceCommentGenerator.addRepositoryInterfaceComment(repositoryInterface, introspectedTable);
         }
         addInsertMethod();
         addGetByPrimaryKeyMethod();
-        addGetResultByPrimaryKeyMethod();
+        addGetAndLockByPrimaryKeyMethod();
         addUpdateByPrimaryKeyMethod();
-        addDeleteByPrimaryKeyMethod();
+//        addDeleteByPrimaryKeyMethod();
         
         //增加默认引入
-        addDefaultImport(serviceInterface);
-        return serviceInterface;
+        addDefaultImport(repositoryInterface);
+        return repositoryInterface;
     }
     /**
      * 增加删除指定记录方法
@@ -89,7 +89,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong 
      */
     protected void addUpdateByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ServiceInterFaceUpdateByPrimaryKeyMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new RepositoryInterfaceUpdateByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     /**
@@ -97,16 +97,16 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong 
      */
     protected void addGetByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ServiceInterFaceGetByPrimaryKeyMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new RepositoryInterfaceGetByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     
     /**
-     * 增加获取主键对应的记录的返回结果对象方法
+     * 增加获取主键对应的记录的数据对象方法
      * @author 徐明龙 XuMingLong 
      */
-    protected void addGetResultByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ServiceInterFaceGetResByPrimaryKeyMethodGenerator(mixedContext);
+    protected void addGetAndLockByPrimaryKeyMethod() {
+        AbstractMethodGenerator methodGenerator = new RepositoryInterfaceGetAndLockByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     
@@ -115,7 +115,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong 
      */
     protected void addInsertMethod() {
-        AbstractMethodGenerator methodGenerator = new ServiceInterFaceInsertMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new RepositoryInterfaceInsertMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     
@@ -136,41 +136,43 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加默认的引入
      * @author 徐明龙 XuMingLong 
-     * @param serviceInterface Service接口类
+     * @param repositoryInterface Repository接口类
      */
-    protected void addDefaultImport(ServiceInterface serviceInterface) {
-        serviceInterface.getMethods().forEach((r)->{
+    protected void addDefaultImport(RepositoryInterface repositoryInterface) {
+        repositoryInterface.getMethods().forEach((r)->{
             r.getParameters().forEach((p)->{
-                serviceInterface.addImportedType(p.getType());
+                repositoryInterface.addImportedType(p.getType());
             });
-            serviceInterface.addImportedType(r.getReturnType());
+            if(r.getReturnType()!=null){
+                repositoryInterface.addImportedType(r.getReturnType());
+            }
             r.getTypeParameters().forEach((tp)->{
                 tp.getExtendsTypes().forEach((et)->{
-                    serviceInterface.addImportedType(et);
+                    repositoryInterface.addImportedType(et);
                 });
             });
         });
-        
-        serviceInterface.getFields().forEach((r)->{
-            serviceInterface.addImportedType(r.getType());
+
+        repositoryInterface.getFields().forEach((r)->{
+            repositoryInterface.addImportedType(r.getType());
         });
-        
-        serviceInterface.addImportedTypes(serviceInterface.getSuperInterfaceTypes());
+
+        repositoryInterface.addImportedTypes(repositoryInterface.getSuperInterfaceTypes());
         
     }
     
     /**
-     * 计算Service接口名称
+     * 计算Repository接口名称
      * @author 徐明龙 XuMingLong 
-     * @return 计算Service接口名称
+     * @return 计算Repository接口名称
      */
-    protected String calculateServiceInterfaceName() {
+    protected String calculateRepositoryInterfaceName() {
         StringBuilder sb = new StringBuilder();
         sb.append(calculateServiceInterfacePackage());
         sb.append('.');
         sb.append('I');
         sb.append(this.mixedContext.getBaseRecord().getType().getShortName());
-        sb.append("Service"); 
+        sb.append("Repository");
         return sb.toString();
     }
     
@@ -182,7 +184,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     protected String calculateServiceInterfacePackage() {
         String value = this.context
             .getJavaClientGeneratorConfiguration()
-            .getProperty(EnhanceConstant.EXTRA_SERVICE_TARGET_PACKAGE_KEY);
+            .getProperty(EnhanceConstant.EXTRA_REPOSITORY_TARGET_PACKAGE_KEY);
         if(!stringHasValue(value)) {
             return null;
         }else {

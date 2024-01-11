@@ -2,23 +2,22 @@
 package enhanced.mybaits.generator.codegen.service.impl;
 
 
-import java.util.List;
-
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.Method;
-
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstractServiceImplMethodGenerator;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
+import org.mybatis.generator.api.dom.java.Method;
+
+import java.util.List;
 
 /**
  * Service 接口实现类获取主键对应的记录的返回结果对象方法生成器
  * @author 徐明龙 XuMingLong 
  */
-public class ServiceImplGetResultByPrimaryKeyMethodGenerator extends AbstractServiceImplMethodGenerator {
+public class ServiceImplGetResByPrimaryKeyMethodGenerator extends AbstractServiceImplMethodGenerator {
 
-    public ServiceImplGetResultByPrimaryKeyMethodGenerator(MixedContext mixedContext) {
+    public ServiceImplGetResByPrimaryKeyMethodGenerator(MixedContext mixedContext) {
         super(mixedContext);
     }
 

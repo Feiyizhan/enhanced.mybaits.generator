@@ -67,14 +67,40 @@ public interface EnhanceConstant {
      * @author 徐明龙 XuMingLong 
      */
     String EXTRA_SERVICE_IMPL_TARGET_PACKAGE_KEY="serviceImplTargetPackage";
-    
+
+
+    /**
+     * 额外的API Service接口生成的目的包名参数
+     * @author 徐明龙 XuMingLong
+     */
+    String EXTRA_API_SERVICE_TARGET_PACKAGE_KEY="apiServiceTargetPackage";
+
+    /**
+     * 额外的API Service实现类生成的目的包名参数
+     * @author 徐明龙 XuMingLong
+     */
+    String EXTRA_API_SERVICE_IMPL_TARGET_PACKAGE_KEY="apiServiceImplTargetPackage";
+
+
+    /**
+     * 额外的Repository接口生成的目的包名参数
+     * @author 徐明龙 XuMingLong
+     */
+    String EXTRA_REPOSITORY_TARGET_PACKAGE_KEY="repositoryTargetPackage";
+
+    /**
+     * 额外的Repository实现类生成的目的包名参数
+     * @author 徐明龙 XuMingLong
+     */
+    String EXTRA_REPOSITORY_IMPL_TARGET_PACKAGE_KEY="repositoryImplTargetPackage";
     
     /**
      * 额外的Form类生成的目的包名参数
      * @author 徐明龙 XuMingLong 
      */
     String EXTRA_FORM_TARGET_PACKAGE_KEY="formTargetPackage";
-    
+
+
     /**
      * 额外的Form类忽略的字段列表
      * @author 徐明龙 XuMingLong 
@@ -86,13 +112,31 @@ public interface EnhanceConstant {
      * @author 徐明龙 XuMingLong 
      */
     String EXTRA_RES_TARGET_PACKAGE_KEY ="resTargetPackage";
-    
+
+    /**
+     * 额外的DO类生成的目的包名参数
+     * @author 徐明龙 XuMingLong
+     */
+    String EXTRA_DO_TARGET_PACKAGE_KEY="dOTargetPackage";
+
+    /**
+     * 额外的DTO类生成的目的包名参数
+     * @author 徐明龙 XuMingLong
+     */
+    String EXTRA_DTO_TARGET_PACKAGE_KEY="dTOTargetPackage";
     
     /**
      * 用户类名参数
      * @author 徐明龙 XuMingLong 
      */
     String USER_CLASS_NAME_KEY="userClassName";
+
+
+    /**
+     * id的类名参数
+     * @author 徐明龙 XuMingLong
+     */
+    String ID_CLASS_NAME_KEY="idClassName";
     
     /**
      * 标准的校验和处理结果对象

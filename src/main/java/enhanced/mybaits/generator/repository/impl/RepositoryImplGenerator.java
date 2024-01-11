@@ -1,12 +1,13 @@
 
-package enhanced.mybaits.generator.codegen.service.impl;
+package enhanced.mybaits.generator.repository.impl;
 
 import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstractMethodGenerator;
 import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
 import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
-import enhanced.mybaits.generator.dom.java.ServiceImplClass;
+import enhanced.mybaits.generator.codegen.service.impl.*;
+import enhanced.mybaits.generator.dom.java.RepositoryImplClass;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
@@ -20,18 +21,18 @@ import java.util.List;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 /**
- * Service 接口实现类生成器
+ * Repository 接口实现类生成器
  * @author 徐明龙 XuMingLong 
  */
-public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
+public class RepositoryImplGenerator extends AbstratEnhanceJavaGenerator {
 
 
-    public ServiceImplGenerator(MixedContext mixedContext) {
+    public RepositoryImplGenerator(MixedContext mixedContext) {
         super(mixedContext);
     }
 
     /**
-     * 设置Service接口实现类生成位置
+     * 设置Repository接口实现类生成位置
      * @author 徐明龙 XuMingLong 
      */
     @Override
@@ -40,71 +41,71 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     }
 
     /**
-     * 生成Service接口实现类代码
+     * 生成Repository接口实现类代码
      * @author 徐明龙 XuMingLong 
-     * @return Service的实现类
+     * @return Repository的实现类
      */
     @Override
     public List<CompilationUnit> getCompilationUnits() {
-        List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
-        //生成Service 接口实现类
-        ServiceImplClass serviceImplClass = getServiceImplClass();
-        answer.add(serviceImplClass);
+        List<CompilationUnit> answer = new ArrayList<>();
+        //生成Repository 接口实现类
+        RepositoryImplClass repositoryImplClass = getRepositoryImplClass();
+        answer.add(repositoryImplClass);
         return answer;
     }
 
     /**
-     * 生成Service接口实现类代码
+     * 生成Repository接口实现类代码
      * @author 徐明龙 XuMingLong 
-     * @return Service的实现类
+     * @return Repository的实现类
      */
-    protected ServiceImplClass getServiceImplClass() {
-        progressCallback.startTask(String.format("准备生成表%s的Service接口实现类", introspectedTable.getFullyQualifiedTable().toString()));
+    protected RepositoryImplClass getRepositoryImplClass() {
+        progressCallback.startTask(String.format("准备生成表%s的Repository接口实现类", introspectedTable.getFullyQualifiedTable().toString()));
         CommentGenerator commentGenerator = context.getCommentGenerator();
         IEnhanceCommentGenerator enhanceCommentGenerator = null ;
         if(commentGenerator instanceof IEnhanceCommentGenerator) {
             enhanceCommentGenerator = (IEnhanceCommentGenerator) commentGenerator;
         }
-        FullyQualifiedJavaType type = new FullyQualifiedJavaType(calculateServiceImplClassName());
-        ServiceImplClass serviceImplClass = new ServiceImplClass(type);
-        serviceImplClass.setVisibility(JavaVisibility.PUBLIC);
-        mixedContext.setServiceImplClass(serviceImplClass);
+        FullyQualifiedJavaType type = new FullyQualifiedJavaType(calculateRepositoryImplClassName());
+        RepositoryImplClass repositoryImplClass = new RepositoryImplClass(type);
+        repositoryImplClass.setVisibility(JavaVisibility.PUBLIC);
+        mixedContext.setRepositoryImplClass(repositoryImplClass);
         
         //增加注释
-        commentGenerator.addJavaFileComment(serviceImplClass);
+        commentGenerator.addJavaFileComment(repositoryImplClass);
         if(enhanceCommentGenerator!=null) {
-            enhanceCommentGenerator.addServiceImplClassComment(serviceImplClass, introspectedTable);
+            enhanceCommentGenerator.addRepositoryImplClassComment(repositoryImplClass, introspectedTable);
         }
-        //增加Spring Service注解
-        addSpringServiceAnnotation(serviceImplClass);
+        //增加Spring Repository注解
+        addSpringRepositoryAnnotation(repositoryImplClass);
         //增加对应接口的引入
-        addInterfaceImport(serviceImplClass);
+        addInterfaceImport(repositoryImplClass);
 
         
-        FullyQualifiedJavaType serviceInterfaceType = mixedContext.getServiceInterface().getType();
-        serviceImplClass.addSuperInterface(serviceInterfaceType);
+        FullyQualifiedJavaType repositoryInterfaceType = mixedContext.getRepositoryInterface().getType();
+        repositoryImplClass.addSuperInterface(repositoryInterfaceType);
         FullyQualifiedJavaType mapperClassType = mixedContext.getMapper().getType();
         
         //增加Mapper的注入
         Field field = new Field(StringUtils.uncapitalize(mapperClassType.getShortName()),mapperClassType);
-        field.addAnnotation("@Autowired");
+        field.addAnnotation("@Resource");
         if(enhanceCommentGenerator!=null) {
             enhanceCommentGenerator.addAutowiredMapperFieldComment(field, introspectedTable);
         }
         field.setVisibility(JavaVisibility.PRIVATE);
-        serviceImplClass.addField(field);
-        serviceImplClass.addImportedType("org.springframework.beans.factory.annotation.Autowired");
+        repositoryImplClass.addField(field);
+        repositoryImplClass.addImportedType("javax.annotation.Resource");
        
         //生成方法
         addInsertMethod();
         addGetByPrimaryKeyMethod();
-        addGetResultByPrimaryKeyMethod();
+        addGetAndLockByPrimaryKeyMethod();
         addUpdateByPrimaryKeyMethod();
-        addDeleteByPrimaryKeyMethod();
+//        addDeleteByPrimaryKeyMethod();
         
         //增加默认的引入
-        addDefaultImport(serviceImplClass);
-        return serviceImplClass;
+        addDefaultImport(repositoryImplClass);
+        return repositoryImplClass;
     }
     
     /**
@@ -121,7 +122,7 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong 
      */
     protected void addUpdateByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ServiceImplUpdateByPrimaryKeyMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new RepositoryImplUpdateByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     
@@ -130,16 +131,16 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong 
      */
     protected void addGetByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ServiceImplGetByPrimaryKeyMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new RepositoryImplGetByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     
     /**
-     * 增加获取主键对应的记录的返回结果对象方法
+     * 增加获取并锁定主键对应的记录的返回结果对象方法
      * @author 徐明龙 XuMingLong 
      */
-    protected void addGetResultByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ServiceImplGetResByPrimaryKeyMethodGenerator(mixedContext);
+    protected void addGetAndLockByPrimaryKeyMethod() {
+        AbstractMethodGenerator methodGenerator = new RepositoryImplGetAndLockByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     
@@ -148,7 +149,7 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong 
      */
     protected void addInsertMethod() {
-        AbstractMethodGenerator methodGenerator = new ServiceImplInsertMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new RepositoryImplInsertMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     
@@ -170,32 +171,35 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加默认的引入
      * @author 徐明龙 XuMingLong 
-     * @param serviceImplClass Service的实现类
+     * @param repositoryImplClass Repository的实现类
      */
-    protected void addDefaultImport(ServiceImplClass serviceImplClass) {
-        serviceImplClass.getMethods().forEach((r)->{
+    protected void addDefaultImport(RepositoryImplClass repositoryImplClass) {
+        repositoryImplClass.getMethods().forEach((r)->{
             r.getParameters().forEach((p)->{
-                serviceImplClass.addImportedType(p.getType());
+                repositoryImplClass.addImportedType(p.getType());
             });
-            serviceImplClass.addImportedType(r.getReturnType());
+            if(r.getReturnType()!=null){
+                repositoryImplClass.addImportedType(r.getReturnType());
+            }
             r.getTypeParameters().forEach((tp)->{
                 tp.getExtendsTypes().forEach((et)->{
-                    serviceImplClass.addImportedType(et);
+                    repositoryImplClass.addImportedType(et);
                 });
             });
         });
-        
-        serviceImplClass.getFields().forEach((r)->{
-            serviceImplClass.addImportedType(r.getType());
+
+        repositoryImplClass.getFields().forEach((r)->{
+            repositoryImplClass.addImportedType(r.getType());
         });
-        
-        serviceImplClass.addImportedTypes(serviceImplClass.getSuperInterfaceTypes());
-        
-        serviceImplClass.addImportedType("org.apache.commons.collections4.CollectionUtils");
-        serviceImplClass.addStaticImport(getNowUtilsName());
-        serviceImplClass.addImportedType(getNewLocalDateTimeType());
-        serviceImplClass.addImportedType("org.springframework.beans.BeanUtils");
-        serviceImplClass.addImportedType(FullyQualifiedJavaType.getNewArrayListInstance());
+
+        repositoryImplClass.addImportedType(this.mixedContext.getBaseRecord().getType());
+        repositoryImplClass.addImportedTypes(repositoryImplClass.getSuperInterfaceTypes());
+
+        repositoryImplClass.addImportedType("org.apache.commons.collections4.CollectionUtils");
+        repositoryImplClass.addStaticImport(getNowUtilsName());
+        repositoryImplClass.addImportedType(getNewLocalDateTimeType());
+        repositoryImplClass.addImportedType("org.springframework.beans.BeanUtils");
+        repositoryImplClass.addImportedType(FullyQualifiedJavaType.getNewArrayListInstance());
         
     }
     
@@ -203,36 +207,38 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加对应的接口的引入
      * @author 徐明龙 XuMingLong 
-     * @param serviceImplClass Service的实现类
+     * @param repositoryImplClass Repository的实现类
      */
-    protected void addInterfaceImport(ServiceImplClass serviceImplClass) {
-        serviceImplClass.addImportedTypes(this.mixedContext.getServiceInterface().getImportedTypes());
+    protected void addInterfaceImport(RepositoryImplClass repositoryImplClass) {
+        repositoryImplClass.addImportedTypes(this.mixedContext.getRepositoryInterface().getImportedTypes());
     }
     
+    
 
+    
     /**
-     * 计算Service接口实现类名称
+     * 计算Repository接口实现类名称
      * @author 徐明龙 XuMingLong 
-     * @return 计算Service接口实现类名称
+     * @return 计算Repository接口实现类名称
      */
-    protected String calculateServiceImplClassName() {
+    protected String calculateRepositoryImplClassName() {
         StringBuilder sb = new StringBuilder();
-        sb.append(calculateServiceImplClassPackage());
+        sb.append(calculateRepositoryImplClassPackage());
         sb.append('.');
         sb.append(this.mixedContext.getBaseRecord().getType().getShortName());
-        sb.append("ServiceImpl"); 
+        sb.append("RepositoryImpl");
         return sb.toString();
     }
     
     /**
-     * 计算Service接口实现类的Package
+     * 计算Repository接口实现类的Package
      * @author 徐明龙 XuMingLong 
-     * @return 计算Service接口实现类的Package
+     * @return 计算Repository接口实现类的Package
      */
-    protected String calculateServiceImplClassPackage() {
+    protected String calculateRepositoryImplClassPackage() {
         String testClientTargetPackage = this.context
             .getJavaClientGeneratorConfiguration()
-            .getProperty(EnhanceConstant.EXTRA_SERVICE_IMPL_TARGET_PACKAGE_KEY);
+            .getProperty(EnhanceConstant.EXTRA_REPOSITORY_IMPL_TARGET_PACKAGE_KEY);
         if(!stringHasValue(testClientTargetPackage)) {
             return null;
         }else {
