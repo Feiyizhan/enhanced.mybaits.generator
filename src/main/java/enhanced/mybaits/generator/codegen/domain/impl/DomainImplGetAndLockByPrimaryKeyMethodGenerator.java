@@ -11,9 +11,9 @@ import java.util.List;
  * Domain 接口实现类获取并锁定主键对应的记录方法生成器
  * @author 徐明龙 XuMingLong 
  */
-public class DamainImplGetAndLockByPrimaryKeyMethodGenerator extends AbstractDomainImplMethodGenerator {
+public class DomainImplGetAndLockByPrimaryKeyMethodGenerator extends AbstractDomainImplMethodGenerator {
 
-    public DamainImplGetAndLockByPrimaryKeyMethodGenerator(MixedContext mixedContext) {
+    public DomainImplGetAndLockByPrimaryKeyMethodGenerator(MixedContext mixedContext) {
         super(mixedContext);
     }
 

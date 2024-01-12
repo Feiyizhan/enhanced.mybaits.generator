@@ -7,7 +7,6 @@ import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstractMethodGenerator;
 import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
 import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
-import enhanced.mybaits.generator.codegen.domain.impl.DamainImplGetAndLockByPrimaryKeyMethodGenerator;
 import enhanced.mybaits.generator.dom.java.ApplicationImplClass;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
@@ -99,7 +98,6 @@ public class ApplicationImplGenerator extends AbstratEnhanceJavaGenerator {
         //生成方法
         addInsertMethod();
         addGetByPrimaryKeyMethod();
-        addGetAndLockByPrimaryKeyMethod();
         addUpdateByPrimaryKeyMethod();
 
         //增加默认的引入
@@ -122,15 +120,6 @@ public class ApplicationImplGenerator extends AbstratEnhanceJavaGenerator {
      */
     protected void addGetByPrimaryKeyMethod() {
         AbstractMethodGenerator methodGenerator = new ApplicationImplGetByPrimaryKeyMethodGenerator(mixedContext);
-        initializeAndExecuteGenerator(methodGenerator);
-    }
-
-    /**
-     * 增加获取并锁定主键对应的记录的方法
-     * @author 徐明龙 XuMingLong
-     */
-    protected void addGetAndLockByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new DamainImplGetAndLockByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
 

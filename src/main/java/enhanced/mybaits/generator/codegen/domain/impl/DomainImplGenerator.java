@@ -139,7 +139,7 @@ public class DomainImplGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong
      */
     protected void addGetAndLockByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new DamainImplGetAndLockByPrimaryKeyMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new DomainImplGetAndLockByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
 
