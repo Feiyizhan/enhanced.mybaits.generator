@@ -6,6 +6,7 @@ import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
 import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
 import enhanced.mybaits.generator.dom.java.DTOClass;
+import enhanced.mybaits.generator.enums.AudiFieldEnum;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.*;
 
@@ -72,6 +73,11 @@ public class DTOGenerator extends AbstratEnhanceJavaGenerator {
         TopLevelClass baseRecord = this.mixedContext.getBaseRecord();
         List<Field> fieldList = baseRecord.getFields();
         for(Field r: fieldList) {
+            //审计代码最后生成
+            AudiFieldEnum audiField = AudiFieldEnum.resolve(r.getName());
+            if(audiField!=null) {
+                continue;
+            }
             Field newField = new Field(r);
             dTOClass.addField(newField);
             dTOClass.addImportedType(newField.getType());
