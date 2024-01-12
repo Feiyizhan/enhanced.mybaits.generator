@@ -2,6 +2,7 @@
 package enhanced.mybaits.generator.codegen;
 
 import enhanced.mybaits.generator.dom.java.*;
+import enhanced.mybaits.generator.enums.DomainMethodEnum;
 import enhanced.mybaits.generator.enums.RepositoryMethodEnum;
 import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 import org.mybatis.generator.api.IntrospectedTable;
@@ -54,6 +55,14 @@ public interface IEnhanceCommentGenerator {
      */
     void addRepositoryInterfaceComment(RepositoryInterface repositoryInterface, IntrospectedTable introspectedTable);
 
+    /**
+     * Domain 接口类注释
+     * @author 徐明龙 XuMingLong
+     * @param domainInterface (Domain接口类
+     * @param introspectedTable 对应的表
+     */
+    void addDomainInterfaceComment(DomainInterface domainInterface, IntrospectedTable introspectedTable);
+
 
     /**
      * Form类注释
@@ -104,6 +113,14 @@ public interface IEnhanceCommentGenerator {
     void addRepositoryImplClassComment(RepositoryImplClass repositoryImplClass, IntrospectedTable introspectedTable);
 
     /**
+     * Domain接口实现类注释
+     * @author 徐明龙 XuMingLong
+     * @param domainImplClass Domain的实现类
+     * @param introspectedTable 对应的表
+     */
+    void addDomainImplClassComment(DomainImplClass domainImplClass, IntrospectedTable introspectedTable);
+
+    /**
      * 增加注入的Mapper字段的注释
      * @author 徐明龙 XuMingLong 
      * @param field 注入的字段类
@@ -128,11 +145,24 @@ public interface IEnhanceCommentGenerator {
     void addRepositoryMethodComment(Method method, RepositoryMethodEnum repositoryMethod);
 
     /**
+     * Domain 方法的注释
+     * @author 徐明龙 XuMingLong
+     * @param method 方法类
+     * @param domainMethod 方法的枚举
+     */
+    void addDomainMethodComment(Method method, DomainMethodEnum domainMethod);
+
+    /**
      * Service 扩展的方法的注释
      * @author 徐明龙 XuMingLong 
      * @param method 基于的方法
      */
     void addServiceExtraMethodComment(Method method);
 
-
+    /**
+     * Domain 扩展的方法的注释
+     * @author 徐明龙 XuMingLong
+     * @param method 基于的方法
+     */
+    void addDomainExtraMethodComment(Method method);
 }

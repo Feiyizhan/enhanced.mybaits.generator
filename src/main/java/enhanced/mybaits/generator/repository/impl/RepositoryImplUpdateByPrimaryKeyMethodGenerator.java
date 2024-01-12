@@ -2,10 +2,12 @@
 package enhanced.mybaits.generator.repository.impl;
 
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractRepositoryImplMethodGenerator;
 import enhanced.mybaits.generator.enums.AudiFieldEnum;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.enums.RepositoryMethodEnum;
+import enhanced.mybaits.generator.repository.AbstractRepositoryImplMethodGenerator;
+import org.apache.commons.lang3.StringUtils;
+import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.Method;
@@ -33,12 +35,27 @@ public class RepositoryImplUpdateByPrimaryKeyMethodGenerator extends AbstractRep
      */
     @Override
     protected void addMethodBody(Method method) {
-
-        
         StringBuilder sb = new StringBuilder();
         sb.append("// 读取记录");
         method.addBodyLine(sb.toString());
-        //增加读取并锁定记录代码
+
+        //生成定义关键字变量的代码
+        List<IntrospectedColumn> keyColumnList = this.introspectedTable.getPrimaryKeyColumns();
+        keyColumnList.forEach((r)->{
+            FullyQualifiedJavaType parameterType = r.getFullyQualifiedJavaType();
+            sb.setLength(0);
+            sb.append(parameterType.getShortName());
+            sb.append(" ");
+            sb.append(StringUtils.uncapitalize(r.getJavaProperty()));
+            sb.append(" = ");
+            sb.append(dTOVarName);
+            sb.append(".get");
+            sb.append(StringUtils.capitalize(r.getJavaProperty()));
+            sb.append("();");
+            method.addBodyLine(sb.toString());
+        });
+
+        //增加读取记录代码
         FullyQualifiedJavaType baseRecordType = getBaseRecordType();
         sb.setLength(0);
         sb.append(baseRecordType.getShortNameWithoutTypeArguments());

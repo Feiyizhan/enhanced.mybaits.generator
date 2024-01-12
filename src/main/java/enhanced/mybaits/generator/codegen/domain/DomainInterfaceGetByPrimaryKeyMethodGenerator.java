@@ -1,26 +1,34 @@
 
-package enhanced.mybaits.generator.codegen.service;
+package enhanced.mybaits.generator.codegen.domain;
 
-import java.util.List;
-
+import enhanced.mybaits.generator.MixedContext;
+import enhanced.mybaits.generator.enums.DomainMethodEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
-import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractServiceInterfaceMethodGenerator;
-import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import java.util.List;
 
 /**
- * Service 接口获取主键对应的记录方法生成器
+ * Domain 接口获取主键对应的记录方法生成器
  * @author 徐明龙 XuMingLong 
  */
-public class ServiceInterFaceGetByPrimaryKeyMethodGenerator extends AbstractServiceInterfaceMethodGenerator {
+public class DomainInterfaceGetByPrimaryKeyMethodGenerator extends AbstractDomainInterfaceMethodGenerator {
 
-    public ServiceInterFaceGetByPrimaryKeyMethodGenerator(MixedContext mixedContext) {
+    public DomainInterfaceGetByPrimaryKeyMethodGenerator(MixedContext mixedContext) {
         super(mixedContext);
+    }
+
+    /**
+     * 增加额外的方法
+     * @author 徐明龙 XuMingLong
+     * @param method 待处理的方法
+     * @return 额外的方法
+     */
+    @Override protected List<Method> addExtraMethod(Method method) {
+        return null;
     }
 
     /**
@@ -31,7 +39,7 @@ public class ServiceInterFaceGetByPrimaryKeyMethodGenerator extends AbstractServ
     @Override
     protected String calculateMethodName() {
         String subName = getJoinedKeyColumnListJavaPropertyName("And",true);
-        return ServiceMethodEnum.GET_BY_PRIMARY_KEY.getReplacePrimaryKeyValue(subName);
+        return DomainMethodEnum.GET_BY_PRIMARY_KEY.getReplacePrimaryKeyValue(subName);
     }
 
     /**
@@ -47,7 +55,7 @@ public class ServiceInterFaceGetByPrimaryKeyMethodGenerator extends AbstractServ
             Parameter parameter = new Parameter(parameterType,
                 StringUtils.uncapitalize(r.getJavaProperty()));
             method.addParameter(parameter);
-            this.mixedContext.getServiceInterface().addImportedType(parameterType);
+            this.mixedContext.getDomainInterface().addImportedType(parameterType);
             
         });
         
@@ -60,20 +68,20 @@ public class ServiceInterFaceGetByPrimaryKeyMethodGenerator extends AbstractServ
      */
     @Override
     protected void setMethodReturnType(Method method) {
-        FullyQualifiedJavaType returnType = this.mixedContext.getBaseRecord().getType();
+        FullyQualifiedJavaType returnType = this.mixedContext.getDOClass().getType();
         method.setReturnType(returnType);
-        this.mixedContext.getServiceInterface().addImportedType(returnType);
+        this.mixedContext.getDomainInterface().addImportedType(returnType);
         
     }
 
     /**
-     * 获取Service方法对应的枚举
+     * 获取Domain方法对应的枚举
      * @author 徐明龙 XuMingLong 
      * @return 返回方法对应的枚举
      */
     @Override
-    protected ServiceMethodEnum getServiceMethod() {
-        return ServiceMethodEnum.GET_BY_PRIMARY_KEY;
+    protected DomainMethodEnum getDomainMethod() {
+        return DomainMethodEnum.GET_BY_PRIMARY_KEY;
     }
 
 

@@ -80,7 +80,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong 
      */
     protected void addDeleteByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ServiceInterFaceDeleteByPrimaryKeyMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new ServiceInterfaceDeleteByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     
@@ -89,7 +89,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong 
      */
     protected void addUpdateByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ServiceInterFaceUpdateByPrimaryKeyMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new ServiceInterfaceUpdateByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     /**
@@ -97,7 +97,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong 
      */
     protected void addGetByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ServiceInterFaceGetByPrimaryKeyMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new ServiceInterfaceGetByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     
@@ -106,7 +106,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong 
      */
     protected void addGetResultByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ServiceInterFaceGetResByPrimaryKeyMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new ServiceInterfaceGetResByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     
@@ -115,7 +115,7 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong 
      */
     protected void addInsertMethod() {
-        AbstractMethodGenerator methodGenerator = new ServiceInterFaceInsertMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new ServiceInterfaceInsertMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     

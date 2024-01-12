@@ -3,10 +3,7 @@ package enhanced.mybaits.generator.codegen;
 
 import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.dom.java.*;
-import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
-import enhanced.mybaits.generator.enums.RepositoryMethodEnum;
-import enhanced.mybaits.generator.enums.ServiceImplExtraMethodEnum;
-import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import enhanced.mybaits.generator.enums.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.IntrospectedColumn;
@@ -405,6 +402,20 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
     }
 
     /**
+     * Domain 接口类注释
+     * @author 徐明龙 XuMingLong
+     * @param domainInterface   (Domain接口类
+     * @param introspectedTable 对应的表
+     */
+    @Override public void addDomainInterfaceComment(DomainInterface domainInterface,
+        IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
+        addClassComment(domainInterface,introspectedTable,"Domain接口");
+    }
+
+    /**
      * Form类注释
      * @author 徐明龙 XuMingLong 
      * @param formClass 表单类
@@ -488,6 +499,20 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
     }
 
     /**
+     * Domain接口实现类注释
+     * @author 徐明龙 XuMingLong
+     * @param domainImplClass   Domain的实现类
+     * @param introspectedTable 对应的表
+     */
+    @Override public void addDomainImplClassComment(DomainImplClass domainImplClass,
+        IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
+        addClassComment(domainImplClass,introspectedTable,"Domain接口的实现类");
+    }
+
+    /**
      * 增加注入的Mapper字段的注释
      * @author 徐明龙 XuMingLong 
      * @param field 注入的字段类
@@ -537,6 +562,23 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
     }
 
     /**
+     * Domain 方法的注释
+     * @author 徐明龙 XuMingLong
+     * @param method       方法类
+     * @param domainMethod 方法的枚举
+     */
+    @Override public void addDomainMethodComment(Method method, DomainMethodEnum domainMethod) {
+        if (suppressAllComments) {
+            return;
+        }
+        String description = "";
+        if(domainMethod!=null) {
+            description = domainMethod.getDescription();
+        }
+        addMethodComment(method,description);
+    }
+
+    /**
      * Service 扩展的方法的注释
      * @author 徐明龙 XuMingLong 
      * @param method 方法类
@@ -557,6 +599,23 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
     }
 
     /**
+     * Domain 扩展的方法的注释
+     * @author 徐明龙 XuMingLong
+     * @param method 基于的方法
+     */
+    @Override public void addDomainExtraMethodComment(Method method) {
+        if (suppressAllComments) {
+            return;
+        }
+        DomainImplExtraMethodEnum methodEnum = DomainImplExtraMethodEnum.resolve(method.getName());
+        String description = "";
+        if(methodEnum!=null) {
+            description = methodEnum.getDescription();
+        }
+        addMethodComment(method,description);
+    }
+
+    /**
      * 增加方法的注释
      * @author 徐明龙 XuMingLong 
      * @param method
@@ -571,6 +630,10 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         method.getParameters().forEach((r)->{
             method.addJavaDocLine(String.join("", " * ","@param ",r.getName()));
         });
+        //增加返回参数
+        if(method.getReturnType()!=null){
+            method.addJavaDocLine(String.join("", " * ","@return ",method.getReturnType().getFullyQualifiedName()));
+        }
         method.addJavaDocLine(" */"); 
     }
     

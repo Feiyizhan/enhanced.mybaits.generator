@@ -56,6 +56,20 @@ public class MixedContext {
      * @author 徐明龙 XuMingLong
      */
     private RepositoryImplClass repositoryImplClass;
+
+
+    /**
+     * Domain 接口类
+     * @author 徐明龙 XuMingLong
+     */
+    private DomainInterface domainInterface;
+
+    /**
+     * Domain 接口实现类
+     * @author 徐明龙 XuMingLong
+     */
+    private DomainImplClass domainImplClass;
+
     
     /**
      * Form类

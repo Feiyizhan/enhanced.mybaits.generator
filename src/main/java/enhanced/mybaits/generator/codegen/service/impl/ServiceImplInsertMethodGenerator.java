@@ -2,9 +2,12 @@
 package enhanced.mybaits.generator.codegen.service.impl;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
+import enhanced.mybaits.generator.MixedContext;
+import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
+import enhanced.mybaits.generator.codegen.service.AbstractServiceImplMethodGenerator;
+import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
+import enhanced.mybaits.generator.enums.ServiceImplExtraMethodEnum;
+import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
@@ -12,12 +15,8 @@ import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
-import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractServiceImplMethodGenerator;
-import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
-import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
-import enhanced.mybaits.generator.enums.ServiceImplExtraMethodEnum;
-import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Service 接口实现类新增方法生成器
@@ -132,19 +131,19 @@ public class ServiceImplInsertMethodGenerator extends AbstractServiceImplMethodG
     @Override
     protected List<Method> addExtraMethod(Method method) {
         List<Method> methodList = new ArrayList<>();
-        Method verifyFromForInsertMethod = new Method();
-        verifyFromForInsertMethod.setName(ServiceImplExtraMethodEnum.VERIFY_FORM_FOR_INSERT.getValue());
+        Method verifyFormForInsertMethod = new Method();
+        verifyFormForInsertMethod.setName(ServiceImplExtraMethodEnum.VERIFY_FORM_FOR_INSERT.getValue());
         
         FullyQualifiedJavaType formType = this.mixedContext.getFormClass().getType();
         Parameter formParameter = new Parameter(formType,
             formParameterName);
-        verifyFromForInsertMethod.addParameter(formParameter);
+        verifyFormForInsertMethod.addParameter(formParameter);
         
-        verifyFromForInsertMethod.setVisibility(JavaVisibility.PRIVATE);
+        verifyFormForInsertMethod.setVisibility(JavaVisibility.PRIVATE);
         
         FullyQualifiedJavaType returnType = getListFormValidErrorType();
         //增加返回参数
-        verifyFromForInsertMethod.setReturnType(returnType);
+        verifyFormForInsertMethod.setReturnType(returnType);
         StringBuilder sb = new StringBuilder();
         sb.append(returnType.getShortName());
         sb.append(" ");
@@ -153,13 +152,13 @@ public class ServiceImplInsertMethodGenerator extends AbstractServiceImplMethodG
         sb.append(" = new ");
         sb.append(arrayListType.getShortNameWithoutTypeArguments());
         sb.append("<>();");
-        verifyFromForInsertMethod.addBodyLine(sb.toString());
-        verifyFromForInsertMethod.addBodyLine("// TODO 补充表单校验内容");
+        verifyFormForInsertMethod.addBodyLine(sb.toString());
+        verifyFormForInsertMethod.addBodyLine("// TODO 补充表单校验内容");
         sb.setLength(0);
         sb.append("return ");
         sb.append(errorVarName);
         sb.append(";");
-        verifyFromForInsertMethod.addBodyLine(sb.toString());
+        verifyFormForInsertMethod.addBodyLine(sb.toString());
         
         
         //生成注释
@@ -167,10 +166,10 @@ public class ServiceImplInsertMethodGenerator extends AbstractServiceImplMethodG
         CommentGenerator commentGenerator = context.getCommentGenerator();
         if(commentGenerator instanceof IEnhanceCommentGenerator) {
             enhanceCommentGenerator = (IEnhanceCommentGenerator) commentGenerator;
-            enhanceCommentGenerator.addServiceExtraMethodComment(verifyFromForInsertMethod);
+            enhanceCommentGenerator.addServiceExtraMethodComment(verifyFormForInsertMethod);
         }
         
-        methodList.add(verifyFromForInsertMethod);
+        methodList.add(verifyFormForInsertMethod);
         return methodList;
     }
 

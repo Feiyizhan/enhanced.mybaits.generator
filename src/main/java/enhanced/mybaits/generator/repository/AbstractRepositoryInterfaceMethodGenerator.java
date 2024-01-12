@@ -1,7 +1,9 @@
 
-package enhanced.mybaits.generator.codegen;
+package enhanced.mybaits.generator.repository;
 
 import enhanced.mybaits.generator.MixedContext;
+import enhanced.mybaits.generator.codegen.AbstractMethodGenerator;
+import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
 import enhanced.mybaits.generator.enums.RepositoryMethodEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.CommentGenerator;

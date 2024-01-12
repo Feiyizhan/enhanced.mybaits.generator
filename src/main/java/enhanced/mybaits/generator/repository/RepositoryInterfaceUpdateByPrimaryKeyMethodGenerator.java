@@ -2,15 +2,10 @@
 package enhanced.mybaits.generator.repository;
 
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractRepositoryInterfaceMethodGenerator;
 import enhanced.mybaits.generator.enums.RepositoryMethodEnum;
-import org.apache.commons.lang3.StringUtils;
-import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
-
-import java.util.List;
 
 /**
  * Repository 接口更新指定记录方法生成器
@@ -40,15 +35,6 @@ public class RepositoryInterfaceUpdateByPrimaryKeyMethodGenerator extends Abstra
      */
     @Override
     protected void addMethodParameter(Method method) {
-        List<IntrospectedColumn> keyColumnList = this.introspectedTable.getPrimaryKeyColumns();
-        keyColumnList.forEach((r)->{
-            FullyQualifiedJavaType parameterType = r.getFullyQualifiedJavaType();
-            Parameter parameter = new Parameter(parameterType,
-                StringUtils.uncapitalize(r.getJavaProperty()));
-            method.addParameter(parameter);
-            this.mixedContext.getRepositoryInterface().addImportedType(parameterType);
-        });
-
         FullyQualifiedJavaType dTOType = this.mixedContext.getDTOClass().getType();
         Parameter dTOParameter = new Parameter(dTOType, dTOVarName);
         method.addParameter(dTOParameter);

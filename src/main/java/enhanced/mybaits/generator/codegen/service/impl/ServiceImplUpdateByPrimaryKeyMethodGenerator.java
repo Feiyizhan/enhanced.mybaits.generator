@@ -2,21 +2,20 @@
 package enhanced.mybaits.generator.codegen.service.impl;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
+import enhanced.mybaits.generator.MixedContext;
+import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
+import enhanced.mybaits.generator.codegen.service.AbstractServiceImplMethodGenerator;
+import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
+import enhanced.mybaits.generator.enums.ServiceImplExtraMethodEnum;
+import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
-import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractServiceImplMethodGenerator;
-import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
-import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
-import enhanced.mybaits.generator.enums.ServiceImplExtraMethodEnum;
-import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Service 接口实现类更新指定记录方法生成器
@@ -126,24 +125,24 @@ public class ServiceImplUpdateByPrimaryKeyMethodGenerator extends AbstractServic
     @Override
     protected List<Method> addExtraMethod(Method method) {
         List<Method> methodList = new ArrayList<>();
-        Method verifyFromForUpdateMethod = new Method();
-        verifyFromForUpdateMethod.setName(ServiceImplExtraMethodEnum.VERIFY_FORM_FOR_UPDATE.getValue());
+        Method verifyFormForUpdateMethod = new Method();
+        verifyFormForUpdateMethod.setName(ServiceImplExtraMethodEnum.VERIFY_FORM_FOR_UPDATE.getValue());
         
         FullyQualifiedJavaType baseRecordType = getBaseRecordType();
         Parameter baseRecordParameter = new Parameter(baseRecordType,
             baseRecordVarName);
-        verifyFromForUpdateMethod.addParameter(baseRecordParameter);
+        verifyFormForUpdateMethod.addParameter(baseRecordParameter);
         
         FullyQualifiedJavaType formType = this.mixedContext.getFormClass().getType();
         Parameter formParameter = new Parameter(formType,
             formParameterName);
-        verifyFromForUpdateMethod.addParameter(formParameter);
+        verifyFormForUpdateMethod.addParameter(formParameter);
         
-        verifyFromForUpdateMethod.setVisibility(JavaVisibility.PRIVATE);
+        verifyFormForUpdateMethod.setVisibility(JavaVisibility.PRIVATE);
         
         FullyQualifiedJavaType returnType = getListFormValidErrorType();
         //增加返回参数
-        verifyFromForUpdateMethod.setReturnType(returnType);
+        verifyFormForUpdateMethod.setReturnType(returnType);
         StringBuilder sb = new StringBuilder();
         sb.append(returnType.getShortName());
         sb.append(" ");
@@ -152,13 +151,13 @@ public class ServiceImplUpdateByPrimaryKeyMethodGenerator extends AbstractServic
         sb.append(" = new ");
         sb.append(arrayListType.getShortNameWithoutTypeArguments());
         sb.append("<>();");
-        verifyFromForUpdateMethod.addBodyLine(sb.toString());
-        verifyFromForUpdateMethod.addBodyLine("// TODO 补充表单校验内容");
+        verifyFormForUpdateMethod.addBodyLine(sb.toString());
+        verifyFormForUpdateMethod.addBodyLine("// TODO 补充表单校验内容");
         sb.setLength(0);
         sb.append("return ");
         sb.append(errorVarName);
         sb.append(";");
-        verifyFromForUpdateMethod.addBodyLine(sb.toString());
+        verifyFormForUpdateMethod.addBodyLine(sb.toString());
         
         
         //生成注释
@@ -166,10 +165,10 @@ public class ServiceImplUpdateByPrimaryKeyMethodGenerator extends AbstractServic
         CommentGenerator commentGenerator = context.getCommentGenerator();
         if(commentGenerator instanceof IEnhanceCommentGenerator) {
             enhanceCommentGenerator = (IEnhanceCommentGenerator) commentGenerator;
-            enhanceCommentGenerator.addServiceExtraMethodComment(verifyFromForUpdateMethod);
+            enhanceCommentGenerator.addServiceExtraMethodComment(verifyFormForUpdateMethod);
         }
         
-        methodList.add(verifyFromForUpdateMethod);
+        methodList.add(verifyFormForUpdateMethod);
         return methodList;
     }
 

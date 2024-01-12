@@ -1,25 +1,23 @@
 
 package enhanced.mybaits.generator.codegen.service;
 
-import java.util.List;
-
+import enhanced.mybaits.generator.MixedContext;
+import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
-import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractServiceInterfaceMethodGenerator;
-import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import java.util.List;
 
 /**
- * Service 接口删除指定记录记录方法生成器
+ * Service 接口获取主键对应的记录方法生成器
  * @author 徐明龙 XuMingLong 
  */
-public class ServiceInterFaceDeleteByPrimaryKeyMethodGenerator extends AbstractServiceInterfaceMethodGenerator {
+public class ServiceInterfaceGetByPrimaryKeyMethodGenerator extends AbstractServiceInterfaceMethodGenerator {
 
-    public ServiceInterFaceDeleteByPrimaryKeyMethodGenerator(MixedContext mixedContext) {
+    public ServiceInterfaceGetByPrimaryKeyMethodGenerator(MixedContext mixedContext) {
         super(mixedContext);
     }
 
@@ -31,7 +29,7 @@ public class ServiceInterFaceDeleteByPrimaryKeyMethodGenerator extends AbstractS
     @Override
     protected String calculateMethodName() {
         String subName = getJoinedKeyColumnListJavaPropertyName("And",true);
-        return ServiceMethodEnum.DELETE_BY_PRIMARY_KEY.getReplacePrimaryKeyValue(subName);
+        return ServiceMethodEnum.GET_BY_PRIMARY_KEY.getReplacePrimaryKeyValue(subName);
     }
 
     /**
@@ -48,13 +46,8 @@ public class ServiceInterFaceDeleteByPrimaryKeyMethodGenerator extends AbstractS
                 StringUtils.uncapitalize(r.getJavaProperty()));
             method.addParameter(parameter);
             this.mixedContext.getServiceInterface().addImportedType(parameterType);
+            
         });
-        
-        FullyQualifiedJavaType userType = new FullyQualifiedJavaType(getUserClassName());
-        Parameter userParameter = new Parameter(userType,
-            userParameterName);
-        method.addParameter(userParameter);
-        this.mixedContext.getServiceInterface().addImportedType(userType);
         
     }
 
@@ -65,11 +58,9 @@ public class ServiceInterFaceDeleteByPrimaryKeyMethodGenerator extends AbstractS
      */
     @Override
     protected void setMethodReturnType(Method method) {
-        FullyQualifiedJavaType returnType = getListFormValidErrorType();
+        FullyQualifiedJavaType returnType = this.mixedContext.getBaseRecord().getType();
         method.setReturnType(returnType);
-        returnType.getImportList().forEach((r)->{
-            this.mixedContext.getServiceInterface().addImportedType(new FullyQualifiedJavaType(r));
-        });
+        this.mixedContext.getServiceInterface().addImportedType(returnType);
         
     }
 
@@ -80,7 +71,7 @@ public class ServiceInterFaceDeleteByPrimaryKeyMethodGenerator extends AbstractS
      */
     @Override
     protected ServiceMethodEnum getServiceMethod() {
-        return ServiceMethodEnum.DELETE_BY_PRIMARY_KEY;
+        return ServiceMethodEnum.GET_BY_PRIMARY_KEY;
     }
 
 

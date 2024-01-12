@@ -6,6 +6,7 @@ import enhanced.mybaits.generator.MixedContext;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.Field;
+import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.codegen.AbstractGenerator;
 import org.mybatis.generator.internal.util.JavaBeansUtil;
 
@@ -149,5 +150,50 @@ public abstract class AbstractMethodGenerator extends AbstractGenerator {
             StringUtils.capitalize(rightField.getName()),
             "());"
         );
+    }
+
+
+    /**
+     * 获取FormValidError List对象的类型
+     * @author 徐明龙 XuMingLong
+     * @return 返回List的表单校验结果类型对象
+     */
+    protected FullyQualifiedJavaType getListFormValidErrorType() {
+        FullyQualifiedJavaType type = FullyQualifiedJavaType.getNewListInstance();
+        FullyQualifiedJavaType formValidErrorType = new FullyQualifiedJavaType(getFormValidErrorClassName());
+        type.addTypeArgument(formValidErrorType);
+        return type;
+    }
+
+
+    /**
+     * 获取New 类型代码
+     * @author 徐明龙 XuMingLong
+     * @param type 类型
+     * @param varName 变量名称
+     * @return New 类型的代码
+     */
+    protected String getNewTypeCode(FullyQualifiedJavaType type,String varName) {
+        //判断是否有泛型
+        boolean isGeneric= false;
+        if(type.getTypeArguments()!=null && !type.getTypeArguments().isEmpty()) {
+            isGeneric = true;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(type.getShortName());
+        sb.append(" ");
+        if(StringUtils.isBlank(varName)) {
+            sb.append(StringUtils.uncapitalize(type.getShortNameWithoutTypeArguments()));
+        }else {
+            sb.append(varName);
+        }
+        sb.append(" = new ");
+        sb.append(type.getShortNameWithoutTypeArguments());
+        if(isGeneric) {
+            sb.append("<>");
+        }
+        sb.append("();");
+        return sb.toString();
     }
 }

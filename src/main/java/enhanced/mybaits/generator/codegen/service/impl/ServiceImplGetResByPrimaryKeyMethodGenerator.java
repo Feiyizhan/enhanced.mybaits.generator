@@ -3,7 +3,7 @@ package enhanced.mybaits.generator.codegen.service.impl;
 
 
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractServiceImplMethodGenerator;
+import enhanced.mybaits.generator.codegen.service.AbstractServiceImplMethodGenerator;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;

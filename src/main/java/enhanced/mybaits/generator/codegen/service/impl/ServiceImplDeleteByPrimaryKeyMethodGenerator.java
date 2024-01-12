@@ -12,7 +12,7 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractServiceImplMethodGenerator;
+import enhanced.mybaits.generator.codegen.service.AbstractServiceImplMethodGenerator;
 import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.enums.ServiceImplExtraMethodEnum;

@@ -1,12 +1,12 @@
 
-package enhanced.mybaits.generator.codegen;
-
-import org.mybatis.generator.api.CommentGenerator;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.Method;
+package enhanced.mybaits.generator.codegen.service;
 
 import enhanced.mybaits.generator.MixedContext;
+import enhanced.mybaits.generator.codegen.AbstractMethodGenerator;
+import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
 import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import org.mybatis.generator.api.CommentGenerator;
+import org.mybatis.generator.api.dom.java.Method;
 
 /**
  * Service 接口方法生成器基类
@@ -52,19 +52,6 @@ public abstract class AbstractServiceInterfaceMethodGenerator extends AbstractMe
     }
     
 
-    
-    /**
-     * 获取FormValidError List对象的类型
-     * @author 徐明龙 XuMingLong 
-     * @return 返回List的表单校验结果类型对象
-     */
-    protected FullyQualifiedJavaType getListFormValidErrorType() {
-        FullyQualifiedJavaType type = FullyQualifiedJavaType.getNewListInstance();
-        FullyQualifiedJavaType formValidErrorType = new FullyQualifiedJavaType(getFormValidErrorClassName());
-        type.addTypeArgument(formValidErrorType);
-        return type;
-    }
-    
     /**
      * 设置返回参数
      * @author 徐明龙 XuMingLong 

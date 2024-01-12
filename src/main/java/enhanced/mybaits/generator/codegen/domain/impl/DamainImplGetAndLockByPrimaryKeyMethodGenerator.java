@@ -1,21 +1,19 @@
-package enhanced.mybaits.generator.codegen.service.impl;
-
+package enhanced.mybaits.generator.codegen.domain.impl;
 
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.service.AbstractServiceImplMethodGenerator;
-import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
-import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import enhanced.mybaits.generator.codegen.domain.AbstractDomainImplMethodGenerator;
+import enhanced.mybaits.generator.enums.DomainMethodEnum;
 import org.mybatis.generator.api.dom.java.Method;
 
 import java.util.List;
 
 /**
- * Service 接口实现类获取主键对应的记录方法生成器
+ * Domain 接口实现类获取并锁定主键对应的记录方法生成器
  * @author 徐明龙 XuMingLong 
  */
-public class ServiceImplGetByPrimaryKeyMethodGenerator extends AbstractServiceImplMethodGenerator {
+public class DamainImplGetAndLockByPrimaryKeyMethodGenerator extends AbstractDomainImplMethodGenerator {
 
-    public ServiceImplGetByPrimaryKeyMethodGenerator(MixedContext mixedContext) {
+    public DamainImplGetAndLockByPrimaryKeyMethodGenerator(MixedContext mixedContext) {
         super(mixedContext);
     }
 
@@ -26,13 +24,12 @@ public class ServiceImplGetByPrimaryKeyMethodGenerator extends AbstractServiceIm
      */
     @Override
     protected void addMethodBody(Method method) {
-        
         StringBuilder sb = new StringBuilder();
         //增加返回结果
         sb.append("return ");
-        sb.append(mapperFieldName);
+        sb.append(repositoryFieldName);
         sb.append(".");
-        sb.append(EnhanceSqlIdEnum.GET_BY_PRIMARY_KEY.getValue());
+        sb.append(calculateMethodName());
         sb.append("(");
         sb.append(getJoinedKeyColumnListJavaPropertyName(",",false));
         sb.append(");");
@@ -53,13 +50,13 @@ public class ServiceImplGetByPrimaryKeyMethodGenerator extends AbstractServiceIm
 
 
     /**
-     * 返回Service方法枚举类
+     * 返回Domain方法枚举类
      * @author 徐明龙 XuMingLong 
-     * @return 返回Service方法枚举类
+     * @return 返回Domain方法枚举类
      */
     @Override
-    protected ServiceMethodEnum getServiceMethod() {
-        return ServiceMethodEnum.GET_BY_PRIMARY_KEY;
+    protected DomainMethodEnum getDomainMethod() {
+        return DomainMethodEnum.GET_AND_LOCK_BY_PRIMARY_KEY;
     }
 
     
@@ -71,6 +68,6 @@ public class ServiceImplGetByPrimaryKeyMethodGenerator extends AbstractServiceIm
     @Override
     protected String calculateMethodName() {
         String subName = getJoinedKeyColumnListJavaPropertyName("And",true);
-        return ServiceMethodEnum.GET_BY_PRIMARY_KEY.getReplacePrimaryKeyValue(subName);
+        return DomainMethodEnum.GET_AND_LOCK_BY_PRIMARY_KEY.getReplacePrimaryKeyValue(subName);
     }
 }

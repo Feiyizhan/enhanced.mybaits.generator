@@ -5,13 +5,15 @@ import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.EnhanceIntrospectedTableMyBatis3SimpleImpl;
 import enhanced.mybaits.generator.GeneratorExecutor;
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.test.*;
+import enhanced.mybaits.generator.codegen.domain.DomainInterfaceGenerator;
+import enhanced.mybaits.generator.codegen.domain.impl.DomainImplGenerator;
 import enhanced.mybaits.generator.codegen.model.DOGenerator;
 import enhanced.mybaits.generator.codegen.model.DTOGenerator;
 import enhanced.mybaits.generator.codegen.model.FormGenerator;
 import enhanced.mybaits.generator.codegen.model.ResGenerator;
 import enhanced.mybaits.generator.codegen.service.ServiceInterfaceGenerator;
 import enhanced.mybaits.generator.codegen.service.impl.ServiceImplGenerator;
+import enhanced.mybaits.generator.codegen.test.SimpleJavaClientTestsGenerator;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.repository.RepositoryInterfaceGenerator;
 import enhanced.mybaits.generator.repository.impl.RepositoryImplGenerator;
@@ -153,6 +155,13 @@ public class EnhancePlugin extends PluginAdapter{
             //生成Repository接口实现类
             generatorExecutor.addJavaGenerator(new RepositoryImplGenerator(mixedContext));
         }
+        if(canGenerateDomainClass()){
+            //生成Domain接口类
+            generatorExecutor.addJavaGenerator(new DomainInterfaceGenerator(mixedContext));
+            //生成Domain接口实现类
+            generatorExecutor.addJavaGenerator(new DomainImplGenerator(mixedContext));
+        }
+
         answer.addAll(generatorExecutor.generateAllFiles());
         return answer;
     }
@@ -195,6 +204,17 @@ public class EnhancePlugin extends PluginAdapter{
                 .getProperty(EnhanceConstant.EXTRA_REPOSITORY_TARGET_PACKAGE_KEY));
     }
 
+    /**
+     * 检查是否生成Domain代码
+     * @author 徐明龙 XuMingLong 2022-04-17
+     * @return boolean
+     */
+    private boolean canGenerateDomainClass() {
+        return StringUtility.stringHasValue(
+            this.context
+                .getJavaClientGeneratorConfiguration()
+                .getProperty(EnhanceConstant.EXTRA_DOMAIN_TARGET_PACKAGE_KEY));
+    }
 
 
     /**

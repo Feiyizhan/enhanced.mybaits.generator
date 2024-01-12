@@ -68,6 +68,18 @@ public interface EnhanceConstant {
      */
     String EXTRA_SERVICE_IMPL_TARGET_PACKAGE_KEY="serviceImplTargetPackage";
 
+    /**
+     * 额外的Domain接口生成的目的包名参数
+     * @author 徐明龙 XuMingLong
+     */
+    String EXTRA_DOMAIN_TARGET_PACKAGE_KEY="domainTargetPackage";
+
+    /**
+     * 额外的Domain实现类生成的目的包名参数
+     * @author 徐明龙 XuMingLong
+     */
+    String EXTRA_DOMAIN_IMPL_TARGET_PACKAGE_KEY="domainImplTargetPackage";
+
 
     /**
      * 额外的API Service接口生成的目的包名参数

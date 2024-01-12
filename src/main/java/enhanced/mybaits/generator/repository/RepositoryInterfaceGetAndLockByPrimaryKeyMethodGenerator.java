@@ -2,7 +2,6 @@
 package enhanced.mybaits.generator.repository;
 
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractRepositoryInterfaceMethodGenerator;
 import enhanced.mybaits.generator.enums.RepositoryMethodEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.IntrospectedColumn;

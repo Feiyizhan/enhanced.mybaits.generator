@@ -7,16 +7,15 @@ import org.mybatis.generator.api.dom.java.Parameter;
 import org.mybatis.generator.api.dom.java.PrimitiveTypeWrapper;
 
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractServiceInterfaceMethodGenerator;
 import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 
 /**
  * Service 接口新增方法生成器
  * @author 徐明龙 XuMingLong 
  */
-public class ServiceInterFaceInsertMethodGenerator extends AbstractServiceInterfaceMethodGenerator {
+public class ServiceInterfaceInsertMethodGenerator extends AbstractServiceInterfaceMethodGenerator {
 
-    public ServiceInterFaceInsertMethodGenerator(MixedContext mixedContext) {
+    public ServiceInterfaceInsertMethodGenerator(MixedContext mixedContext) {
         super(mixedContext);
     }
 

@@ -2,7 +2,7 @@
 package enhanced.mybaits.generator.repository.impl;
 
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractRepositoryImplMethodGenerator;
+import enhanced.mybaits.generator.repository.AbstractRepositoryImplMethodGenerator;
 import enhanced.mybaits.generator.enums.AudiFieldEnum;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.enums.RepositoryMethodEnum;

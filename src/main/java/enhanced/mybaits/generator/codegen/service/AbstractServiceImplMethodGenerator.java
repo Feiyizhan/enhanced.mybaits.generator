@@ -1,5 +1,5 @@
 
-package enhanced.mybaits.generator.codegen;
+package enhanced.mybaits.generator.codegen.service;
 
 
 import enhanced.mybaits.generator.MixedContext;
@@ -13,39 +13,43 @@ import org.mybatis.generator.api.dom.java.Method;
 import java.util.List;
 
 /**
- * Repository 接口实现类方法生成器基类
- * @author 徐明龙 XuMingLong
+ * Service 接口实现类方法生成器基类
+ * @author 徐明龙 XuMingLong 
  */
-public abstract class AbstractRepositoryImplMethodGenerator extends AbstractRepositoryInterfaceMethodGenerator {
+public abstract class AbstractServiceImplMethodGenerator extends AbstractServiceInterfaceMethodGenerator {
 
+    protected static final String returnVarName = "res";
+    protected static final String errorVarName = "errors";
+    protected static final String nowVarName = "now";
 
+    
     /**
      * 获取表对应的实体类变量名称
-     * @author 徐明龙 XuMingLong
+     * @author 徐明龙 XuMingLong 
      */
     protected String baseRecordVarName ;
     /**
      * Mapper字段名称
-     * @author 徐明龙 XuMingLong
+     * @author 徐明龙 XuMingLong 
      */
     protected String mapperFieldName;
     /**
      * 对应的接口方法
-     * @author 徐明龙 XuMingLong
+     * @author 徐明龙 XuMingLong 
      */
     protected Method interfaceMethod;
-
-    public AbstractRepositoryImplMethodGenerator(MixedContext mixedContext) {
+    
+    public AbstractServiceImplMethodGenerator(MixedContext mixedContext) {
         super(mixedContext);
         this.baseRecordVarName = getBaseRecordVarName();
         this.mapperFieldName = getMapperFieldName();
     }
-
-
+    
+    
 
     /**
      * 获取表对应的实体类变量名称
-     * @author 徐明龙 XuMingLong
+     * @author 徐明龙 XuMingLong 
      * @return 返回基础实体变量名
      */
     protected String getBaseRecordVarName() {
@@ -53,8 +57,17 @@ public abstract class AbstractRepositoryImplMethodGenerator extends AbstractRepo
     }
 
     /**
+     * 获取表对应的实体类的类型
+     * @author 徐明龙 XuMingLong 
+     * @return 返回基础实体类型
+     */
+    protected FullyQualifiedJavaType getBaseRecordType() {
+        return this.mixedContext.getBaseRecord().getType();
+    }
+
+    /**
      * 增加方法
-     * @author 徐明龙 XuMingLong
+     * @author 徐明龙 XuMingLong 
      */
     @Override
     public void addMethod() {
@@ -67,42 +80,42 @@ public abstract class AbstractRepositoryImplMethodGenerator extends AbstractRepo
             method.addAnnotation("@Override");
             //增加方法内容
             addMethodBody(method);
-            this.mixedContext.getRepositoryImplClass().addMethod(method);
+            this.mixedContext.getServiceImplClass().addMethod(method);
         }
-
+        
         List<Method> extraMethodList = addExtraMethod(method);
         if(extraMethodList!=null && extraMethodList.size() >0) {
             extraMethodList.forEach((r)->{
-                this.mixedContext.getRepositoryImplClass().addMethod(r);
+                this.mixedContext.getServiceImplClass().addMethod(r);
             });
         }
     }
-
-
-
+    
+    
+    
 
     /**
      * 增加额外的方法
-     * @author 徐明龙 XuMingLong
+     * @author 徐明龙 XuMingLong 
      * @param method 待处理的方法
      * @return 额外的方法
      */
     protected abstract List<Method> addExtraMethod(Method method);
-
+    
     /**
      * 增加方法内容
-     * @author 徐明龙 XuMingLong
+     * @author 徐明龙 XuMingLong 
      * @param method 待处理的方法
      */
     protected abstract void addMethodBody(Method method) ;
-
+    
     /**
      * 设置对应的接口方法
-     * @author 徐明龙 XuMingLong
+     * @author 徐明龙 XuMingLong 
      */
     protected void setInterfaceMethod() {
         String methodName = calculateMethodName();
-        List<Method> methodList = this.mixedContext.getRepositoryInterface().getMethods();
+        List<Method> methodList = this.mixedContext.getServiceInterface().getMethods();
         for(Method r:methodList) {
             if(r.getName().equals(methodName)) {
                 this.interfaceMethod = r;
@@ -132,37 +145,6 @@ public abstract class AbstractRepositoryImplMethodGenerator extends AbstractRepo
 
     }
     
-    /**
-     * 获取New 类型代码
-     * @author 徐明龙 XuMingLong 
-     * @param type 类型
-     * @param varName 变量名称
-     * @return New 类型的代码
-     */
-    protected String getNewTypeCode(FullyQualifiedJavaType type,String varName) {
-        //判断是否有泛型
-        boolean isGeneric= false;
-        if(type.getTypeArguments()!=null && !type.getTypeArguments().isEmpty()) {
-            isGeneric = true;
-        }
-        
-        StringBuilder sb = new StringBuilder();
-        sb.append(type.getShortName());
-        sb.append(" ");
-        if(StringUtils.isBlank(varName)) {
-            sb.append(StringUtils.uncapitalize(type.getShortNameWithoutTypeArguments()));
-        }else {
-            sb.append(varName);
-        }
-        sb.append(" = new ");
-        sb.append(type.getShortNameWithoutTypeArguments());
-        if(isGeneric) {
-            sb.append("<>");
-        }
-        sb.append("();");
-        return sb.toString();
-    }
-    
 
     /**
      * 增加表对应的实体的所有审计信息代码
@@ -184,12 +166,12 @@ public abstract class AbstractRepositoryImplMethodGenerator extends AbstractRepo
                 case CREATOR:
                 case MODIFIER:    
                     addBaseRecordAudiFieldCode(method,r,
-                        StringUtils.join(userVarName,".getName()"));
+                        StringUtils.join(userParameterName,".getName()"));
                     break;
                 case CREATOR_ID:
                 case MODIFIER_ID:    
                     addBaseRecordAudiFieldCode(method,r,
-                        StringUtils.join(userVarName,".getId()"));
+                        StringUtils.join(userParameterName,".getId()"));
                     break;
                     
                 default:
@@ -200,7 +182,7 @@ public abstract class AbstractRepositoryImplMethodGenerator extends AbstractRepo
     }
     /**
      * 增加表对应的实体的审计字段信息代码
-     * @author 徐明龙 XuMingLong
+     * @author 徐明龙 XuMingLong 
      * @param mothod 待处理的方法
      * @param field  审计字段名称
      * @param varName 审计字段值
@@ -217,9 +199,8 @@ public abstract class AbstractRepositoryImplMethodGenerator extends AbstractRepo
                 )
             );
     }
-
-
-
+    
+    
     /**
      * 增加表对应的实体的更新审计信息代码
      * @author 徐明龙 XuMingLong 
@@ -238,11 +219,11 @@ public abstract class AbstractRepositoryImplMethodGenerator extends AbstractRepo
                     break;
                 case MODIFIER:    
                     addBaseRecordAudiFieldCode(method,r,
-                        StringUtils.join(userVarName,".getName()"));
+                        StringUtils.join(userParameterName,".getName()"));
                     break;
                 case MODIFIER_ID:    
                     addBaseRecordAudiFieldCode(method,r,
-                        StringUtils.join(userVarName,".getId()"));
+                        StringUtils.join(userParameterName,".getId()"));
                     break;
                     
                 default:
