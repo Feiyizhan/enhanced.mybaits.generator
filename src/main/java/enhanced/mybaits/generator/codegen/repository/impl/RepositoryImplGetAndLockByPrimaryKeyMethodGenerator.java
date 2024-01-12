@@ -1,7 +1,7 @@
-package enhanced.mybaits.generator.repository.impl;
+package enhanced.mybaits.generator.codegen.repository.impl;
 
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.repository.AbstractRepositoryImplMethodGenerator;
+import enhanced.mybaits.generator.codegen.repository.AbstractRepositoryImplMethodGenerator;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.enums.RepositoryMethodEnum;
 import org.mybatis.generator.api.dom.java.Field;

@@ -1,8 +1,8 @@
 
-package enhanced.mybaits.generator.repository.impl;
+package enhanced.mybaits.generator.codegen.repository.impl;
 
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.repository.AbstractRepositoryImplMethodGenerator;
+import enhanced.mybaits.generator.codegen.repository.AbstractRepositoryImplMethodGenerator;
 import enhanced.mybaits.generator.enums.AudiFieldEnum;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.enums.RepositoryMethodEnum;
@@ -35,7 +35,7 @@ public class RepositoryImplInsertMethodGenerator extends AbstractRepositoryImplM
     @Override
     protected void addMethodBody(Method method) {
         StringBuilder sb = new StringBuilder();
-        
+
         FullyQualifiedJavaType baseRecordType = getBaseRecordType();
         method.addBodyLine(getNewTypeCode(baseRecordType,baseRecordVarName));
         List<Field> baseFieldList = this.mixedContext.getBaseRecord().getFields();
@@ -64,7 +64,7 @@ public class RepositoryImplInsertMethodGenerator extends AbstractRepositoryImplM
         sb.append(baseRecordVarName);
         sb.append(");");
         method.addBodyLine(sb.toString());
-        
+
         String autoIncrementKeyName = getAutoIncrementKeyName();
         if(autoIncrementKeyName!=null) {
             //增加返回结果

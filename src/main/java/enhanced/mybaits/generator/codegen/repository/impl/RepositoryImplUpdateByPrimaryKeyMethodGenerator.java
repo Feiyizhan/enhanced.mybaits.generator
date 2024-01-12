@@ -1,11 +1,11 @@
 
-package enhanced.mybaits.generator.repository.impl;
+package enhanced.mybaits.generator.codegen.repository.impl;
 
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.enums.AudiFieldEnum;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.enums.RepositoryMethodEnum;
-import enhanced.mybaits.generator.repository.AbstractRepositoryImplMethodGenerator;
+import enhanced.mybaits.generator.codegen.repository.AbstractRepositoryImplMethodGenerator;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.Field;

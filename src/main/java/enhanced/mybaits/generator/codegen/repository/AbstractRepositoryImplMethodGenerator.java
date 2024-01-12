@@ -1,5 +1,5 @@
 
-package enhanced.mybaits.generator.repository;
+package enhanced.mybaits.generator.codegen.repository;
 
 
 import enhanced.mybaits.generator.MixedContext;

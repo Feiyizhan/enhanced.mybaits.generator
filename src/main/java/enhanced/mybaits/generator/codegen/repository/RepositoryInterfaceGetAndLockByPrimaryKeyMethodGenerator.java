@@ -1,5 +1,5 @@
 
-package enhanced.mybaits.generator.repository;
+package enhanced.mybaits.generator.codegen.repository;
 
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.enums.RepositoryMethodEnum;
@@ -12,12 +12,12 @@ import org.mybatis.generator.api.dom.java.Parameter;
 import java.util.List;
 
 /**
- * Repository 接口获取主键对应的记录方法生成器
+ * Repository 接口获取并锁定主键对应的记录的返回结果对象方法生成器
  * @author 徐明龙 XuMingLong 
  */
-public class RepositoryInterfaceGetByPrimaryKeyMethodGenerator extends AbstractRepositoryInterfaceMethodGenerator {
+public class RepositoryInterfaceGetAndLockByPrimaryKeyMethodGenerator extends AbstractRepositoryInterfaceMethodGenerator {
 
-    public RepositoryInterfaceGetByPrimaryKeyMethodGenerator(MixedContext mixedContext) {
+    public RepositoryInterfaceGetAndLockByPrimaryKeyMethodGenerator(MixedContext mixedContext) {
         super(mixedContext);
     }
 
@@ -29,7 +29,7 @@ public class RepositoryInterfaceGetByPrimaryKeyMethodGenerator extends AbstractR
     @Override
     protected String calculateMethodName() {
         String subName = getJoinedKeyColumnListJavaPropertyName("And",true);
-        return RepositoryMethodEnum.GET_BY_PRIMARY_KEY.getReplacePrimaryKeyValue(subName);
+        return RepositoryMethodEnum.GET_AND_LOCK_BY_PRIMARY_KEY.getReplacePrimaryKeyValue(subName);
     }
 
     /**
@@ -46,6 +46,7 @@ public class RepositoryInterfaceGetByPrimaryKeyMethodGenerator extends AbstractR
                 StringUtils.uncapitalize(r.getJavaProperty()));
             method.addParameter(parameter);
             this.mixedContext.getRepositoryInterface().addImportedType(parameterType);
+            
         });
         
     }
@@ -60,6 +61,7 @@ public class RepositoryInterfaceGetByPrimaryKeyMethodGenerator extends AbstractR
         FullyQualifiedJavaType returnType = this.mixedContext.getDOClass().getType();
         method.setReturnType(returnType);
         this.mixedContext.getRepositoryInterface().addImportedType(returnType);
+        
     }
 
     /**
@@ -69,7 +71,7 @@ public class RepositoryInterfaceGetByPrimaryKeyMethodGenerator extends AbstractR
      */
     @Override
     protected RepositoryMethodEnum getRepositoryMethod() {
-        return RepositoryMethodEnum.GET_BY_PRIMARY_KEY;
+        return RepositoryMethodEnum.GET_AND_LOCK_BY_PRIMARY_KEY;
     }
 
 
