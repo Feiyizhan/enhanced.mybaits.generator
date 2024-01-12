@@ -70,7 +70,19 @@ public class MixedContext {
      */
     private DomainImplClass domainImplClass;
 
-    
+    /**
+     * Application 接口类
+     * @author 徐明龙 XuMingLong
+     */
+    private ApplicationInterface applicationInterface;
+
+    /**
+     * Application 接口实现类
+     * @author 徐明龙 XuMingLong
+     */
+    private ApplicationImplClass applicationImplClass;
+
+
     /**
      * Form类
      * @author 徐明龙 XuMingLong 

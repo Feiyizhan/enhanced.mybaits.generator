@@ -416,6 +416,20 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
     }
 
     /**
+     * Application 接口类注释
+     * @author 徐明龙 XuMingLong
+     * @param applicationInterface Application接口类
+     * @param introspectedTable    对应的表
+     */
+    @Override public void addApplicationInterfaceComment(ApplicationInterface applicationInterface,
+        IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
+        addClassComment(applicationInterface,introspectedTable,"Application接口");
+    }
+
+    /**
      * Form类注释
      * @author 徐明龙 XuMingLong 
      * @param formClass 表单类
@@ -513,6 +527,20 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
     }
 
     /**
+     * Application接口实现类注释
+     * @author 徐明龙 XuMingLong
+     * @param applicationImplClass Application的实现类
+     * @param introspectedTable    对应的表
+     */
+    @Override public void addApplicationImplClassComment(ApplicationImplClass applicationImplClass,
+        IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
+        addClassComment(applicationImplClass,introspectedTable,"Application接口的实现类");
+    }
+
+    /**
      * 增加注入的Mapper字段的注释
      * @author 徐明龙 XuMingLong 
      * @param field 注入的字段类
@@ -574,6 +602,23 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         String description = "";
         if(domainMethod!=null) {
             description = domainMethod.getDescription();
+        }
+        addMethodComment(method,description);
+    }
+
+    /**
+     * Domain 方法的注释
+     * @author 徐明龙 XuMingLong
+     * @param method            方法类
+     * @param applicationMethod 方法的枚举
+     */
+    @Override public void addApplicationMethodComment(Method method, ApplicationMethodEnum applicationMethod) {
+        if (suppressAllComments) {
+            return;
+        }
+        String description = "";
+        if(applicationMethod!=null) {
+            description = applicationMethod.getDescription();
         }
         addMethodComment(method,description);
     }

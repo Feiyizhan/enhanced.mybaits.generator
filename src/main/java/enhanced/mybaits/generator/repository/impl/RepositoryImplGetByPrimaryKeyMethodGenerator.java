@@ -53,10 +53,10 @@ public class RepositoryImplGetByPrimaryKeyMethodGenerator extends AbstractReposi
         List<Field> dOFieldList = this.mixedContext.getDOClass().getFields();
         Map<String,Field> baseFieldMap = baseFieldList.stream()
             .collect(Collectors.toMap(Field::getName, Function.identity()));
-        for(Field dtoField:dOFieldList) {
-            Field baseField = baseFieldMap.get(dtoField.getName());
+        for(Field dOField:dOFieldList) {
+            Field baseField = baseFieldMap.get(dOField.getName());
             if(baseField!=null){
-                method.addBodyLine(generateCopyFieldCode(dtoField,baseField,dOVarName,baseRecordVarName));
+                method.addBodyLine(generateCopyFieldCode(dOField,baseField,dOVarName,baseRecordVarName));
             }
         }
         //增加返回结果

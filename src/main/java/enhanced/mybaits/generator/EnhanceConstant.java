@@ -82,6 +82,19 @@ public interface EnhanceConstant {
 
 
     /**
+     * 额外的Application接口生成的目的包名参数
+     * @author 徐明龙 XuMingLong
+     */
+    String EXTRA_APPLICATION_TARGET_PACKAGE_KEY="applicationTargetPackage";
+
+    /**
+     * 额外的Application实现类生成的目的包名参数
+     * @author 徐明龙 XuMingLong
+     */
+    String EXTRA_APPLICATION_IMPL_TARGET_PACKAGE_KEY="applicationImplTargetPackage";
+
+
+    /**
      * 额外的API Service接口生成的目的包名参数
      * @author 徐明龙 XuMingLong
      */

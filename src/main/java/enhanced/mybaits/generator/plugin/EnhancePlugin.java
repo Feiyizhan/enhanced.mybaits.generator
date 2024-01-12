@@ -5,6 +5,8 @@ import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.EnhanceIntrospectedTableMyBatis3SimpleImpl;
 import enhanced.mybaits.generator.GeneratorExecutor;
 import enhanced.mybaits.generator.MixedContext;
+import enhanced.mybaits.generator.codegen.application.ApplicationInterfaceGenerator;
+import enhanced.mybaits.generator.codegen.application.impl.ApplicationImplGenerator;
 import enhanced.mybaits.generator.codegen.domain.DomainInterfaceGenerator;
 import enhanced.mybaits.generator.codegen.domain.impl.DomainImplGenerator;
 import enhanced.mybaits.generator.codegen.model.DOGenerator;
@@ -162,6 +164,13 @@ public class EnhancePlugin extends PluginAdapter{
             generatorExecutor.addJavaGenerator(new DomainImplGenerator(mixedContext));
         }
 
+        if(canGenerateApplicationClass()){
+            //生成Application接口类
+            generatorExecutor.addJavaGenerator(new ApplicationInterfaceGenerator(mixedContext));
+            //生成Application接口实现类
+            generatorExecutor.addJavaGenerator(new ApplicationImplGenerator(mixedContext));
+        }
+
         answer.addAll(generatorExecutor.generateAllFiles());
         return answer;
     }
@@ -214,6 +223,18 @@ public class EnhancePlugin extends PluginAdapter{
             this.context
                 .getJavaClientGeneratorConfiguration()
                 .getProperty(EnhanceConstant.EXTRA_DOMAIN_TARGET_PACKAGE_KEY));
+    }
+
+    /**
+     * 检查是否生成Application代码
+     * @author 徐明龙 XuMingLong 2022-04-17
+     * @return boolean
+     */
+    private boolean canGenerateApplicationClass() {
+        return StringUtility.stringHasValue(
+            this.context
+                .getJavaClientGeneratorConfiguration()
+                .getProperty(EnhanceConstant.EXTRA_APPLICATION_TARGET_PACKAGE_KEY));
     }
 
 

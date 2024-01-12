@@ -62,6 +62,11 @@ public class DomainImplUpdateByPrimaryKeyMethodGenerator extends AbstractDomainI
         verifyForUpdateMethod.addAnnotation("@Override");
         verifyForUpdateMethod.setName(DomainImplExtraMethodEnum.VERIFY_FOR_UPDATE.getValue());
         //参数
+        FullyQualifiedJavaType dOType = this.mixedContext.getDOClass().getType();
+        Parameter dOParameter = new Parameter(dOType, dOVarName);
+        verifyForUpdateMethod.addParameter(dOParameter);
+        this.mixedContext.getRepositoryInterface().addImportedType(dOType);
+
         FullyQualifiedJavaType dTOType = this.mixedContext.getDTOClass().getType();
         Parameter dTOParameter = new Parameter(dTOType, dTOVarName);
         verifyForUpdateMethod.addParameter(dTOParameter);
