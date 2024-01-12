@@ -60,7 +60,7 @@
                 <!-- java模型创建器，是必须要的元素 负责：1，key类（见context的defaultModelType）；2，java类；3，查询类 targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
                         targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录 -->
                 <!--实体类 -->
-                <javaModelGenerator targetPackage="com.xxx.entity" targetProject="src/main/java">
+                <javaModelGenerator targetPackage="com.xxx.service.news.infrastructure.model.entity" targetProject="src/main/java">
                         <!-- for MyBatis3/MyBatis3Simple 自动为每一个生成的类创建一个构造方法，构造方法包含了所有的field；而不是使用setter； -->
                         <property name="constructorBased" value="false" />
                         <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
@@ -85,31 +85,60 @@
                 <javaClientGenerator targetPackage="com.xxx.dao" type="XMLMAPPER" targetProject="src/main/java">
                         <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
                         <property name="enableSubPackages" value="false" />
-
+                        <!-- 测试类存放目的项目目录,不配置表示不生成测试代码 -->
+                        <!--                        <property name="testTargetProject" value="src/test/java"/>-->
                         <!-- 可以为所有生成的接口添加一个父接口，但是MBG只负责生成，不负责检查 <property name="rootInterface" value=""/> -->
                         <!-- 测试Client类目存放的包名 -->
-                        <property name="testClientTargetPackage" value="com.xxx.mapper"/>
+<!--                        <property name="testClientTargetPackage" value="com.xxx.mapper"/>-->
                         <!-- Form类存放目的包名 -->
-                        <property name="formTargetPackage" value="com.xxx.form"/>
+                        <property name="formTargetPackage" value="com.xxx.service.news.trigger.api.model.req.form"/>
                         <!-- Form类忽略的字段列表 -->
                         <property name="formIgnoreFieldList" value="createDate,creator,creatorId,updateDate,modifier,modifierId"/>
 
-                        <!-- Result类存放目的包名 -->
-                        <property name="resultTargetPackage" value="com.xxx.result"/>
+                        <!-- Res类存放目的包名 -->
+                        <property name="resTargetPackage" value="com.xxx.service.news.trigger.api.model.res"/>
+
+                        <!-- DO类存放目的包名 -->
+                        <property name="dOTargetPackage" value="com.xxx.service.news.domain.model.dataobj"/>
+
+                        <!-- DTO类存放目的包名 -->
+                        <property name="dTOTargetPackage" value="com.xxx.service.news.domain.model.dto"/>
+
                         <!-- Service接口存放目的包名 -->
-                        <property name="serviceTargetPackage" value="com.xxx.service"/>
+<!--                        <property name="serviceTargetPackage" value="com.xxx.service"/>-->
                         <!-- Service接口实现类存放目的包名 -->
-                        <property name="serviceImplTargetPackage" value="com.xxx.service.impl"/>
+<!--                        <property name="serviceImplTargetPackage" value="com.xxx.service.impl"/>-->
+
+                        <!-- Repository接口存放目的包名 -->
+                        <property name="repositoryTargetPackage" value="com.xxx.service.news.domain.repository"/>
+                        <!-- Repository接口实现类存放目的包名 -->
+                        <property name="repositoryImplTargetPackage" value="com.xxx.service.news.infrastructure.repository.impl"/>
+
+                        <!-- Domain接口存放目的包名 -->
+                        <property name="domainTargetPackage" value="com.xxx.service.news.domain"/>
+                        <!-- Domain接口实现类存放目的包名 -->
+                        <property name="domainImplTargetPackage" value="com.xxx.service.news.domain.impl"/>
+
+                        <!-- Application接口存放目的包名 -->
+                        <property name="applicationTargetPackage" value="com.xxx.service.news.application"/>
+                        <!-- Application接口实现类存放目的包名 -->
+                        <property name="applicationImplTargetPackage" value="com.xxx.service.news.application.impl"/>
+
+                        <!-- ApiService接口存放目的包名 -->
+                        <property name="apiServiceTargetPackage" value="com.xxx.service.news.trigger.api"/>
+                        <!-- ApiService接口实现类存放目的包名 -->
+                        <property name="apiServiceImplTargetPackage" value="com.xxx.service.news.trigger.api.impl"/>
+
                         <!-- 用户信息类名 -->
-                        <property name="userClassName" value="com.xxx.entity.SystemUser"/>
+                        <property name="userClassName" value="enhanced.mybaits.generator.example.SystemUserCommonDTO"/>
+                        <!-- ID类名 -->
+                        <property name="idClassName" value="java.lang.Integer"/>
                         <!-- 标准的校验和处理结果类名 -->
-                        <property name="standardCheckAndHandleDtoClassName" value="com.xxx.pojo.StandardCheckAndHandleDTO"/>
+                        <property name="standardCheckAndHandleDtoClassName" value="enhanced.mybaits.generator.example.StandardCheckAndHandleDTO"/>
                         <!-- 表单验证失败内容参数类名 -->
-                        <property name="formValidErrorClassName" value="com.xxx.pojo.FormValidError"/>
+                        <property name="formValidErrorClassName" value="enhanced.mybaits.generator.example.FormValidError"/>
                         <!-- 静态的生成当前日期公共方法 -->
                         <property name="nowUtils" value="com.xxx.utils.CommonsUtils.now"/>
-                        <!-- 测试类存放目的项目目录,不配置表示不生成测试代码 -->
-                        <!--                        <property name="testTargetProject" value="src/test/java"/>-->
                         <!-- 测试类需要的Spring Boot启动类 -->
                         <property name="testSpringBootMainClass" value="com.xxx.Application"/>
 
@@ -148,6 +177,7 @@
                 <table tableName="test_table" delimitAllColumns="true">
                      <property name="table_comment" value="测试表的描述"/>
                 </table>
+
         </context>
 
 </generatorConfiguration>
