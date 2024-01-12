@@ -1,5 +1,5 @@
 
-package enhanced.mybaits.generator.codegen.application.impl;
+package enhanced.mybaits.generator.codegen.trigger.api.impl;
 
 import enhanced.mybaits.generator.CodeGeneratorUtils;
 import enhanced.mybaits.generator.EnhanceConstant;
@@ -7,8 +7,7 @@ import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstractMethodGenerator;
 import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
 import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
-import enhanced.mybaits.generator.codegen.domain.impl.DamainImplGetAndLockByPrimaryKeyMethodGenerator;
-import enhanced.mybaits.generator.dom.java.ApplicationImplClass;
+import enhanced.mybaits.generator.dom.java.ApiServiceImplClass;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.api.dom.java.Field;
@@ -21,18 +20,18 @@ import java.util.List;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 /**
- * Application 接口实现类生成器
+ * Api Service 接口实现类生成器
  * @author 徐明龙 XuMingLong 
  */
-public class ApplicationImplGenerator extends AbstratEnhanceJavaGenerator {
+public class ApiServiceImplGenerator extends AbstratEnhanceJavaGenerator {
 
 
-    public ApplicationImplGenerator(MixedContext mixedContext) {
+    public ApiServiceImplGenerator(MixedContext mixedContext) {
         super(mixedContext);
     }
 
     /**
-     * 设置Application接口实现类生成位置
+     * 设置Api Service接口实现类生成位置
      * @author 徐明龙 XuMingLong 
      */
     @Override
@@ -41,70 +40,69 @@ public class ApplicationImplGenerator extends AbstratEnhanceJavaGenerator {
     }
 
     /**
-     * 生成Application接口实现类代码
+     * 生成Api Service接口实现类代码
      * @author 徐明龙 XuMingLong 
-     * @return Application的实现类
+     * @return ApiService的实现类
      */
     @Override
     public List<CompilationUnit> getCompilationUnits() {
         List<CompilationUnit> answer = new ArrayList<>();
-        //生成Application 接口实现类
-        ApplicationImplClass applicationImplClass = getApplicationImplClass();
-        answer.add(applicationImplClass);
+        //生成Api Service 接口实现类
+        ApiServiceImplClass apiServiceImplClass = getApiServiceImplClass();
+        answer.add(apiServiceImplClass);
         return answer;
     }
 
     /**
-     * 生成Application接口实现类代码
+     * 生成ApiService接口实现类代码
      * @author 徐明龙 XuMingLong 
-     * @return Application的实现类
+     * @return ApiService的实现类
      */
-    protected ApplicationImplClass getApplicationImplClass() {
-        progressCallback.startTask(String.format("准备生成表%s的Application接口实现类", introspectedTable.getFullyQualifiedTable().toString()));
+    protected ApiServiceImplClass getApiServiceImplClass() {
+        progressCallback.startTask(String.format("准备生成表%s的ApiService接口实现类", introspectedTable.getFullyQualifiedTable().toString()));
         CommentGenerator commentGenerator = context.getCommentGenerator();
         IEnhanceCommentGenerator enhanceCommentGenerator = null ;
         if(commentGenerator instanceof IEnhanceCommentGenerator) {
             enhanceCommentGenerator = (IEnhanceCommentGenerator) commentGenerator;
         }
-        FullyQualifiedJavaType type = new FullyQualifiedJavaType(calculateApplicationImplClassName());
-        ApplicationImplClass applicationImplClass = new ApplicationImplClass(type);
-        applicationImplClass.setVisibility(JavaVisibility.PUBLIC);
-        mixedContext.setApplicationImplClass(applicationImplClass);
+        FullyQualifiedJavaType type = new FullyQualifiedJavaType(calculateApiServiceImplClassName());
+        ApiServiceImplClass apiServiceImplClass = new ApiServiceImplClass(type);
+        apiServiceImplClass.setVisibility(JavaVisibility.PUBLIC);
+        mixedContext.setApiServiceImplClass(apiServiceImplClass);
         
         //增加注释
-        commentGenerator.addJavaFileComment(applicationImplClass);
+        commentGenerator.addJavaFileComment(apiServiceImplClass);
         if(enhanceCommentGenerator!=null) {
-            enhanceCommentGenerator.addApplicationImplClassComment(applicationImplClass, introspectedTable);
+            enhanceCommentGenerator.addApiServiceImplClassComment(apiServiceImplClass, introspectedTable);
         }
         //增加Spring Service注解
-        addSpringServiceAnnotation(applicationImplClass);
+        addSpringServiceAnnotation(apiServiceImplClass);
         //增加对应接口的引入
-        addInterfaceImport(applicationImplClass);
+        addInterfaceImport(apiServiceImplClass);
 
         
+        FullyQualifiedJavaType apiServiceInterfaceType = mixedContext.getApiServiceInterface().getType();
+        apiServiceImplClass.addSuperInterface(apiServiceInterfaceType);
         FullyQualifiedJavaType applicationInterfaceType = mixedContext.getApplicationInterface().getType();
-        applicationImplClass.addSuperInterface(applicationInterfaceType);
-        FullyQualifiedJavaType domainInterfaceType = mixedContext.getDomainInterface().getType();
         
-        //增加Repository的注入
-        Field field = new Field(CodeGeneratorUtils.getInterfaceVarName(mixedContext.getDomainInterface()),domainInterfaceType);
+        //增加Application的注入
+        Field field = new Field(CodeGeneratorUtils.getInterfaceVarName(mixedContext.getApplicationInterface()),applicationInterfaceType);
         field.addAnnotation("@Resource");
         if(enhanceCommentGenerator!=null) {
             enhanceCommentGenerator.addAutowiredMapperFieldComment(field, introspectedTable);
         }
         field.setVisibility(JavaVisibility.PRIVATE);
-        applicationImplClass.addField(field);
-        applicationImplClass.addImportedType("javax.annotation.Resource");
+        apiServiceImplClass.addField(field);
+        apiServiceImplClass.addImportedType("javax.annotation.Resource");
        
         //生成方法
         addInsertMethod();
         addGetByPrimaryKeyMethod();
-        addGetAndLockByPrimaryKeyMethod();
         addUpdateByPrimaryKeyMethod();
 
         //增加默认的引入
-        addDefaultImport(applicationImplClass);
-        return applicationImplClass;
+        addDefaultImport(apiServiceImplClass);
+        return apiServiceImplClass;
     }
     
     /**
@@ -112,7 +110,7 @@ public class ApplicationImplGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong
      */
     protected void addUpdateByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ApplicationImplUpdateByPrimaryKeyMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new ApiServiceImplUpdateByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
 
@@ -121,25 +119,17 @@ public class ApplicationImplGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong
      */
     protected void addGetByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ApplicationImplGetByPrimaryKeyMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new ApiServiceImplGetByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
 
-    /**
-     * 增加获取并锁定主键对应的记录的方法
-     * @author 徐明龙 XuMingLong
-     */
-    protected void addGetAndLockByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new DamainImplGetAndLockByPrimaryKeyMethodGenerator(mixedContext);
-        initializeAndExecuteGenerator(methodGenerator);
-    }
 
     /**
      * 增加新增方法
      * @author 徐明龙 XuMingLong
      */
     protected void addInsertMethod() {
-        AbstractMethodGenerator methodGenerator = new ApplicationImplInsertMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new ApiServiceImplInsertMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     
@@ -161,9 +151,9 @@ public class ApplicationImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加默认的引入
      * @author 徐明龙 XuMingLong 
-     * @param domainImplClass Application的实现类
+     * @param domainImplClass ApiService的实现类
      */
-    protected void addDefaultImport(ApplicationImplClass domainImplClass) {
+    protected void addDefaultImport(ApiServiceImplClass domainImplClass) {
         domainImplClass.getMethods().forEach((r)->{
             r.getParameters().forEach((p)->{
                 domainImplClass.addImportedType(p.getType());
@@ -179,7 +169,7 @@ public class ApplicationImplGenerator extends AbstratEnhanceJavaGenerator {
         domainImplClass.getFields().forEach((r)->{
             domainImplClass.addImportedType(r.getType());
         });
-        domainImplClass.addImportedType(this.mixedContext.getDOClass().getType());
+        domainImplClass.addImportedType(this.mixedContext.getDTOClass().getType());
         domainImplClass.addImportedTypes(domainImplClass.getSuperInterfaceTypes());
         
         domainImplClass.addImportedType("org.apache.commons.collections4.CollectionUtils");
@@ -194,36 +184,36 @@ public class ApplicationImplGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加对应的接口的引入
      * @author 徐明龙 XuMingLong 
-     * @param domainImplClass Application的实现类
+     * @param domainImplClass ApiService的实现类
      */
-    protected void addInterfaceImport(ApplicationImplClass domainImplClass) {
-        domainImplClass.addImportedTypes(this.mixedContext.getApplicationInterface().getImportedTypes());
+    protected void addInterfaceImport(ApiServiceImplClass domainImplClass) {
+        domainImplClass.addImportedTypes(this.mixedContext.getApiServiceInterface().getImportedTypes());
     }
     
 
     /**
-     * 计算Application接口实现类名称
+     * 计算ApiService接口实现类名称
      * @author 徐明龙 XuMingLong 
-     * @return 计算Application接口实现类名称
+     * @return 计算ApiService接口实现类名称
      */
-    protected String calculateApplicationImplClassName() {
+    protected String calculateApiServiceImplClassName() {
         StringBuilder sb = new StringBuilder();
-        sb.append(calculateApplicationImplClassPackage());
+        sb.append(calculateApiServiceImplClassPackage());
         sb.append('.');
         sb.append(this.mixedContext.getBaseRecord().getType().getShortName());
-        sb.append("ApplicationImpl"); 
+        sb.append("ApiServiceImpl"); 
         return sb.toString();
     }
     
     /**
-     * 计算Application接口实现类的Package
+     * 计算Api Service接口实现类的Package
      * @author 徐明龙 XuMingLong 
-     * @return 计算Application接口实现类的Package
+     * @return 计算ApiService接口实现类的Package
      */
-    protected String calculateApplicationImplClassPackage() {
+    protected String calculateApiServiceImplClassPackage() {
         String testClientTargetPackage = this.context
             .getJavaClientGeneratorConfiguration()
-            .getProperty(EnhanceConstant.EXTRA_APPLICATION_IMPL_TARGET_PACKAGE_KEY);
+            .getProperty(EnhanceConstant.EXTRA_API_SERVICE_IMPL_TARGET_PACKAGE_KEY);
         if(!stringHasValue(testClientTargetPackage)) {
             return null;
         }else {

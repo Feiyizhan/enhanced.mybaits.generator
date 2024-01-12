@@ -1,12 +1,12 @@
 
-package enhanced.mybaits.generator.codegen.application;
+package enhanced.mybaits.generator.codegen.trigger.api;
 
 import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstractMethodGenerator;
 import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
 import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
-import enhanced.mybaits.generator.dom.java.ApplicationInterface;
+import enhanced.mybaits.generator.dom.java.ApiServiceInterface;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
@@ -18,25 +18,25 @@ import java.util.List;
 import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 /**
- * Application生成器
+ * Api Service 接口生成器
  * @author 徐明龙 XuMingLong 
  */
-public class ApplicationInterfaceGenerator extends AbstratEnhanceJavaGenerator {
+public class ApiServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
 
-    public ApplicationInterfaceGenerator(MixedContext mixedContext) {
+    public ApiServiceInterfaceGenerator(MixedContext mixedContext) {
         super(mixedContext);
     }
 
     /**
-     * 生成Application
+     * 生成Api Service 接口
      * @author 徐明龙 XuMingLong 
-     * @return Application接口类
+     * @return Api接口类
      */
     @Override
     public List<CompilationUnit> getCompilationUnits() {
         List<CompilationUnit> answer = new ArrayList<>();
-        //生成Application 接口类
-        ApplicationInterface domainInterface = getApplicationInterface();
+        //生成Api Service接口类
+        ApiServiceInterface domainInterface = getApiServiceInterface();
         answer.add(domainInterface);
         return answer;
     }
@@ -44,33 +44,33 @@ public class ApplicationInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     
 
     /**
-     * 生成Application 接口类
+     * 生成Api 接口类
      * @author 徐明龙 XuMingLong 
-     * @return Application接口类
+     * @return Api接口类
      */
-    protected ApplicationInterface getApplicationInterface() {
-        progressCallback.startTask(String.format("准备生成表%s的Application接口", introspectedTable.getFullyQualifiedTable().toString()));
+    protected ApiServiceInterface getApiServiceInterface() {
+        progressCallback.startTask(String.format("准备生成表%s的Api Service接口", introspectedTable.getFullyQualifiedTable().toString()));
         CommentGenerator commentGenerator = context.getCommentGenerator();
         IEnhanceCommentGenerator enhanceCommentGenerator = null ;
         if(commentGenerator instanceof IEnhanceCommentGenerator) {
             enhanceCommentGenerator = (IEnhanceCommentGenerator) commentGenerator;
         }
-        FullyQualifiedJavaType type = new FullyQualifiedJavaType(calculateApplicationInterfaceName());
-        ApplicationInterface applicationInterface = new ApplicationInterface(type);
-        applicationInterface.setVisibility(JavaVisibility.PUBLIC);
-        mixedContext.setApplicationInterface(applicationInterface);
+        FullyQualifiedJavaType type = new FullyQualifiedJavaType(calculateApiInterfaceName());
+        ApiServiceInterface apiServiceInterface = new ApiServiceInterface(type);
+        apiServiceInterface.setVisibility(JavaVisibility.PUBLIC);
+        mixedContext.setApiServiceInterface(apiServiceInterface);
         //增加注释
-        commentGenerator.addJavaFileComment(applicationInterface);
+        commentGenerator.addJavaFileComment(apiServiceInterface);
         if(enhanceCommentGenerator!=null) {
-            enhanceCommentGenerator.addApplicationInterfaceComment(applicationInterface, introspectedTable);
+            enhanceCommentGenerator.addApiServiceInterfaceComment(apiServiceInterface, introspectedTable);
         }
         addInsertMethod();
         addGetByPrimaryKeyMethod();
         addUpdateByPrimaryKeyMethod();
 
         //增加默认引入
-        addDefaultImport(applicationInterface);
-        return applicationInterface;
+        addDefaultImport(apiServiceInterface);
+        return apiServiceInterface;
     }
 
     /**
@@ -78,7 +78,7 @@ public class ApplicationInterfaceGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong
      */
     protected void addUpdateByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ApplicationInterfaceUpdateByPrimaryKeyMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new ApiServiceInterfaceUpdateByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
 
@@ -87,7 +87,7 @@ public class ApplicationInterfaceGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong
      */
     protected void addGetByPrimaryKeyMethod() {
-        AbstractMethodGenerator methodGenerator = new ApplicationInterfaceGetByPrimaryKeyMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new ApiServiceInterfaceGetByPrimaryKeyMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
 
@@ -96,7 +96,7 @@ public class ApplicationInterfaceGenerator extends AbstratEnhanceJavaGenerator {
      * @author 徐明龙 XuMingLong
      */
     protected void addInsertMethod() {
-        AbstractMethodGenerator methodGenerator = new ApplicationInterfaceInsertMethodGenerator(mixedContext);
+        AbstractMethodGenerator methodGenerator = new ApiServiceInterfaceInsertMethodGenerator(mixedContext);
         initializeAndExecuteGenerator(methodGenerator);
     }
     
@@ -117,9 +117,9 @@ public class ApplicationInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     /**
      * 增加默认的引入
      * @author 徐明龙 XuMingLong 
-     * @param domainInterface Application接口类
+     * @param domainInterface Api接口类
      */
-    protected void addDefaultImport(ApplicationInterface domainInterface) {
+    protected void addDefaultImport(ApiServiceInterface domainInterface) {
         domainInterface.getMethods().forEach((r)->{
             r.getParameters().forEach((p)->{
                 domainInterface.addImportedType(p.getType());
@@ -143,29 +143,29 @@ public class ApplicationInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     }
     
     /**
-     * 计算Application接口名称
+     * 计算Api接口名称
      * @author 徐明龙 XuMingLong 
-     * @return 计算Application接口名称
+     * @return 计算Api接口名称
      */
-    protected String calculateApplicationInterfaceName() {
+    protected String calculateApiInterfaceName() {
         StringBuilder sb = new StringBuilder();
-        sb.append(calculateApplicationInterfacePackage());
+        sb.append(calculateApiInterfacePackage());
         sb.append('.');
         sb.append('I');
         sb.append(this.mixedContext.getBaseRecord().getType().getShortName());
-        sb.append("Application"); 
+        sb.append("ApiService");
         return sb.toString();
     }
     
     /**
-     * 计算Application接口的Package
+     * 计算Api接口的Package
      * @author 徐明龙 XuMingLong 
-     * @return 计算Application接口的Package
+     * @return 计算Api接口的Package
      */
-    protected String calculateApplicationInterfacePackage() {
+    protected String calculateApiInterfacePackage() {
         String value = this.context
             .getJavaClientGeneratorConfiguration()
-            .getProperty(EnhanceConstant.EXTRA_APPLICATION_TARGET_PACKAGE_KEY);
+            .getProperty(EnhanceConstant.EXTRA_API_SERVICE_TARGET_PACKAGE_KEY);
         if(!stringHasValue(value)) {
             return null;
         }else {
@@ -174,7 +174,7 @@ public class ApplicationInterfaceGenerator extends AbstratEnhanceJavaGenerator {
     }
 
     /**
-     * 设置Application生成位置
+     * 设置Api生成位置
      * @author 徐明龙 XuMingLong 
      */
     @Override

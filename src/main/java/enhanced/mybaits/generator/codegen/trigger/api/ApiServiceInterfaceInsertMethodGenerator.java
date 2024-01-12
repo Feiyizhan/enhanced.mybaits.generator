@@ -1,20 +1,20 @@
 
-package enhanced.mybaits.generator.codegen.application;
+package enhanced.mybaits.generator.codegen.trigger.api;
 
 import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.enums.ApplicationMethodEnum;
+import enhanced.mybaits.generator.enums.ApiServiceMethodEnum;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 import org.mybatis.generator.api.dom.java.PrimitiveTypeWrapper;
 
 /**
- * Application 接口新增方法生成器
+ * ApiService 接口新增方法生成器
  * @author 徐明龙 XuMingLong 
  */
-public class ApplicationInterfaceInsertMethodGenerator extends AbstractApplicationInterfaceMethodGenerator {
+public class ApiServiceInterfaceInsertMethodGenerator extends AbstractApiServiceInterfaceMethodGenerator {
 
-    public ApplicationInterfaceInsertMethodGenerator(MixedContext mixedContext) {
+    public ApiServiceInterfaceInsertMethodGenerator(MixedContext mixedContext) {
         super(mixedContext);
     }
 
@@ -25,15 +25,16 @@ public class ApplicationInterfaceInsertMethodGenerator extends AbstractApplicati
      */
     @Override
     protected void addMethodParameter(Method method) {
-        FullyQualifiedJavaType dTOType = this.mixedContext.getDTOClass().getType();
-        Parameter dTOParameter = new Parameter(dTOType, dTOVarName);
-        method.addParameter(dTOParameter);
-        this.mixedContext.getApplicationInterface().addImportedType(dTOType);
+
+        FullyQualifiedJavaType formType = this.mixedContext.getFormClass().getType();
+        Parameter formParameter = new Parameter(formType, formVarName);
+        method.addParameter(formParameter);
+        this.mixedContext.getApiServiceInterface().addImportedType(formType);
 
         FullyQualifiedJavaType userType = new FullyQualifiedJavaType(getUserClassName());
         Parameter userParameter = new Parameter(userType, userVarName);
         method.addParameter(userParameter);
-        this.mixedContext.getApplicationInterface().addImportedType(userType);
+        this.mixedContext.getApiServiceInterface().addImportedType(userType);
 
     }
 
@@ -47,21 +48,18 @@ public class ApplicationInterfaceInsertMethodGenerator extends AbstractApplicati
         FullyQualifiedJavaType returnType = new FullyQualifiedJavaType(getStandardCheckAndHandleDtoClassName());
         returnType.addTypeArgument(PrimitiveTypeWrapper.getIntegerInstance());
         method.setReturnType(returnType);
-//        returnType.getImportList().forEach((r)->{
-//            this.mixedContext.getApplicationInterface().addImportedType(new FullyQualifiedJavaType(r));
-//        });
-        this.mixedContext.getApplicationInterface().addImportedType(
+        this.mixedContext.getApiServiceInterface().addImportedType(
             new FullyQualifiedJavaType(returnType.getFullyQualifiedNameWithoutTypeParameters()));
     }
 
     /**
-     * 获取Application方法对应的枚举
+     * 获取ApiService方法对应的枚举
      * @author 徐明龙 XuMingLong 
      * @return 返回方法对应的枚举
      */
     @Override
-    protected ApplicationMethodEnum getApplicationMethod() {
-        return ApplicationMethodEnum.INSERT;
+    protected ApiServiceMethodEnum getApiServiceMethod() {
+        return ApiServiceMethodEnum.INSERT;
     }
 
     /**
@@ -71,7 +69,7 @@ public class ApplicationInterfaceInsertMethodGenerator extends AbstractApplicati
      */
     @Override
     protected String calculateMethodName() {
-        return ApplicationMethodEnum.INSERT.getValue();
+        return ApiServiceMethodEnum.INSERT.getValue();
     }
 
 

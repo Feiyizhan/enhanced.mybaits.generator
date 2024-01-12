@@ -430,6 +430,19 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
     }
 
     /**
+     * Api Service 接口类注释
+     * @author 徐明龙 XuMingLong
+     * @param apiServiceInterface      Api Service接口类
+     * @param introspectedTable 对应的表
+     */
+    @Override public void addApiServiceInterfaceComment(ApiServiceInterface apiServiceInterface, IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
+        addClassComment(apiServiceInterface,introspectedTable,"Api Service接口");
+    }
+
+    /**
      * Form类注释
      * @author 徐明龙 XuMingLong 
      * @param formClass 表单类
@@ -541,6 +554,19 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
     }
 
     /**
+     * Api Service 接口实现类注释
+     * @author 徐明龙 XuMingLong
+     * @param apiServiceImplClass      Api Service的实现类
+     * @param introspectedTable 对应的表
+     */
+    @Override public void addApiServiceImplClassComment(ApiServiceImplClass apiServiceImplClass, IntrospectedTable introspectedTable) {
+        if (suppressAllComments) {
+            return;
+        }
+        addClassComment(apiServiceImplClass,introspectedTable,"Api Service接口的实现类");
+    }
+
+    /**
      * 增加注入的Mapper字段的注释
      * @author 徐明龙 XuMingLong 
      * @param field 注入的字段类
@@ -607,7 +633,7 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
     }
 
     /**
-     * Domain 方法的注释
+     * Application 方法的注释
      * @author 徐明龙 XuMingLong
      * @param method            方法类
      * @param applicationMethod 方法的枚举
@@ -619,6 +645,23 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         String description = "";
         if(applicationMethod!=null) {
             description = applicationMethod.getDescription();
+        }
+        addMethodComment(method,description);
+    }
+
+    /**
+     * Api Service 方法的注释
+     * @author 徐明龙 XuMingLong
+     * @param method 方法类
+     * @param apiMethod 方法的枚举
+     */
+    @Override public void addApiServiceMethodComment(Method method, ApiServiceMethodEnum apiMethod) {
+        if (suppressAllComments) {
+            return;
+        }
+        String description = "";
+        if(apiMethod!=null) {
+            description = apiMethod.getDescription();
         }
         addMethodComment(method,description);
     }

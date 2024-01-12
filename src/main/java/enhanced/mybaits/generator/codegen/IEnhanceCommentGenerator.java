@@ -2,10 +2,7 @@
 package enhanced.mybaits.generator.codegen;
 
 import enhanced.mybaits.generator.dom.java.*;
-import enhanced.mybaits.generator.enums.ApplicationMethodEnum;
-import enhanced.mybaits.generator.enums.DomainMethodEnum;
-import enhanced.mybaits.generator.enums.RepositoryMethodEnum;
-import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import enhanced.mybaits.generator.enums.*;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.api.dom.java.Interface;
@@ -73,6 +70,14 @@ public interface IEnhanceCommentGenerator {
     void addApplicationInterfaceComment(ApplicationInterface applicationInterface, IntrospectedTable introspectedTable);
 
     /**
+     * Api Service 接口类注释
+     * @author 徐明龙 XuMingLong
+     * @param apiServiceInterface      Api Service接口类
+     * @param introspectedTable 对应的表
+     */
+    void addApiServiceInterfaceComment(ApiServiceInterface apiServiceInterface, IntrospectedTable introspectedTable);
+
+    /**
      * Form类注释
      * @author 徐明龙 XuMingLong 
      * @param formClass 表单类
@@ -137,6 +142,14 @@ public interface IEnhanceCommentGenerator {
     void addApplicationImplClassComment(ApplicationImplClass applicationImplClass, IntrospectedTable introspectedTable);
 
     /**
+     * Api Service 接口实现类注释
+     * @author 徐明龙 XuMingLong
+     * @param apiServiceImplClass Api Service的实现类
+     * @param introspectedTable 对应的表
+     */
+    void addApiServiceImplClassComment(ApiServiceImplClass apiServiceImplClass, IntrospectedTable introspectedTable);
+
+    /**
      * 增加注入的Mapper字段的注释
      * @author 徐明龙 XuMingLong 
      * @param field 注入的字段类
@@ -169,12 +182,20 @@ public interface IEnhanceCommentGenerator {
     void addDomainMethodComment(Method method, DomainMethodEnum domainMethod);
 
     /**
-     * Domain 方法的注释
+     * Application 方法的注释
      * @author 徐明龙 XuMingLong
      * @param method 方法类
      * @param applicationMethod 方法的枚举
      */
     void addApplicationMethodComment(Method method, ApplicationMethodEnum applicationMethod);
+
+    /**
+     * Api Service 方法的注释
+     * @author 徐明龙 XuMingLong
+     * @param method 方法类
+     * @param apiMethod 方法的枚举
+     */
+    void addApiServiceMethodComment(Method method, ApiServiceMethodEnum apiMethod);
 
     /**
      * Service 扩展的方法的注释

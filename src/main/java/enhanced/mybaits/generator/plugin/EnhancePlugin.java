@@ -16,6 +16,8 @@ import enhanced.mybaits.generator.codegen.model.ResGenerator;
 import enhanced.mybaits.generator.codegen.service.ServiceInterfaceGenerator;
 import enhanced.mybaits.generator.codegen.service.impl.ServiceImplGenerator;
 import enhanced.mybaits.generator.codegen.test.SimpleJavaClientTestsGenerator;
+import enhanced.mybaits.generator.codegen.trigger.api.ApiServiceInterfaceGenerator;
+import enhanced.mybaits.generator.codegen.trigger.api.impl.ApiServiceImplGenerator;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.repository.RepositoryInterfaceGenerator;
 import enhanced.mybaits.generator.repository.impl.RepositoryImplGenerator;
@@ -171,6 +173,13 @@ public class EnhancePlugin extends PluginAdapter{
             generatorExecutor.addJavaGenerator(new ApplicationImplGenerator(mixedContext));
         }
 
+        if(canGenerateApiServiceClass()){
+            //生成Api Service接口类
+            generatorExecutor.addJavaGenerator(new ApiServiceInterfaceGenerator(mixedContext));
+            //生成Api Service接口实现类
+            generatorExecutor.addJavaGenerator(new ApiServiceImplGenerator(mixedContext));
+        }
+
         answer.addAll(generatorExecutor.generateAllFiles());
         return answer;
     }
@@ -237,6 +246,17 @@ public class EnhancePlugin extends PluginAdapter{
                 .getProperty(EnhanceConstant.EXTRA_APPLICATION_TARGET_PACKAGE_KEY));
     }
 
+    /**
+     * 检查是否生成Api Service代码
+     * @author 徐明龙 XuMingLong 2022-04-17
+     * @return boolean
+     */
+    private boolean canGenerateApiServiceClass() {
+        return StringUtility.stringHasValue(
+            this.context
+                .getJavaClientGeneratorConfiguration()
+                .getProperty(EnhanceConstant.EXTRA_API_SERVICE_TARGET_PACKAGE_KEY));
+    }
 
     /**
      * XML文件代码已生成

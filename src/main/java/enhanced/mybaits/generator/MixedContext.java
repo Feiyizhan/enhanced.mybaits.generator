@@ -82,7 +82,17 @@ public class MixedContext {
      */
     private ApplicationImplClass applicationImplClass;
 
+    /**
+     * Api Service 接口类
+     * @author 徐明龙 XuMingLong
+     */
+    private ApiServiceInterface apiServiceInterface;
 
+    /**
+     * Api Service 接口实现类
+     * @author 徐明龙 XuMingLong
+     */
+    private ApiServiceImplClass apiServiceImplClass;
     /**
      * Form类
      * @author 徐明龙 XuMingLong 
