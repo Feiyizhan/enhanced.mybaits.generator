@@ -41,7 +41,7 @@
                         <property name="dateFormat" value="yyyy-MM-dd" />
                         <property name="author" value="徐明龙 XuMingLong" />
                         <!--Java 文件和 XML文件的文件的注释，其中\n为换行符，${year}将替换为当前的4位数的年-->
-                        <property name="fileComment" value="版权归XXXX公司所有，未经本公司协议授权，禁止任何使用、篡改等行为。\nCopyright© ${year}【ABC Financial Service】All Rights Reserved. No part may be used or tampered in any form or means without the prior written consent. "/>
+                        <property name="fileComment" value="版权归XXXX公司所有，未经本公司协议授权，禁止任何使用、篡改等行为。\nCopyright© ${year}【XXX Company】All Rights Reserved. No part may be used or tampered in any form or means without the prior written consent. "/>
                 </commentGenerator>
 
                 <!-- 必须要有的，使用这个配置链接数据库 -->
