@@ -45,7 +45,7 @@
                 </commentGenerator>
 
                 <!-- 必须要有的，使用这个配置链接数据库 -->
-                <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="xxx"
+                <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="xxx"
                         userId="xxx" password="xxx"
                 >
                 </jdbcConnection>
