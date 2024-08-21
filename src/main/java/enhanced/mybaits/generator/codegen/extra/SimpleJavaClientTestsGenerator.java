@@ -1,9 +1,12 @@
 
 package enhanced.mybaits.generator.codegen.extra;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import enhanced.mybaits.generator.EnhanceConstant;
+import enhanced.mybaits.generator.MixedContext;
+import enhanced.mybaits.generator.codegen.AbstractMethodGenerator;
+import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
+import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
+import enhanced.mybaits.generator.dom.java.TestsClass;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
@@ -11,12 +14,8 @@ import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.JavaVisibility;
 
-import enhanced.mybaits.generator.EnhanceConstant;
-import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractMethodGenerator;
-import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
-import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
-import enhanced.mybaits.generator.dom.java.TestsClass;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 简单的Java Client 测试类生成器
@@ -24,8 +23,8 @@ import enhanced.mybaits.generator.dom.java.TestsClass;
  */
 public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
 
-    public SimpleJavaClientTestsGenerator(MixedContext mixedContext) {
-        super(mixedContext);
+    public SimpleJavaClientTestsGenerator(String project,MixedContext mixedContext) {
+        super(project,mixedContext);
     }
 
     /**
@@ -171,15 +170,6 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
         return this.context
             .getJavaClientGeneratorConfiguration()
             .getProperty(EnhanceConstant.EXTRA_TEST_SPRING_BOOT_MAIN_CLASS_KEY);
-    }
-
-    /**
-     * 设置生成的目标项目目录
-     * @author 徐明龙 XuMingLong 
-     */
-    @Override
-    public void setTargetProject() {
-        this.targetProject =calculateTestProject();
     }
 
 }

@@ -25,7 +25,10 @@ import static org.mybatis.generator.internal.util.messages.Messages.getString;
  * @author 徐明龙 XuMingLong
  */
 public class EnhanceSimpleJavaClientGenerator extends SimpleJavaClientGenerator {
-    
+
+    public EnhanceSimpleJavaClientGenerator(String project) {
+        super(project);
+    }
 
     /**
      * 生成DAO 接口
@@ -37,7 +40,7 @@ public class EnhanceSimpleJavaClientGenerator extends SimpleJavaClientGenerator 
         List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
         //获取Java Client
         Interface interfaze = getJavaClient();
-        if (context.getPlugins().clientGenerated(interfaze, null, introspectedTable)) {
+        if (context.getPlugins().clientGenerated(interfaze,  introspectedTable)) {
             answer.add(interfaze);
         }
         

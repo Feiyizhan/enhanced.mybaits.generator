@@ -10,7 +10,6 @@ import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.ListUtilities;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
-import org.mybatis.generator.config.GeneratedKey;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,20 +41,17 @@ public class EnhanceInsertElementGenerator extends EnhanceAbstractXmlElementGene
             new Attribute("parameterType", parameterType.getFullyQualifiedName()));
 
         context.getCommentGenerator().addComment(answer);
-        GeneratedKey gk = introspectedTable.getGeneratedKey();
-        if (gk != null) {
-            IntrospectedColumn introspectedColumn = introspectedTable.getColumn(gk.getColumn());
-            if (introspectedColumn != null) {
+        introspectedTable.getGeneratedKey().ifPresent(gk -> {
+            introspectedTable.getColumn(gk.getColumn()).ifPresent(ic -> {
                 if (gk.isJdbcStandard()) {
                     answer.addAttribute(new Attribute("useGeneratedKeys", "true"));
-                    answer.addAttribute(new Attribute("keyProperty", introspectedColumn.getJavaProperty()));
-                    answer.addAttribute(new Attribute("keyColumn", introspectedColumn.getActualColumnName()));
+                    answer.addAttribute(new Attribute("keyProperty", ic.getJavaProperty()));
+                    answer.addAttribute(new Attribute("keyColumn", ic.getActualColumnName()));
                 } else {
-                    answer.addElement(getSelectKey(introspectedColumn, gk));
+                    answer.addElement(getSelectKey(ic, gk));
                 }
-            }
-        }
-
+            });
+        });
         StringBuilder insertClause = new StringBuilder();
         insertClause.append("insert into ");
         insertClause.append(introspectedTable.getFullyQualifiedTableNameAtRuntime());

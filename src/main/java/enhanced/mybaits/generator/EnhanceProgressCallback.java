@@ -1,13 +1,13 @@
 
 package enhanced.mybaits.generator;
 
-import org.mybatis.generator.internal.NullProgressCallback;
+import org.mybatis.generator.api.ProgressCallback;
 
 /**
  * MyBaits Generatior 增强处理进度回调处理
  * @author 徐明龙 XuMingLong 
  */
-public class EnhanceProgressCallback extends NullProgressCallback {
+public class EnhanceProgressCallback implements ProgressCallback {
 
 
     @Override

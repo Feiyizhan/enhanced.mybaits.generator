@@ -83,9 +83,8 @@ public abstract class AbstractMapperTestsMethodGenerator extends AbstractMethodG
         if(testedMethod==null) {
             return;
         }
-        Method method = new Method();
+        Method method = new Method(String.join("", "test",StringUtils.capitalize(testedMethod.getName())));
         method.setVisibility(JavaVisibility.PUBLIC);
-        method.setName(String.join("", "test",StringUtils.capitalize(testedMethod.getName())));
         //增加方法的注解及引入
         addMethodAnnotations(method);
         addTestsClassImport();

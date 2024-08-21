@@ -1,7 +1,6 @@
 
 package enhanced.mybaits.generator.plugin;
 
-
 import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.EnhanceIntrospectedTableMyBatis3SimpleImpl;
 import enhanced.mybaits.generator.GeneratorExecutor;
@@ -63,16 +62,15 @@ public class EnhancePlugin extends PluginAdapter{
      * Mapper 类代码已生成
      * @author 徐明龙 XuMingLong 
      * @param interfaze Mapper接口类
-     * @param topLevelClass 基础类
      * @param introspectedTable 解析好的表
      * @return 是否保留该代码
      */
     @Override
-    public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass,
-        IntrospectedTable introspectedTable) {
+    public boolean clientGenerated(Interface interfaze, IntrospectedTable introspectedTable) {
         this.mixedContext.setMapper(interfaze);
         return true;
     }
+
 
 
     /**
@@ -125,18 +123,23 @@ public class EnhancePlugin extends PluginAdapter{
     @Override
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
         List<GeneratedJavaFile> answer = new ArrayList<>();
+        String defaultTargetProject = this.context.getJavaClientGeneratorConfiguration().getTargetProject();
         if(canGenerateSimpleJavaClientTestClass()){
+            String testTargetProject = this.context.getJavaClientGeneratorConfiguration()
+                .getProperty(EnhanceConstant.EXTRA_TEST_TARGET_PROJECT_KEY);
             //生成Mapper测试类
-            generatorExecutor.addJavaGenerator(new SimpleJavaClientTestsGenerator(mixedContext));
+            generatorExecutor.addJavaGenerator(new SimpleJavaClientTestsGenerator(
+                testTargetProject,
+                mixedContext));
         }
         //生成Form类
-        generatorExecutor.addJavaGenerator(new FormGenerator(mixedContext));
+        generatorExecutor.addJavaGenerator(new FormGenerator(defaultTargetProject, mixedContext));
         //生成Result类
-        generatorExecutor.addJavaGenerator(new ResultGenerator(mixedContext));
+        generatorExecutor.addJavaGenerator(new ResultGenerator(defaultTargetProject, mixedContext));
         //生成Service接口类
-        generatorExecutor.addJavaGenerator(new ServiceInterfaceGenerator(mixedContext));
+        generatorExecutor.addJavaGenerator(new ServiceInterfaceGenerator(defaultTargetProject,mixedContext));
         //生成Service接口实现类
-        generatorExecutor.addJavaGenerator(new ServiceImplGenerator(mixedContext));
+        generatorExecutor.addJavaGenerator(new ServiceImplGenerator(defaultTargetProject,mixedContext));
         answer.addAll(generatorExecutor.generateAllFiles());
         return answer;
     }
@@ -213,12 +216,10 @@ public class EnhancePlugin extends PluginAdapter{
         this.table = introspectedTable;
         //获取表的主键生成配置
         TableConfiguration tableConfiguration = introspectedTable.getTableConfiguration();
-        GeneratedKey gk = tableConfiguration.getGeneratedKey();
         //如果没有主动设置主键生成配置，那么获取默认的主键生成配置
-        if(gk==null) {
-            gk = getDefaultGeneratedKey(introspectedTable);
-            tableConfiguration.setGeneratedKey(gk);
-        }
+        GeneratedKey gk = tableConfiguration.getGeneratedKey().orElse(getDefaultGeneratedKey(introspectedTable));
+        tableConfiguration.setGeneratedKey(gk);
+
         //设置其他默认值
         tableConfiguration.setDeleteByExampleStatementEnabled(false);
         tableConfiguration.setSelectByExampleStatementEnabled(false);

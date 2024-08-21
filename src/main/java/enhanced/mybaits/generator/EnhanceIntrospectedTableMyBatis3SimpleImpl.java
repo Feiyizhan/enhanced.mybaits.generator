@@ -1,9 +1,8 @@
 
 package enhanced.mybaits.generator;
 
-
-import java.util.List;
-
+import enhanced.mybaits.generator.codegen.EnhanceSimpleJavaClientGenerator;
+import enhanced.mybaits.generator.codegen.EnhanceSimpleXMLMapperGenerator;
 import org.mybatis.generator.api.ProgressCallback;
 import org.mybatis.generator.codegen.AbstractJavaClientGenerator;
 import org.mybatis.generator.codegen.mybatis3.IntrospectedTableMyBatis3SimpleImpl;
@@ -11,8 +10,7 @@ import org.mybatis.generator.codegen.mybatis3.javamapper.SimpleAnnotatedClientGe
 import org.mybatis.generator.codegen.mybatis3.javamapper.SimpleJavaClientGenerator;
 import org.mybatis.generator.internal.ObjectFactory;
 
-import enhanced.mybaits.generator.codegen.EnhanceSimpleJavaClientGenerator;
-import enhanced.mybaits.generator.codegen.EnhanceSimpleXMLMapperGenerator;
+import java.util.List;
 
 /**
  * My baits 生成器 代码生成类
@@ -61,11 +59,11 @@ public class EnhanceIntrospectedTableMyBatis3SimpleImpl extends IntrospectedTabl
 
         AbstractJavaClientGenerator javaGenerator;
         if ("XMLMAPPER".equalsIgnoreCase(type)) {
-            javaGenerator = new EnhanceSimpleJavaClientGenerator();
+            javaGenerator = new EnhanceSimpleJavaClientGenerator(this.getClientProject());
         } else if ("ANNOTATEDMAPPER".equalsIgnoreCase(type)) {
-            javaGenerator = new SimpleAnnotatedClientGenerator();
+            javaGenerator = new SimpleAnnotatedClientGenerator(this.getClientProject());
         } else if ("MAPPER".equalsIgnoreCase(type)) {
-            javaGenerator = new SimpleJavaClientGenerator();
+            javaGenerator = new SimpleJavaClientGenerator(this.getClientProject());
         } else {
             javaGenerator = (AbstractJavaClientGenerator)ObjectFactory.createInternalObject(type);
         }

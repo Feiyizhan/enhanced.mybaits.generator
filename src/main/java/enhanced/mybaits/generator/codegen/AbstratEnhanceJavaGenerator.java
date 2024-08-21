@@ -21,34 +21,14 @@ public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
      * @author 徐明龙 XuMingLong 
      */
     protected MixedContext mixedContext;
-    
-    /**
-     * 生成的目标项目目录
-     * @author 徐明龙 XuMingLong 
-     */
-    protected String targetProject;
 
     
-    public AbstratEnhanceJavaGenerator(MixedContext mixedContext) {
+    public AbstratEnhanceJavaGenerator(String project,MixedContext mixedContext) {
+        super(project);
         this.mixedContext = mixedContext;
     }
-    
-    /**
-     * 获取生成的目标项目目录
-     * @author 徐明龙 XuMingLong 
-     * @return 生成的目标项目目录
-     */
-    public String getTargetProject() {
-        return targetProject;
-    }
-    
-    /**
-     * 设置生成的目标项目目录
-     * @author 徐明龙 XuMingLong 
-     */
-    public abstract void setTargetProject() ;
-    
-    
+
+
     /**
      * 获取测试项目路径
      * @author 徐明龙 XuMingLong 
@@ -64,25 +44,17 @@ public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
             return testProject;
         }
     }
-    
+
     /**
      * 获取Java Client项目路径
-     * @author 徐明龙 XuMingLong 
+     * @author 徐明龙 XuMingLong
      * @return Java Client项目路径
      */
     protected String calculateJavaClientProject() {
         return this.context.getJavaClientGeneratorConfiguration().getTargetProject();
     }
-    
-    /**
-     * 获取Java Model项目路径
-     * @author 徐明龙 XuMingLong 
-     * @return Java Model项目路径
-     */
-    protected String calculateModelProject() {
-        return this.context.getJavaModelGeneratorConfiguration().getTargetProject();
-    }
-    
+
+
     /**
      * 返回日期类型
      * @author 徐明龙 XuMingLong 

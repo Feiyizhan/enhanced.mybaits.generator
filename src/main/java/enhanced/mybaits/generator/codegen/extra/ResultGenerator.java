@@ -21,18 +21,10 @@ import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
  */
 public class ResultGenerator extends AbstratEnhanceJavaGenerator {
 
-    public ResultGenerator(MixedContext mixedContext) {
-        super(mixedContext);
+    public ResultGenerator(String project,MixedContext mixedContext) {
+        super(project,mixedContext);
     }
 
-    /**
-     * 设置生成的目标项目目录
-     * @author 徐明龙 XuMingLong 
-     */
-    @Override
-    public void setTargetProject() {
-        this.targetProject = calculateModelProject();
-    }
 
     /**
      * 获取Result类

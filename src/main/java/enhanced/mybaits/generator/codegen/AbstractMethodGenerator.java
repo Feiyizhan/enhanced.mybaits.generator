@@ -1,17 +1,16 @@
 
 package enhanced.mybaits.generator.codegen;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+import enhanced.mybaits.generator.EnhanceConstant;
+import enhanced.mybaits.generator.MixedContext;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.codegen.AbstractGenerator;
 import org.mybatis.generator.internal.util.JavaBeansUtil;
 
-import enhanced.mybaits.generator.EnhanceConstant;
-import enhanced.mybaits.generator.MixedContext;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 方法生成器基类
@@ -58,9 +57,9 @@ public abstract class AbstractMethodGenerator extends AbstractGenerator {
      * @return 返回自增字段的Java属性名
      */
     protected String getAutoIncrementKeyName() {
-        if(this.introspectedTable.getGeneratedKey()!=null) {
-            return JavaBeansUtil.getValidPropertyName(this.introspectedTable.getGeneratedKey().getColumn());
-        }
+        this.introspectedTable.getGeneratedKey().ifPresent(gk->{
+            JavaBeansUtil.getValidPropertyName(gk.getColumn());
+        });
         return null;
     }
     

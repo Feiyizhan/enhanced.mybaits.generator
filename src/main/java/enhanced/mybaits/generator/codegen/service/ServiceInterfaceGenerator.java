@@ -1,22 +1,21 @@
 
 package enhanced.mybaits.generator.codegen.service;
 
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.mybatis.generator.api.CommentGenerator;
-import org.mybatis.generator.api.dom.java.CompilationUnit;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.JavaVisibility;
-
 import enhanced.mybaits.generator.EnhanceConstant;
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstractMethodGenerator;
 import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
 import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
 import enhanced.mybaits.generator.dom.java.ServiceInterface;
+import org.mybatis.generator.api.CommentGenerator;
+import org.mybatis.generator.api.dom.java.CompilationUnit;
+import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
+import org.mybatis.generator.api.dom.java.JavaVisibility;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 /**
  * Service生成器
@@ -24,8 +23,8 @@ import enhanced.mybaits.generator.dom.java.ServiceInterface;
  */
 public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
 
-    public ServiceInterfaceGenerator(MixedContext mixedContext) {
-        super(mixedContext);
+    public ServiceInterfaceGenerator(String project, MixedContext mixedContext) {
+        super(project,mixedContext);
     }
 
     /**
@@ -143,11 +142,9 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
             r.getParameters().forEach((p)->{
                 serviceInterface.addImportedType(p.getType());
             });
-            serviceInterface.addImportedType(r.getReturnType());
+            r.getReturnType().ifPresent(serviceInterface::addImportedType);
             r.getTypeParameters().forEach((tp)->{
-                tp.getExtendsTypes().forEach((et)->{
-                    serviceInterface.addImportedType(et);
-                });
+                tp.getExtendsTypes().forEach(serviceInterface::addImportedType);
             });
         });
         
@@ -188,15 +185,6 @@ public class ServiceInterfaceGenerator extends AbstratEnhanceJavaGenerator {
         }else {
             return value;
         }
-    }
-
-    /**
-     * 设置Service生成位置
-     * @author 徐明龙 XuMingLong 
-     */
-    @Override
-    public void setTargetProject() {
-        this.targetProject = calculateJavaClientProject();
     }
 
 }

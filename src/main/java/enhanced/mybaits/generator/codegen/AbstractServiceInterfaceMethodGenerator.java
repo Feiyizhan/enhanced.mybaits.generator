@@ -35,8 +35,7 @@ public abstract class AbstractServiceInterfaceMethodGenerator extends AbstractMe
      */
     @Override
     public void addMethod() {
-        Method method = new Method();
-        method.setName(calculateMethodName());
+        Method method = new Method(calculateMethodName());
         //设置返回参数
         setMethodReturnType(method);
         //增加方法参数

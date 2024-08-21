@@ -1,22 +1,20 @@
 
 package enhanced.mybaits.generator.codegen.service.impl;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.mybatis.generator.api.CommentGenerator;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.JavaVisibility;
-import org.mybatis.generator.api.dom.java.Method;
-import org.mybatis.generator.api.dom.java.Parameter;
-
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstractServiceImplMethodGenerator;
 import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.enums.ServiceImplExtraMethodEnum;
 import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import org.mybatis.generator.api.CommentGenerator;
+import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
+import org.mybatis.generator.api.dom.java.JavaVisibility;
+import org.mybatis.generator.api.dom.java.Method;
+import org.mybatis.generator.api.dom.java.Parameter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Service 接口实现类更新指定记录方法生成器
@@ -126,9 +124,8 @@ public class ServiceImplUpdateByPrimaryKeyMethodGenerator extends AbstractServic
     @Override
     protected List<Method> addExtraMethod(Method method) {
         List<Method> methodList = new ArrayList<>();
-        Method verifyFromForUpdateMethod = new Method();
-        verifyFromForUpdateMethod.setName(ServiceImplExtraMethodEnum.VERIFY_FORM_FOR_UPDATE.getValue());
-        
+        Method verifyFromForUpdateMethod = new Method(ServiceImplExtraMethodEnum.VERIFY_FORM_FOR_UPDATE.getValue());
+
         FullyQualifiedJavaType baseRecordType = getBaseRecordType();
         Parameter baseRecordParameter = new Parameter(baseRecordType,
             baseRecordVarName);

@@ -1,10 +1,12 @@
 
 package enhanced.mybaits.generator.codegen.service.impl;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
+import enhanced.mybaits.generator.MixedContext;
+import enhanced.mybaits.generator.codegen.AbstractServiceImplMethodGenerator;
+import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
+import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
+import enhanced.mybaits.generator.enums.ServiceImplExtraMethodEnum;
+import enhanced.mybaits.generator.enums.ServiceMethodEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
@@ -12,12 +14,8 @@ import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
-import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractServiceImplMethodGenerator;
-import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
-import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
-import enhanced.mybaits.generator.enums.ServiceImplExtraMethodEnum;
-import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Service 接口实现类新增方法生成器
@@ -36,8 +34,9 @@ public class ServiceImplInsertMethodGenerator extends AbstractServiceImplMethodG
      */
     @Override
     protected void addMethodBody(Method method) {
-        FullyQualifiedJavaType returnType = method.getReturnType();
-        method.addBodyLine(getNewTypeCode(returnType,returnVarName));
+        method.getReturnType().ifPresent(returnType->{
+            method.addBodyLine(getNewTypeCode(returnType,returnVarName));
+        });
         FullyQualifiedJavaType listFormValidErrorType = getListFormValidErrorType();
         
         StringBuilder sb = new StringBuilder();
@@ -132,9 +131,8 @@ public class ServiceImplInsertMethodGenerator extends AbstractServiceImplMethodG
     @Override
     protected List<Method> addExtraMethod(Method method) {
         List<Method> methodList = new ArrayList<>();
-        Method verifyFromForInsertMethod = new Method();
-        verifyFromForInsertMethod.setName(ServiceImplExtraMethodEnum.VERIFY_FORM_FOR_INSERT.getValue());
-        
+        Method verifyFromForInsertMethod = new Method(ServiceImplExtraMethodEnum.VERIFY_FORM_FOR_INSERT.getValue());
+
         FullyQualifiedJavaType formType = this.mixedContext.getFormClass().getType();
         Parameter formParameter = new Parameter(formType,
             formParameterName);

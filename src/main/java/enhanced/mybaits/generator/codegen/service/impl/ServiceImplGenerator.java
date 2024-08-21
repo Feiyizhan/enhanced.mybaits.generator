@@ -1,11 +1,12 @@
 
 package enhanced.mybaits.generator.codegen.service.impl;
 
-import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import enhanced.mybaits.generator.EnhanceConstant;
+import enhanced.mybaits.generator.MixedContext;
+import enhanced.mybaits.generator.codegen.AbstractMethodGenerator;
+import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
+import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
+import enhanced.mybaits.generator.dom.java.ServiceImplClass;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
@@ -13,12 +14,10 @@ import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.JavaVisibility;
 
-import enhanced.mybaits.generator.EnhanceConstant;
-import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractMethodGenerator;
-import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
-import enhanced.mybaits.generator.codegen.IEnhanceCommentGenerator;
-import enhanced.mybaits.generator.dom.java.ServiceImplClass;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 /**
  * Service 接口实现类生成器
@@ -27,18 +26,10 @@ import enhanced.mybaits.generator.dom.java.ServiceImplClass;
 public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
 
 
-    public ServiceImplGenerator(MixedContext mixedContext) {
-        super(mixedContext);
+    public ServiceImplGenerator(String project, MixedContext mixedContext) {
+        super(project,mixedContext);
     }
 
-    /**
-     * 设置Service接口实现类生成位置
-     * @author 徐明龙 XuMingLong 
-     */
-    @Override
-    public void setTargetProject() {
-        this.targetProject = calculateJavaClientProject();
-    }
 
     /**
      * 生成Service接口实现类代码
@@ -178,11 +169,9 @@ public class ServiceImplGenerator extends AbstratEnhanceJavaGenerator {
             r.getParameters().forEach((p)->{
                 serviceImplClass.addImportedType(p.getType());
             });
-            serviceImplClass.addImportedType(r.getReturnType());
+            r.getReturnType().ifPresent(serviceImplClass::addImportedType);
             r.getTypeParameters().forEach((tp)->{
-                tp.getExtendsTypes().forEach((et)->{
-                    serviceImplClass.addImportedType(et);
-                });
+                tp.getExtendsTypes().forEach(serviceImplClass::addImportedType);
             });
         });
         

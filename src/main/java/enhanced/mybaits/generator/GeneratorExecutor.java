@@ -1,16 +1,15 @@
 
 package enhanced.mybaits.generator;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
 import org.mybatis.generator.api.GeneratedJavaFile;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.config.PropertyRegistry;
 
-import enhanced.mybaits.generator.codegen.AbstratEnhanceJavaGenerator;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 生成器执行者
@@ -64,7 +63,7 @@ public class GeneratorExecutor {
             List<CompilationUnit> compilationUnits = generator.getCompilationUnits();
             for (CompilationUnit compilationUnit : compilationUnits) {
                 GeneratedJavaFile gjf = new GeneratedJavaFile(compilationUnit,
-                    generator.getTargetProject(),
+                    generator.getProject(),
                     context.getProperty(PropertyRegistry.CONTEXT_JAVA_FILE_ENCODING),
                     context.getJavaFormatter());
                 answer.add(gjf);
@@ -83,7 +82,6 @@ public class GeneratorExecutor {
         abstractGenerator.setIntrospectedTable(table);
         abstractGenerator.setProgressCallback(callback);
         abstractGenerator.setWarnings(warnings);
-        abstractGenerator.setTargetProject();
     }
     
     

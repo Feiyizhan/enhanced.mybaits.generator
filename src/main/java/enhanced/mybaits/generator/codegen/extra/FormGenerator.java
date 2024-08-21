@@ -23,18 +23,10 @@ import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
  */
 public class FormGenerator extends AbstratEnhanceJavaGenerator {
 
-    public FormGenerator(MixedContext mixedContext) {
-        super(mixedContext);
+    public FormGenerator(String project,MixedContext mixedContext) {
+        super(project,mixedContext);
     }
 
-    /**
-     * 设置Form生成位置
-     * @author 徐明龙 XuMingLong 
-     */
-    @Override
-    public void setTargetProject() {
-        this.targetProject = calculateModelProject();
-    }
 
     /**
      * 生成Form类

@@ -1,16 +1,13 @@
 
 package enhanced.mybaits.generator.codegen.service.impl;
 
-
-import java.util.List;
-
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.Method;
-
 import enhanced.mybaits.generator.MixedContext;
 import enhanced.mybaits.generator.codegen.AbstractServiceImplMethodGenerator;
 import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import enhanced.mybaits.generator.enums.ServiceMethodEnum;
+import org.mybatis.generator.api.dom.java.Method;
+
+import java.util.List;
 
 /**
  * Service 接口实现类获取主键对应的记录的返回结果对象方法生成器
@@ -29,9 +26,10 @@ public class ServiceImplGetResultByPrimaryKeyMethodGenerator extends AbstractSer
      */
     @Override
     protected void addMethodBody(Method method) {
-        FullyQualifiedJavaType returnType = method.getReturnType();
-        method.addBodyLine(getNewTypeCode(returnType,returnVarName));
-        
+        method.getReturnType().ifPresent(returnType->{
+            method.addBodyLine(getNewTypeCode(returnType,returnVarName));
+        });
+
         StringBuilder sb = new StringBuilder();
         
         //增加获取数据语句
