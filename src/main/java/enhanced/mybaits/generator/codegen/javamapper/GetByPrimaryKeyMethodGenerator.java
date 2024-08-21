@@ -43,7 +43,7 @@ public class GetByPrimaryKeyMethodGenerator extends AbstractEnhanceJavaMapperMet
         Method method = isLocked?new Method(EnhanceSqlIdEnum.GET_BY_PRIMARY_KEY_AND_LOCKED.getValue()):
             new Method(EnhanceSqlIdEnum.GET_BY_PRIMARY_KEY.getValue());
         method.setVisibility(JavaVisibility.PUBLIC);
-
+        method.setAbstract(true);
         FullyQualifiedJavaType returnType = introspectedTable.getRules().calculateAllFieldsClass();
         method.setReturnType(returnType);
         importedTypes.add(returnType);
