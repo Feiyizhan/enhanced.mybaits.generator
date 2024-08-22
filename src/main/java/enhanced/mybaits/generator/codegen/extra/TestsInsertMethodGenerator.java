@@ -1,17 +1,16 @@
 
 package enhanced.mybaits.generator.codegen.extra;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
+import enhanced.mybaits.generator.MixedContext;
+import enhanced.mybaits.generator.codegen.AbstractMapperTestsMethodGenerator;
+import enhanced.mybaits.generator.enums.EnhanceSqlIdEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 
-import enhanced.mybaits.generator.MixedContext;
-import enhanced.mybaits.generator.codegen.AbstractMapperTestsMethodGenerator;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 测试类的新增方法测试生成器
@@ -82,7 +81,7 @@ public class TestsInsertMethodGenerator extends AbstractMapperTestsMethodGenerat
     protected void setTestedMethod() {
         List<Method> methodList = mixedContext.getMapper().getMethods();
         for(Method r:methodList) {
-            if(r.getName().equals(introspectedTable.getInsertStatementId())) {
+            if(r.getName().equals(EnhanceSqlIdEnum.INSERT.getValue())) {
                 testedMethod = r;
                 break;
             }
