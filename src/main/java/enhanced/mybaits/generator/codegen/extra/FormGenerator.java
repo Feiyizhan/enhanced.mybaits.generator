@@ -36,7 +36,7 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
     @Override
     public List<CompilationUnit> getCompilationUnits() {
         List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
-        //生成Service 接口类
+        //生成Form类
         FormClass formClass = getFormClass();
         answer.add(formClass);
         return answer;
@@ -102,7 +102,7 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
             }
             Field newField = new Field(r);
             //增加Swagger注解
-            newField.addAnnotation(String.join("", "@ApiModelProperty(value=\"",remark,"\")"));
+            newField.addAnnotation(String.join("", "@Schema(description=\"",remark,"\")"));
             formClass.addField(newField);
             formClass.addImportedType(newField.getType());
             hasField = true;
@@ -110,7 +110,7 @@ public class FormGenerator extends AbstratEnhanceJavaGenerator {
         }
         //增加引入
         if(hasField) {
-            formClass.addImportedType("io.swagger.annotations.ApiModelProperty");
+            formClass.addImportedType("io.swagger.v3.oas.annotations.media.Schema");
         }
         //增加Lombok注解
         addLombokAnnotation(formClass);

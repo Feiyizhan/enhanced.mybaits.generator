@@ -76,14 +76,14 @@ public class ResultGenerator extends AbstratEnhanceJavaGenerator {
             }
             Field newField = new Field(r);
             //增加Swagger注解
-            newField.addAnnotation(String.join("", "@ApiModelProperty(value=\"",remark,"\")"));
+            newField.addAnnotation(String.join("", "@Schema(description=\"",remark,"\")"));
             resultClass.addField(newField);
             resultClass.addImportedType(newField.getType());
             hasField = true;
         }
         //增加引入
         if(hasField) {
-            resultClass.addImportedType("io.swagger.annotations.ApiModelProperty");
+            resultClass.addImportedType("io.swagger.v3.oas.annotations.media.Schema");
         }
         //增加Lombok注解
         addLombokAnnotation(resultClass);
