@@ -202,3 +202,9 @@ Service类的所有方法的简单实现。
 ### 变动内容
 - 大版本升级,升级Java版本为21,升级适配mybatis-generator 1.4.2
 
+
+## 3.0.2 版本
+### 变动内容
+- 修复3.0.1版本的方法生成的BUG
+- 替换Swagger2.X 为 Spring Doc 3.0 
+- 替换Junit 4 为 Junit 5
