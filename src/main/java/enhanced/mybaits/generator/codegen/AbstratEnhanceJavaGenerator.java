@@ -96,12 +96,11 @@ public abstract class AbstratEnhanceJavaGenerator extends AbstractJavaGenerator{
      * @return void
      */
     protected void addSwagger2Annotation(TopLevelClass topLevelClass,String extraComment) {
-        topLevelClass.addImportedType("io.swagger.annotations.ApiModel");
         String tableComment = introspectedTable.getTableConfiguration().getProperties()
             .getProperty(EnhanceConstant.COMMENT_GENERATOR_TABLE_COMMENT_KEY);
         String remarks = introspectedTable.getRemarks();
         String comment = StringUtils.isNotBlank(remarks)?remarks:tableComment;
-        topLevelClass.addAnnotation(String.join("","@ApiModel(\"",comment,extraComment,"\")"));
+        topLevelClass.addAnnotation(String.join("", "@Schema(description=\"",comment,extraComment,"\")"));
     }
     
 }
