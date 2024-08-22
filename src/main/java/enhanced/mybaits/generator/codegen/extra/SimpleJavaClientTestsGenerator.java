@@ -69,13 +69,13 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
         testsClass.addStaticImport("org.assertj.core.api.Assertions.assertThat");
         testsClass.addImportedType("java.util.List");
         
-        testsClass.addImportedType("org.junit.runner.RunWith");
+        testsClass.addImportedType("org.junit.jupiter.api.extension.ExtendWith");
         testsClass.addImportedType("org.springframework.beans.factory.annotation.Autowired");
         testsClass.addImportedType("org.springframework.boot.test.context.SpringBootTest");
-        testsClass.addImportedType("org.springframework.test.context.junit4.SpringRunner");
+        testsClass.addImportedType("org.springframework.test.context.junit.jupiter.SpringExtension");
         testsClass.addImportedType("org.springframework.test.context.web.WebAppConfiguration");
         testsClass.addImportedType("org.springframework.transaction.annotation.Transactional");
-        testsClass.addImportedType("lombok.extern.log4j.Log4j2");
+        testsClass.addImportedType("lombok.extern.slf4j.Slf4j");
         
         String testSpringBootMainClass = calculateSpringBootTestClass();
         FullyQualifiedJavaType mainClass = new FullyQualifiedJavaType(testSpringBootMainClass); 
@@ -88,11 +88,11 @@ public class SimpleJavaClientTestsGenerator extends AbstratEnhanceJavaGenerator{
         testsClass.addImportedType(recordClassType);
         
         //增加注解
-        testsClass.addAnnotation("@RunWith(SpringRunner.class)");
+        testsClass.addAnnotation("@ExtendWith(SpringExtension.class)");
         testsClass.addAnnotation(String.join("", "@SpringBootTest(classes = ",mainClass.getShortName(),".class)"));
         testsClass.addAnnotation("@WebAppConfiguration");
         testsClass.addAnnotation("@Transactional");
-        testsClass.addAnnotation("@Log4j2");
+        testsClass.addAnnotation("@Slf4j");
         
         //增加Mapper的引入
         Field field = new Field(StringUtils.uncapitalize(mapperClassType.getShortName()),mapperClassType);
