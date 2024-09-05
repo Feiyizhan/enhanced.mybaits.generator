@@ -208,3 +208,12 @@ Service类的所有方法的简单实现。
 - 修复3.0.1版本的方法生成的BUG
 - 替换Swagger2.X 为 Spring Doc 3.0 
 - 替换Junit 4 为 Junit 5
+
+## 3.0.3 版本
+### 变动内容
+- 修复Junit 4 为 Junit 5不彻底的问题
+- 修复多表生成的重复覆盖的问题
+- 移除生成的POJO类中属性的作者信息注释
+> 注: 对于使用`com.mysql.cj.jdbc.Driver`驱动,并且mysql 版本为8.0 版本的,
+> 在数据库驱动的连接字符串中需要添加`nullCatalogMeansCurrent=true`参数,
+> 来避免`table`标签没有指定数据库时会扫描所有的数据库中同名的表的问题,而不是仅处理当前数据库的问题.
