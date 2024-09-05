@@ -56,7 +56,7 @@ public abstract class AbstractMapperTestsMethodGenerator extends AbstractMethodG
      * @author 徐明龙 XuMingLong 
      */
     protected void addTestsClassImport() {
-        mixedContext.getTestsClass().addImportedType("org.junit.Test");
+        mixedContext.getTestsClass().addImportedType("org.junit.jupiter.api.Test");
     }
     
     /**
