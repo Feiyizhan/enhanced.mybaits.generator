@@ -322,9 +322,7 @@ public class EnhanceCommentGenerator extends DefaultCommentGenerator implements 
         }
         field.addJavaDocLine("/**"); 
         field.addJavaDocLine(" * "+introspectedColumn.getRemarks()); 
-        // 增加创建人
-        addAuthorJavadocTag(field);
-        field.addJavaDocLine(" */"); 
+        field.addJavaDocLine(" */");
     }
 
     /**
