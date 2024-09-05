@@ -83,6 +83,14 @@ public class GeneratorExecutor {
         abstractGenerator.setProgressCallback(callback);
         abstractGenerator.setWarnings(warnings);
     }
-    
-    
+
+    /**
+     *  初始化Java代码生成器
+     * @author 徐明龙 XuMingLong
+     * @param introspectedTable
+     * @return void
+     */
+    public void initializeJavaGenerator(IntrospectedTable introspectedTable) {
+        this.javaGeneratorList.clear();
+    }
 }

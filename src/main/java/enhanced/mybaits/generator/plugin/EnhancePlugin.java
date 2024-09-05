@@ -122,6 +122,7 @@ public class EnhancePlugin extends PluginAdapter{
      */
     @Override
     public List<GeneratedJavaFile> contextGenerateAdditionalJavaFiles(IntrospectedTable introspectedTable) {
+        generatorExecutor.initializeJavaGenerator(introspectedTable);
         List<GeneratedJavaFile> answer = new ArrayList<>();
         String defaultTargetProject = this.context.getJavaClientGeneratorConfiguration().getTargetProject();
         if(canGenerateSimpleJavaClientTestClass()){
