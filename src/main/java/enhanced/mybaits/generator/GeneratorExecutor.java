@@ -92,5 +92,6 @@ public class GeneratorExecutor {
      */
     public void initializeJavaGenerator(IntrospectedTable introspectedTable) {
         this.javaGeneratorList.clear();
+        this.table = introspectedTable;
     }
 }
